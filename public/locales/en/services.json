@@ -1,0 +1,103 @@
+{
+  "meta": {
+    "title": "Digital Services by UX Agency in Riyadh & Dubai | UXBERT Labs",
+    "description": "We provide digital services from user research and UX design to development and quality assurance. Partner with leading UX agency in Dubai & Riyadh for exceptional digital products."
+  },
+  "breadcrumbs": {
+    "home": "Home",
+    "services": "Services"
+  },
+  "hero": {
+    "title": "We create great digital experiences for all industries",
+    "subtitle": "What we offer"
+  },
+  "servicesHeading": "Our Services",
+  "categories": {
+    "Experience & Research": "Experience & Research",
+    "Engaging Strategy & Transformation": "Engaging Strategy & Transformation",
+    "Design": "Design",
+    "Development": "Development",
+    "Marketing": "Marketing",
+    "Training & Certification": "Training & Certification",
+    "Augmented Reality (AR)": "Augmented Reality (AR)",
+    "Artificial Intelligence (AI)": "Artificial Intelligence (AI)"
+  },
+  "whoWeHelp": {
+    "title": "Who We Help",
+    "description": "We partner with everyone from startups to multinational corporates to \n deliver digital products with experiences that keep customers coming back.",
+    "slides": [
+      {
+        "title": "Non-Profit & Charities UX"
+      },
+      {
+        "title": "National & Local Government UX"
+      },
+      {
+        "title": "Education"
+      },
+      {
+        "title": "Oil & Gas UX"
+      }
+    ]
+  },
+  "clients": {
+    "title": "Our Clients",
+    "cta": "SEE ALL CLIENTS"
+  },
+  "serviceDetail": {
+    "backToServices": "Back to Services",
+    "overview": "Overview",
+    "discoverMorePrefix": "Discover more about our",
+    "digitalServicesLink": "digital services",
+    "discoverMoreMiddle": "get to know our",
+    "expertTeamLink": "expert team",
+    "benefitsTitle": "Your Benefits",
+    "relatedCaseStudiesTitle": "Related Case Studies",
+    "caseStudiesSubtitle": "Case Studies",
+    "caseStudiesCta": "All case studies",
+    "faqsSubtitle": "FAQS",
+    "faqsTitle": "FREQUENTLY ASKED QUESTIONS",
+    "faqContactHeading": "Do you have more question?",
+    "faqContactDescription": "If you have more questions, feel free to reach out to us anytime!",
+    "faqContactButton": "Send Message",
+    "interestTitle": "Are you interested",
+    "interestSubtitle": "in our services?"
+  },
+  "serviceTitles": {
+    "user-research-usability-testing": "User Research & Usability Testing",
+    "customer-experience-cx": "Customer Experience (CX)",
+    "user-experience-design-consultancy-saudi-arabia": "User Experience (UX) Design",
+    "web-mobile-development": "Web & Mobile Development",
+    "design-patterns-ui-framework": "Design Patterns & UI Framework",
+    "service-design": "Service Design",
+    "usability-engineering": "Usability Engineering",
+    "digital-transformation": "Digital Transformation",
+    "engagement-and-gamification-strategies": "Engagement & Gamification Strategies",
+    "conversion-optimization": "Conversion Optimization",
+    "content-and-copywriting": "Content & Copywriting",
+    "developer-experience": "Developer Experience",
+    "digital-marketing-solutions": "Digital Marketing Solutions",
+    "ux-and-usability-training": "Ux and Usability Training",
+    "marketing-strategy": "Marketing Strategy",
+    "quality-assurance": "Quality Assurance",
+    "user-acceptance-testing": "User Acceptance Testing",
+    "ar-experience-design": "AR Experience Design",
+    "prototyping-ar-interfaces": "Prototyping AR Interfaces",
+    "prototyping-ai-experiences": "Prototyping AI Experiences",
+    "testing-ai-experiences": "Testing AI Experiences",
+    "unification-strategy": "Unification Strategy",
+    "ux-workshops": "UX Workshops",
+    "ux-audit-and-certification-services": "UX Audit & Certification",
+    "ai-and-data-science": "AI And Data Science",
+    "ai-strategy-transformation": "AI Strategy & Transformation",
+    "automation-ai-agents": "Automation & AI Agents",
+    "conversational-ai-cx": "Conversational AI & Customer Experience",
+    "data-intelligence-insights": "Data Intelligence & Insights",
+    "personalization-recommendation": "Personalization & Recommendation Systems",
+    "generative-ai-localization": "Generative AI & Arabic Localization",
+    "data-analysis": "Data Analysis",
+    "business-analysis": "Business Analysis",
+    "change-management": "Change Management",
+    "project-or-product-management": "Project/Product Management"
+  }
+}

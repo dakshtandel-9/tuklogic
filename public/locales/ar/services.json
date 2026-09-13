@@ -1,0 +1,103 @@
+{
+  "meta": {
+    "title": "الخدمات الرقمية من وكالة تجربة المستخدم في الرياض ودبي | UXBERT Labs",
+    "description": "نقدم خدمات رقمية من بحث المستخدم وتصميم تجربة المستخدم إلى التطوير وضمان الجودة. شريك مع وكالة UX الرائدة في دبي والرياض لمنتجات رقمية استثنائية."
+  },
+  "breadcrumbs": {
+    "home": "الرئيسية",
+    "services": "الخدمات"
+  },
+  "hero": {
+    "title": "نصمّم تجارب رقمية استثنائية تلائم جميع الصناعات",
+    "subtitle": "ما نقدمه"
+  },
+  "servicesHeading": "خدماتنا",
+  "categories": {
+    "Experience & Research": "التجربة والبحث",
+    "Engaging Strategy & Transformation": "الاستراتيجية الجذابة والتحول",
+    "Design": "التصميم",
+    "Development": "التطوير",
+    "Marketing": "التسويق",
+    "Training & Certification": "التدريب والشهادات",
+    "Augmented Reality (AR)": "الواقع المعزز",
+    "Artificial Intelligence (AI)": "الذكاء الاصطناعي"
+  },
+  "whoWeHelp": {
+    "title": "من نساعد",
+    "description": "نعمل مع الشركات الناشئة والكبرى لنقدّم منتجات رقمية بتجارب استثنائية تدفع العملاء للعودة مرارًا.",
+    "slides": [
+      {
+        "title": "تجربة المستخدم للمنظمات غير الربحية والجمعيات الخيرية"
+      },
+      {
+        "title": "تجربة المستخدم للحكومات الوطنية "
+      },
+      {
+        "title": "التعليم"
+      },
+      {
+        "title": "تجربة المستخدم للنفط والغاز"
+      }
+    ]
+  },
+  "clients": {
+    "title": "عملاؤنا",
+    "cta": "شاهد كل العملاء"
+  },
+  "serviceDetail": {
+    "backToServices": "العودة للخدمات",
+    "overview": "نظرة عامة",
+    "discoverMorePrefix": "اكتشف المزيد عن",
+    "digitalServicesLink": "خدماتنا الرقمية",
+    "discoverMoreMiddle": "وتعرّف على",
+    "expertTeamLink": "فريقنا الخبير",
+    "benefitsTitle": "مزاياك",
+    "relatedCaseStudiesTitle": "قصص نجاح ذات صلة",
+    "caseStudiesSubtitle": "قصص النجاح",
+    "caseStudiesCta": "كل قصص النجاح",
+    "faqsSubtitle": "الأسئلة الشائعة",
+    "faqsTitle": "الأسئلة الأكثر شيوعاً",
+    "faqContactHeading": "هل لديك المزيد من الأسئلة؟",
+    "faqContactDescription": "إذا كانت لديك أسئلة إضافية، يسعدنا تواصلك معنا في أي وقت.",
+    "faqContactButton": "أرسل رسالة",
+    "interestTitle": "هل أنت مهتم",
+    "interestSubtitle": "بخدماتنا؟"
+  },
+  "serviceTitles": {
+    "ai-and-data-science": "الذكاء الاصطناعي وعلم البيانات",
+    "ai-strategy-transformation": "استراتيجية الذكاء الاصطناعي والتحول",
+    "automation-ai-agents": "الأتمتة ووكلاء الذكاء الاصطناعي",
+    "conversational-ai-cx": "الذكاء الاصطناعي التفاعلي وتجربة العملاء",
+    "data-intelligence-insights": "ذكاء البيانات والرؤى",
+    "personalization-recommendation": "أنظمة التخصيص والتوصية",
+    "generative-ai-localization": "الذكاء الاصطناعي التوليدي والتعريب",
+    "data-analysis": "تحليل البيانات",
+    "business-analysis": "تحليل الأعمال",
+    "testing-ai-experiences": "اختبار تجارب الذكاء الاصطناعي",
+    "prototyping-ai-experiences": "نمذجة تجارب الذكاء الاصطناعي",
+    "user-research-usability-testing": "أبحاث المستخدم (UX) واختبارات قابلية الاستخدام",
+    "customer-experience-cx": "تجربة العملاء (CX)",
+    "user-experience-design-consultancy-saudi-arabia": "تصميم تجربة المستخدم (UX)",
+    "web-mobile-development": "تطوير المواقع والجوال",
+    "design-patterns-ui-framework": "أنماط التصميم وإطار واجهة المستخدم",
+    "service-design": "تصميم الخدمة",
+    "usability-engineering": "هندسة قابلية الاستخدام",
+    "digital-transformation": "التحول الرقمي",
+    "engagement-and-gamification-strategies": "استراتيجيات المشاركة والتحفيز",
+    "conversion-optimization": "تحسين معدلات التحويل عبر تحسين تجربة المستخدم",
+    "content-and-copywriting": "المحتوى والكتابة الإبداعية",
+    "developer-experience": "تجربة المطور",
+    "digital-marketing-solutions": "حلول التسويق الرقمي",
+    "ux-and-usability-training": "برامج تدريب تجربة المستخدم وقابلية الاستخدام (UX)",
+    "marketing-strategy": "استراتيجية التسويق",
+    "quality-assurance": "ضمان الجودة",
+    "user-acceptance-testing": "اختبار قبول المستخدم",
+    "ar-experience-design": "تصميم تجربة الواقع المعزز",
+    "prototyping-ar-interfaces": "نماذج أولية لواجهات الواقع المعزز",
+    "unification-strategy": "استراتيجية التوحيد",
+    "ux-audit-and-certification-services": "تدقيق واعتماد تجربة المستخدم (UX)",
+    "ux-workshops": "ورش عمل متخصصة في تجربة المستخدم (UX)",
+    "change-management": "إدارة التغيير",
+    "project-or-product-management": "إدارة المشاريع/المنتجات"
+  }
+}

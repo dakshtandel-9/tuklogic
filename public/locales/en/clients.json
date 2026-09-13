@@ -1,0 +1,31 @@
+{
+  "meta": {
+    "title": "Clients We Serve | UX, UI & Digital Solutions Experts",
+    "description": "Meet the amazing brands and businesses we've partnered with. Discover how we've helped leading companies achieve their digital goals."
+  },
+  "breadcrumbs": {
+    "home": "Home",
+    "clients": "Our Clients"
+  },
+  "hero": {
+    "subtitle": "Our Clients",
+    "title1": "Our work is a testament to our",
+    "title2": "expertise and commitment to quality."
+  },
+  "slider": {
+    "description": "And we're looking for good people dedicated to being awesome. What is awesome you ask?",
+    "previous": "Previous",
+    "next": "Next"
+  },
+  "categories": {
+    "Government": "Government",
+    "E-Commerce & Retail": "E-Commerce & Retail",
+    "Fintech & Banking": "Fintech & Banking",
+    "Oil, Gas & Power": "Oil, Gas & Power",
+    "Telecom": "Telecom",
+    "Medical & Health": "Medical & Health",
+    "Entertainment": "Entertainment",
+    "Consulting": "Consulting",
+    "Others": "Others"
+  }
+}

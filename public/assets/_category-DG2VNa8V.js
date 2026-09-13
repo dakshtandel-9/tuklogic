@@ -1,0 +1,1 @@
+import{j as e}from"./ui-components-krT5pv9S.js";import{n as o,B as a}from"./main-B2LH-fDE.js";function n(){const t=o.useLoaderData();return e.jsx(a,{initPosts:t?.posts||[],categories:t?.categories||[],selectedCategory:o.useParams().category,initialTotalPages:t?.totalPages})}export{n as component};

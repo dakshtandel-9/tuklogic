@@ -1,0 +1,29 @@
+#splash{background:#0b042a;left:0;position:fixed;top:0;width:100vw;height:100vh;z-index:999999;opacity:0;visibility:hidden;transition:opacity 0.5s ease-in-out,visibility 0.5s ease-in-out;div{width:100%;height:100%;display:flex;align-items:center;justify-content:center;svg{width:159px;height:23px}}&.visible{opacity:1;visibility:visible}}
+#splash div{width:100%;height:100%;display:flex;align-items:center;justify-content:center}
+#splash svg{width:159px;height:23px}
+#splash.visible{opacity:1;visibility:visible}
+@keyframes pathFade{0%,100%{opacity:0.6}
+50%{opacity:1}}
+#splash svg path{animation:pathFade 2s infinite}
+#splash svg path:nth-child(1){animation-delay:0s}
+#splash svg path:nth-child(2){animation-delay:0.2s}
+#splash svg path:nth-child(3){animation-delay:0.4s}
+#splash svg path:nth-child(4){animation-delay:0.6s}
+#splash svg path:nth-child(5){animation-delay:0.8s}
+#splash svg path:nth-child(6){animation-delay:1s}
+#splash svg path:nth-child(7){animation-delay:1.2s}
+#splash svg path:nth-child(8){animation-delay:1.4s}
+#splash svg path:nth-child(9){animation-delay:1.6s}
+#splash svg path:nth-child(10){animation-delay:1.8s}
+#splash svg path:nth-child(11){animation-delay:2s}
+#splash svg path:nth-child(12){animation-delay:2.2s}
+#splash svg path:nth-child(13){animation-delay:2.4s}
+#splash svg path:nth-child(14){animation-delay:2.6s}
+#splash svg path:nth-child(15){animation-delay:2.8s}
+#splash svg path:nth-child(16){animation-delay:3s}
+#splash svg path:nth-child(17){animation-delay:3.2s}
+#splash svg path:nth-child(18){animation-delay:3.4s}
+#splash svg path:nth-child(19){animation-delay:3.6s}
+#splash svg path:nth-child(20){animation-delay:3.8s}
+#splash svg path:nth-child(21){animation-delay:4s}
+.grecaptcha-badge{visibility:hidden}

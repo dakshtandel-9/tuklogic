@@ -1,0 +1,151 @@
+{
+    "intro": {
+        "seoTitle": "Leading User Experience & UX Research Company",
+        "historyOf": "The History Of",
+        "userExperience": "User Experience",
+        "letsExplore": "Let's explore through time",
+        "startExperience": "Start Experience",
+        "skipPast": "skip the past & show services"
+    },
+    "scenes": {
+        "intro": {
+            "text": "From the dawn of humanity to the digital age, experience design has shaped our world."
+        },
+        "earlyHumans": {
+            "title": "Early Humans",
+            "text": "Long before screens and devices, people were designing tools, shelters, ways to communicate. Each invention solved a problem, making life easier. That instinct to create for others? That's where UX began."
+        },
+        "ancientEgypt": {
+            "title": "ANCIENT EGYPT",
+            "text": "Ancient Egyptians built more than monuments. With intention and precision, they designed experiences from sacred spaces to rituals that met human needs and echoed across generations."
+        },
+        "ancientChina": {
+            "title": "ANCIENT CHINA",
+            "text": "From water clocks to calendars, ancient China's innovations brought structure to life. These weren't just technical feats they were human centered designs that shaped rhythm, order, and connection."
+        },
+        "ancientGreece": {
+            "title": "ANCIENT GREECE",
+            "text": "In ancient Greece, design met strategy. Spears, shields, and formations weren't just tools of war they were crafted for precision, protection, and purpose. A clear example of design meeting real human needs."
+        },
+        "islamicGoldenAge": {
+            "title": "ISLAMIC GOLDEN AGE",
+            "text": "The Islamic Golden Age turned curiosity into clarity. With tools for astronomy and systems like algebra, thinkers designed experiences that made complex ideas easier to explore and apply."
+        },
+        "industrialAge": {
+            "title": "INDUSTRIAL AGE",
+            "text": "The Industrial Age brought machines, movement, and mass production. Steam engines and factories reshaped how we work and live designing systems not just for people, but for scale and speed."
+        },
+        "waltDisney": {
+            "title": "WALT DISNEY",
+            "text": "In the 1960s, Disney turned imagination into design. His parks weren't just attractions they were crafted journeys, proving that user experience could be magical, immersive, and unforgettable."
+        },
+        "steveJobs": {
+            "title": "Steve JOBS",
+            "text": "Then came the iPod. With a click wheel and clean design, Steve Jobs didn't just change music he redefined how we interact with technology: simple, elegant, human."
+        },
+        "uxbertLabs": {
+            "title": "UXBERT LABS",
+            "text": "From ancient tools to digital touchpoints, UX has shaped progress. At UXBERT Labs, we carry that legacy forward designing solutions that truly connect with people, right here in our region."
+        }
+    },
+    "mobile": {
+        "explore": "Explore",
+        "close": "Close",
+        "explorePortfolio": "Explore portfolio",
+        "closePortfolio": "Close portfolio",
+        "nav": {
+            "earlyHumans": "Early Humans",
+            "ancientEgypt": "Ancient Egypt",
+            "ancientChina": "Ancient China",
+            "ancientGreece": "Ancient Greece",
+            "islamicGoldenAge": "Islamic Golden Age",
+            "1900": "1900",
+            "1960": "1960",
+            "2000": "2000",
+            "2012": "2012"
+        }
+    },
+    "timeline": {
+        "present": "Present"
+    },
+    "menu": {
+        "thePast": "The Past",
+        "thePresent": "The Present",
+        "aboutUs": "About us",
+        "services": "Services",
+        "caseStudies": "Case Studies",
+        "articles": "Articles",
+        "uxCourses": "UX Courses",
+        "careers": "Careers",
+        "contactUs": "Contact us"
+    },
+    "ui": {
+        "present": "present",
+        "muteMusic": "Mute background music",
+        "unmuteMusic": "Unmute background music",
+        "scrollToDiscover": "SCROLL TO DISCOVER",
+        "clickAndHold": {
+            "line1": "Click",
+            "line2": "& Hold"
+        },
+        "caseStudyTags": {
+            "WEBSITE": "Website",
+            "APP": "App",
+            "ENTERTAINMENT": "Entertainment",
+            "SPORTS": "Sports",
+            "EVENTS": "Events",
+            "FINANCIAL": "Financial",
+            "E-COMMERCE": "E-Commerce",
+            "DIGITAL TRANSFORMATION": "Digital Transformation",
+            "ART": "Art",
+            "EDUCATIONAL": "Educational",
+            "E-Sports": "E-Sports"
+        },
+        "footer": {
+            "addressLabel": "Address",
+            "addressValue": "7424 Takhassusi St. 12314 1st floor, offices 101 to 105 Riyadh, Saudi Arabia",
+            "locationOnMap": "Location on map",
+            "emailLabel": "E-mail",
+            "phoneLabel": "Phone",
+            "quickLinksTitle": "Quick Links",
+            "servicesTitle": "Services",
+            "followUsTitle": "Follow us",
+            "ctaTitle": "Transform and grow your business now",
+            "hireUs": "Hire us",
+            "rightsReserved": "All Rights Reserved.",
+            "privacyPolicy": "Privacy Policy",
+            "termsOfService": "Terms of service",
+            "quickLinks": {
+                "aboutUs": "About us",
+                "uxCourses": "UX Courses",
+                "caseStudies": "Case Studies",
+                "careers": "Careers",
+                "contactUs": "Contact us",
+                "articles": "Articles"
+            },
+            "services": {
+                "uxResearch": "User Experience & Research",
+                "uiDesign": "User Interface Design (UI)",
+                "development": "Development",
+                "marketing": "Marketing",
+                "strategy": "Strategy & Transformation",
+                "ai": "Artificial Intelligence (AI)",
+                "ar": "Augmented Reality (AR)"
+            },
+            "social": {
+                "followOn": "Follow us on {{platform}}",
+                "platforms": {
+                    "linkedin": "LinkedIn",
+                    "x": "X",
+                    "instagram": "Instagram",
+                    "youtube": "Youtube",
+                    "facebook": "Facebook"
+                }
+            }
+        }
+    },
+    "meta": {
+        "title": "UX/UI Design & Development Agency in Riyadh | UXBERT Labs",
+        "description": "Award-winning specialists in User Research, UX/UI Design & Digital Platforms Development. Transform your product across KSA, UAE & UK."
+    }
+}

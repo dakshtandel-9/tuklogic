@@ -1,0 +1,56 @@
+{
+  "meta": {
+    "title": "قصص النجاح في تجربة المستخدم والمنتجات الرقمية | UXBERT Labs",
+    "description": "اطّلع على كيف نحقق النتائج عبر أبحاث تجربة المستخدم وتصميم واجهات المستخدم والاستراتيجية الرقمية. تعرض قصص النجاح حلولًا واقعية ونموًا للأعمال."
+  },
+  "breadcrumbs": {
+    "home": "الرئيسية",
+    "caseStudies": "قصص النجاح"
+  },
+  "hero": {
+    "subtitle": "دراسات حالة مبنية على البيانات في تجربة المستخدم من مشاريع عالمية",
+    "title": "قصص النجاح"
+  },
+  "filters": {
+    "platform": "المنصة",
+    "category": "الفئة"
+  },
+  "upNext": {
+    "label": "التالي"
+  },
+  "platforms": {
+    "app": "تطبيق",
+    "website": "موقع"
+  },
+  "cases": {
+    "webook": "ويبوك",
+    "wbk": "ويبوك",
+    "riyadh-season": "موسم الرياض",
+    "the-ring": "ذا رينج",
+    "koora-break": "كورة بريك",
+    "joy-awards": "جوائز Joy",
+    "alinma-pay": "الإنماء",
+    "dzrt": "ديزيرت",
+    "unification-strategy": "استراتيجية التوحيد",
+    "sagp": "SAGP",
+    "misk": "مسك",
+    "asaan": "آسان",
+    "alaa-khotah": "على خطاه",
+    "golden-pen": "القلم الذهبي",
+    "ewc": "كأس العالم للرياضات الإلكترونية",
+    "ewc-abbreviation": "EWC"
+  },
+  "categories": {
+    "art": "الفن",
+    "digitalMagazine": "مجلة رقمية",
+    "digitalTransformation": "التحول الرقمي",
+    "eCommerce": "التجارة الإلكترونية",
+    "eSports": "الرياضات الإلكترونية",
+    "educational": "تعليمي",
+    "entertainment": "الترفيه",
+    "events": "الفعاليات",
+    "financial": "القطاع المالي",
+    "sports": "الرياضة"
+  },
+  "noResults": "لا توجد نتائج للفلاتر المحددة."
+}

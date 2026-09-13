@@ -1,0 +1,17 @@
+{
+  "breadcrumbs": {
+    "home": "Home",
+    "articles": "Articles"
+  },
+  "minRead": "{{mins}} min read",
+  "callToAction": {
+    "intro": "Interested in learning more about UX design? Check out our",
+    "training": "UX training courses",
+    "or": "or explore our",
+    "services": "digital services",
+    "also": ". You can also view our",
+    "caseStudies": "case studies",
+    "outro": "to see real-world applications."
+  },
+  "relatedArticles": "Related Articles"
+}

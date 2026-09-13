@@ -1,0 +1,52 @@
+{
+    "breadcrumbs": {
+        "home": "Home",
+        "about": "About Us"
+    },
+    "hero": {
+        "title1": "Digital haute couture",
+        "title2": "team since 1435 ah",
+        "subtitle": "About us",
+        "description": "We craft premium digital experiences with the precision of haute couture. A specialized team working since 1435 AH to create carefully designed digital experiences that blend craft, beauty, and technology."
+    },
+    "intro": {
+        "heading": "About Us",
+        "p1Before": "At Uxbert Labs, we are passionate about creating exceptional digital experiences through user-centered design and cutting-edge technology. Our team of designers, developers, and strategists work together to deliver innovative ",
+        "digitalSolutionsLink": "digital solutions",
+        "p1After": " that drive real results for our clients.",
+        "p2": "Uxbert Labs is proud to be part of the Super Tech Group, a diversified technology powerhouse that brings together expertise across multiple sectors. As a member of this group, we benefit from deep collaboration, shared resources, and cross-industry innovation."
+    },
+    "overview": {
+        "heading": "Overview",
+        "p1": "With offices in the heart of Riyadh, Dubai Design District, and Central London, UXBERT Labs is an award-winning CX/UX, Digital Innovation and Experience design lab. We’re the only innovation lab in the region focusing on scientifically proven e-commerce and digital product research, training, consulting, design and development.",
+        "p2": "Hosting the first Usability Lab in the Kingdom, we use state of the art technologies like eye tracking research devices and industry-leading usability research software to bring Saudi businesses a facility where they can focus on user research, evaluation and user testing of all their web and mobile applications and services across various devices and browsers."
+    },
+    "beliefs": {
+        "heading": "Our Beliefs",
+        "p1a": "We believe in designing and building web and mobile applications that work for people, NOT the other way around. From ",
+        "researchLink": "research",
+        "p1b": ", to ",
+        "designLink": "design",
+        "p1c": ", to testing, we do not stop until your customers are smiling and your business is booming.",
+        "p2": "We do this by practicing scientific, data-driven techniques and processes that our expert consultants have perfected over the years.",
+        "p3a": "The clients we work with depend on us to ensure that their websites, applications, intranets and products are designed to meet their user's needs and their business's goals. We are experts in User Experience, Usability Engineering & User Research, and as a ",
+        "presentLink": "design and development agency",
+        "p3b": ", helping our clients and their customers achieve their full potential is why we do what we do. Check out our case studies to see our work in action. Check out our ",
+        "caseStudiesLink": "case studies",
+        "p3c": " to see our work in action."
+    },
+    "press": {
+        "title": "In the News"
+    },
+    "images": {
+        "supertech": "Supertech Logo",
+        "supertechMobile": "logo of supertech",
+        "uxbertLabs": "logo of UXBERT labs the experience matters",
+        "webook": "logo of webook.com in pink colour",
+        "halaYalla": "logo of halla yalla"
+    },
+    "meta": {
+        "title": "About UXBERT Labs | Top UX Design Agency in Riyadh, Dubai & London",
+        "description": "UX consultants, researchers, designers, developers, and digital marketers. Partner with us to build digital products backed by research, UX, and usability engineering."
+    }
+}

@@ -1,0 +1,71 @@
+{
+  "meta": {
+    "title": "مقالات عن تصميم واجهة المستخدم وتجربة المستخدم | مختبرات UXBERT",
+    "description": "مقالات مبنية على رؤى من تطوير المنتجات الرقمية المحلية ومواضيع حول تصميم تجربة المستخدم وواجهة المستخدم وتجربة العملاء وتطوير الويب والمزيد."
+  },
+  "breadcrumbs": {
+    "home": "الرئيسية",
+    "categories": "الفئات",
+    "articles": "المقالات"
+  },
+  "hero": {
+    "subtitle": "المقالات",
+    "title": "أفكارنا",
+    "description": "نشارك الأخبار والمقالات من عالم تجربة المستخدم"
+  },
+  "headings": {
+    "articles": "المقالات",
+    "searchResults": "نتائج البحث عن \"{{query}}\"",
+    "categoryArticles": "مقالات {{category}}"
+  },
+  "filters": {
+    "topics": "المواضيع",
+    "all": "الكل"
+  },
+  "categories": {
+    "UX Design": "تصميم تجربة المستخدم",
+    "CX": "تجربة العملاء",
+    "Business Analytics": "تحليلات الأعمال",
+    "Digital Products": "المنتجات الرقمية",
+    "Web Development": "تطوير الويب",
+    "Accessibility": "إمكانية الوصول",
+    "Design": "التصميم",
+    "Journey Map": "خريطة الرحلة",
+    "UI Design": "تصميم واجهة المستخدم",
+    "Product Management": "إدارة المنتجات",
+    "User Research": "أبحاث المستخدم",
+    "Strategy": "الاستراتيجية",
+    "Prototyping": "النماذج الأولية",
+    "Testing": "الاختبار",
+    "Mobile": "الهاتف المحمول",
+    "Innovation": "الابتكار",
+    "Technology": "التكنولوجيا",
+    "Branding": "العلامة التجارية",
+    "Arabic UX": "تجربة المستخدم بالعربية",
+    "Customer Experience": "تجربة العملاء",
+    "User Experience": "تجربة المستخدم",
+    "Case Studies": "قصص النجاح",
+    "Ecommerce": "التجارة الإلكترونية",
+    "Information Architecture": "هندسة المعلومات",
+    "Interaction Design": "تصميم التفاعل",
+    "Professional Development": "التطوير المهني",
+    "Psychology": "علم النفس",
+    "Software Development": "تطوير البرمجيات",
+    "Uncategorized": "غير مصنف",
+    "Usability": "قابلية الاستخدام",
+    "Usability Testing": "اختبار قابلية الاستخدام",
+    "User Interface": "واجهة المستخدم",
+    "UX & Design Meetup": "لقاءات تجربة المستخدم والتصميم",
+    "UX &amp; Design Meetup": "لقاءات تجربة المستخدم والتصميم",
+    "UX Design Meetup": "لقاءات تجربة المستخدم والتصميم",
+    "UX Training": "تدريب تجربة المستخدم"
+  },
+  "search": {
+    "placeholder": "ابحث في المقالات..."
+  },
+  "emptyState": {
+    "noResults": "لم يتم العثور على نتائج لـ \"{{query}}\"",
+    "tryDifferent": "جرب البحث بكلمات مفتاحية مختلفة."
+  },
+  "loadMore": "تحميل المزيد"
+}

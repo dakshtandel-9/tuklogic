@@ -1,0 +1,123 @@
+{
+  "meta": {
+    "title": "Workflow Templates | UXBERT Labs",
+    "description": "Ready to use workflows for smarter automation. Speed up your processes with professionally designed workflow templates."
+  },
+  "breadcrumbs": {
+    "home": "Home",
+    "templates": "Workflows Templates"
+  },
+  "hero": {
+    "title": "Workflows Templates",
+    "description": "Ready to use workflows for smarter automation",
+    "introTitle": "Automate Your Workflows\nwith Ready-Made Templates",
+    "introDescription": "Speed up your processes with professionally designed workflow templates. Our templates help you automate repetitive tasks, connect your favorite tools, and build efficient systems without starting from scratch.\nFrom user onboarding and notifications to data synchronization and AI-powered actions, each workflow is crafted to simplify complex processes and improve productivity. Customize, adapt, and launch your workflows in minutes."
+  },
+  "categories": {
+    "heading": "Workflows Categories",
+    "subheading": "Explore By Category",
+    "seeTemplates": "See Templates",
+    "ux": {
+      "name": "UX",
+      "metaTitle": "UX Workflow Templates | UXBERT LABS",
+      "metaDescription": "Streamline UX research, design reviews, and user testing workflows to deliver better experiences faster.",
+      "description": "Streamline UX research, design reviews, and user testing workflows to deliver better experiences faster."
+    },
+    "strategy": {
+      "name": "Strategy",
+      "metaTitle": "Strategy Workflow Templates | UXBERT LABS",
+      "metaDescription": "Align teams around strategic goals, track initiatives, and automate reporting across your organisation.",
+      "description": "Align teams around strategic goals, track initiatives, and automate reporting across your organisation."
+    },
+    "pmo": {
+      "name": "PMO",
+      "metaTitle": "PMO Workflow Templates | UXBERT LABS",
+      "metaDescription": "Automate project status updates, resource allocation, and cross-team handoffs to keep every initiative on track.",
+      "description": "Automate project status updates, resource allocation, and cross-team handoffs to keep every initiative on track."
+    }
+  },
+  "categoryPage": {
+    "workflowsCategories": "Workflows Categories",
+    "searchPlaceholder": "Search templates…",
+    "closeSearch": "Close search",
+    "searchTemplates": "Search templates",
+    "previousCategory": "Previous category",
+    "nextCategory": "Next category",
+    "noTemplatesFound": "No templates found for \"{{query}}\".",
+    "noTemplatesAvailable": "No templates available for this category yet."
+  },
+  "templateDetail": {
+    "useTemplate": "Use Template",
+    "workflowOverview": "Workflow Overview",
+    "howThisWorks": "How This Workflow Works",
+    "howThisWorksDescription": "A simple overview of the automated steps that power this workflow.",
+    "keyBenefits": "Key Benefits of This Workflow",
+    "keyBenefitsDescription": "Discover how this workflow helps automate repetitive tasks, improve efficiency, and create a smoother onboarding experience for both users and teams:"
+  },
+  "cards": {
+    "usability-testing-facilitator-guide": {
+      "title": "Usability Testing Facilitator Guide",
+      "shortDescription": "A comprehensive resource for facilitating usability tests, ensuring participants, objectives, and effective evaluation of the sessions."
+    },
+    "ux-workshop": {
+      "title": "UX Workshop",
+      "shortDescription": "A structured approach to planning and organising effective UX workshops, ensuring clear objectives, meaningful interactions, and collaborative alignment."
+    },
+    "strategy-report": {
+      "title": "Strategy Report",
+      "shortDescription": "A comprehensive framework for documenting organizational strategy, from executive summaries to implementation roadmaps."
+    },
+    "brand-strategy-report": {
+      "title": "Brand Strategy Report",
+      "shortDescription": "A complete guide to building a distinctive and enduring brand identity, positioning, and visual standards."
+    },
+    "change-control-form": {
+      "title": "Change Control Form",
+      "shortDescription": "A standardised form for requesting, reviewing, and approving project changes to maintain scope and budget control."
+    },
+    "cost-estimation-plan": {
+      "title": "Cost Estimation Plan",
+      "shortDescription": "A detailed breakdown of all project costs including resources, materials, and contingencies for accurate budgeting."
+    },
+    "kpi-dashboard": {
+      "title": "KPI Dashboard",
+      "shortDescription": "A visual dashboard for tracking key performance indicators and project health metrics in real time."
+    },
+    "raid-log": {
+      "title": "RAID Log",
+      "shortDescription": "A centralised tracker for Risks, Assumptions, Issues, and Dependencies to keep project governance visible."
+    },
+    "risk-register": {
+      "title": "Risk Register",
+      "shortDescription": "A comprehensive register for identifying, assessing, and tracking project risks with mitigation strategies."
+    },
+    "procurement-plan": {
+      "title": "Procurement Plan",
+      "shortDescription": "A structured plan for managing vendor selection, contract negotiation, and procurement timelines."
+    },
+    "business-case": {
+      "title": "Business Case",
+      "shortDescription": "A comprehensive justification for project investment including benefits, costs, and strategic alignment."
+    },
+    "project-charter": {
+      "title": "Project Charter",
+      "shortDescription": "A formal document authorising the project and defining objectives, scope, and stakeholder roles."
+    },
+    "requirement-traceability-matrix": {
+      "title": "Requirement Traceability Matrix",
+      "shortDescription": "A matrix linking requirements to deliverables, tests, and acceptance criteria for full traceability."
+    },
+    "communication-status-report": {
+      "title": "Communication Status Report",
+      "shortDescription": "A structured tracker for managing stakeholder communications, ensuring the right information reaches the right audience on time."
+    },
+    "project-checklist": {
+      "title": "Project Checklist",
+      "shortDescription": "A task management checklist to track and manage key project activities across kickoff, reviews, QA checks, and project closure."
+    },
+    "resource-allocation-plan": {
+      "title": "Resource Allocation Plan",
+      "shortDescription": "A detailed plan for allocating and tracking team resources across project phases to balance workload and avoid over-commitment."
+    }
+  }
+}

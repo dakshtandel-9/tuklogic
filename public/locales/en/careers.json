@@ -1,0 +1,55 @@
+{
+    "meta": {
+        "title": "Careers | Join Top UX Design Agency in Riyadh | UXBERT Labs",
+        "description": "We're hiring across UX/UI Design, User Research, Web & Mobile Development, and Digital Product Strategy. Join UXBERTS — creative, friendly, fun, and passionate professionals across KSA, UK & UAE."
+    },
+    "breadcrumbs": {
+        "home": "Home",
+        "careers": "Careers"
+    },
+    "hero": {
+        "title": "Join our team of UXBERTS",
+        "subtitle": "Careers",
+        "description": "Your work is as meaningful to us as it is to you"
+    },
+    "overview": {
+        "heading": "THE WAY OF THE UXBERT",
+        "subheading": "We are creative, friendly, fun and passionate",
+        "body": "And we're looking for good people dedicated to being awesome. Join our team and work on innovative <1>digital services</1> projects at our <2>digital marketing company</2>. Learn more <3>about us</3>. <br />What is awesome you ask?"
+    },
+    "awesomeList": [
+        "You must know you’re awesome to be awesome",
+        "Positive yet hungry",
+        "Smart yet strange",
+        "Ambitious and self-motivated",
+        "Entrepreneurial and competitive",
+        "Effective and efficient",
+        "Reader, seeker, thinker and most importantly tinkerer"
+    ],
+    "jobs": {
+        "availableTitle": "Available jobs",
+        "noneAvailable": "No available jobs in the meantime",
+        "posted": "Posted",
+        "remote": "Remote",
+        "onSite": "On-site",
+        "fullTime": "Full-time",
+        "partTime": "Part-time",
+        "loadMore": "Load more",
+        "titleOverrides": {}
+    },
+    "departments": {
+        "design": "Design",
+        "uxResearch": "UX Research",
+        "technology": "Technology",
+        "humanResources": "Human Resources",
+        "businessDevelopment": "Business Development",
+        "salesBusinessDevelopment": "Sales & Business Development"
+    },
+    "departmentAltTexts": [
+        "A man in traditional Middle Eastern attire",
+        "Woman in a dark blue abaya",
+        "A man in traditional Middle Eastern attire with laptop",
+        "Woman in a dark black abaya",
+        "A man in traditional Middle Eastern attire with laptop"
+    ]
+}
