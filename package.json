@@ -10,7 +10,8 @@
     "build": "vinext build",
     "start": "vinext start",
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next",
-    "prepare:replica": "python3 scripts/prepare-replica.py && node scripts/disable-integrations.mjs"
+    "prepare:replica": "python3 scripts/prepare-replica.py && node scripts/disable-integrations.mjs",
+    "postbuild": "node scripts/trim-deployment.mjs"
   },
   "dependencies": {
     "next": "16.2.6",
