@@ -9,27 +9,27 @@
     },
     "scenes": {
         "intro": {
-            "text": "From the dawn of humanity to the digital age, experience design has shaped our world."
+            "text": "From the first tools to today's technology — inventions and willingness to help others have always solved the problem."
         },
         "earlyHumans": {
             "title": "Early Humans",
-            "text": "Long before screens and devices, people were designing tools, shelters, ways to communicate. Each invention solved a problem, making life easier. That instinct to create for others? That's where UX began."
+            "text": "Long before servers and software, people built systems — to organize, to connect, to get work done. Every invention solved a problem, making the tribe run smarter. That instinct to build better systems? That's where user experience begins."
         },
         "ancientEgypt": {
-            "title": "ANCIENT EGYPT",
-            "text": "Ancient Egyptians built more than monuments. With intention and precision, they designed experiences from sacred spaces to rituals that met human needs and echoed across generations."
+            "title": "ANCIENT EGYPTIAN",
+            "text": "Ancient Egyptians built more than what we call pyramids. With precision and planning, they engineered systems for irrigation, record-keeping, and governance that met real needs and outlasted generations."
         },
         "ancientChina": {
             "title": "ANCIENT CHINA",
-            "text": "From water clocks to calendars, ancient China's innovations brought structure to life. These weren't just technical feats they were human centered designs that shaped rhythm, order, and connection."
+            "text": "From water clocks to calendars, ancient China's innovations brought structure to life. These weren't just technical feats — they were systems built around people, shaping rhythm, order, and connection."
         },
         "ancientGreece": {
             "title": "ANCIENT GREECE",
-            "text": "In ancient Greece, design met strategy. Spears, shields, and formations weren't just tools of war they were crafted for precision, protection, and purpose. A clear example of design meeting real human needs."
+            "text": "In ancient Greece, engineering met strategy. Aqueducts, fortifications, and civic infrastructure weren't built by accident — they were crafted for precision, resilience, and purpose. A clear early example of systems designed around real needs."
         },
         "islamicGoldenAge": {
-            "title": "ISLAMIC GOLDEN AGE",
-            "text": "The Islamic Golden Age turned curiosity into clarity. With tools for astronomy and systems like algebra, thinkers designed experiences that made complex ideas easier to explore and apply."
+            "title": "THE GOLDEN AGE OF INDIAN INNOVATION",
+            "text": "During the Hindu Golden Age, mathematics, astronomy, and architecture advanced together. From the concept of zero to precise astronomical calculations, this was infrastructure for thought itself — systems built to organize knowledge and move civilization forward."
         },
         "industrialAge": {
             "title": "INDUSTRIAL AGE",
@@ -40,12 +40,12 @@
             "text": "In the 1960s, Disney turned imagination into design. His parks weren't just attractions they were crafted journeys, proving that user experience could be magical, immersive, and unforgettable."
         },
         "steveJobs": {
-            "title": "Steve JOBS",
-            "text": "Then came the iPod. With a click wheel and clean design, Steve Jobs didn't just change music he redefined how we interact with technology: simple, elegant, human."
+            "title": "STEVE JOBS",
+            "text": "Centuries of progress followed, each age building on the last, turning knowledge into machines, and machines into systems that ran the modern world. By the time technology reached our pockets, the question had barely changed: how do we make this simple for people? Then came the iPod — a click wheel, a clean design, nothing wasted. Steve Jobs didn't just change the listening experience of music, he redefined how people interacted with technology. Simple. Elegant. Human."
         },
         "uxbertLabs": {
-            "title": "UXBERT LABS",
-            "text": "From ancient tools to digital touchpoints, UX has shaped progress. At UXBERT Labs, we carry that legacy forward designing solutions that truly connect with people, right here in our region."
+            "title": "TUKLOGIC",
+            "text": "Today, that same principle drives us. Tuklogic builds the cloud, IT, and enterprise systems that power modern business — AWS, Workday, ServiceNow, and custom development designed to be as simple to run as they are powerful to scale. From the first tools to today's cloud, the goal has never changed. We're just building the next chapter."
         }
     },
     "mobile": {
@@ -58,11 +58,11 @@
             "ancientEgypt": "Ancient Egypt",
             "ancientChina": "Ancient China",
             "ancientGreece": "Ancient Greece",
-            "islamicGoldenAge": "Islamic Golden Age",
+            "islamicGoldenAge": "Indian Golden Age",
             "1900": "1900",
             "1960": "1960",
             "2000": "2000",
-            "2012": "2012"
+            "2012": "Tuklogic"
         }
     },
     "timeline": {
