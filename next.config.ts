@@ -10,6 +10,8 @@ const serviceMedia = 'mp4|mp3|jpe?g|png|json|bin|ktx2';
 const mediaRoutes = [
   { source: '/offline/:path*', destination: `${mediaOrigin}/offline/:path*` },
   { source: '/images/:path*', destination: `${mediaOrigin}/images/:path*` },
+  // The clients page requests its logos without the /offline prefix.
+  { source: '/client-logos/export/:path*', destination: `${mediaOrigin}/offline/client-logos/export/:path*` },
   {
     source: `/service-experience/:file(.+\\.(?:${serviceMedia}))`,
     destination: `${mediaOrigin}/service-experience/:file`,
