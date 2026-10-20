@@ -73,3 +73,15 @@ npm run build
 ```
 
 A refresh reads the live public site and may change content. To deliberately download/update the saved content and media, run `npm run assets:download` once with internet access. Normal development and page/media delivery do not download from the original site. Existing routes can be edited by changing the captured HTML or frontend modules and running `npm run prepare:replica`, which reapplies the local paths. The project retains the Sites/Vinext/Cloudflare structure.
+
+## Deploying to Vercel
+
+The site deploys to Vercel as a standard Next.js app. `vercel.json` sets the build command to `next build`; `npm run build` still uses Vinext for the Cloudflare/Sites setup.
+
+1. Push this repository to GitHub, GitLab or Bitbucket.
+2. In Vercel, import the repository. The framework preset, build command and Node version (from `engines`) are picked up automatically.
+3. No environment variables are required. `HF_CREDENTIALS` is only used by local video generation scripts.
+
+All media (about 1 GB, mostly under `public/offline` and `public/service-experience`) ships in the repository and is served from Vercel's CDN. The largest file is 55 MB, under GitHub's 100 MB limit, so Git LFS isn't needed. Deploy from Git rather than `vercel deploy`: CLI uploads are limited to 100 MB on Hobby and 1 GB on Pro.
+
+`/output`, root-level `.mp4` drafts and other local working files are ignored by Git and are not part of the deployment.

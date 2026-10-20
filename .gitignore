@@ -36,3 +36,10 @@ next-env.d.ts
 /.wrangler/
 /outputs/
 /work/
+*.tsbuildinfo
+
+# local working files (backups, QA logs, Python venvs, source video drafts)
+/output/
+/*.mp4
+__pycache__/
+.venv/
