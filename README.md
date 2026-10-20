@@ -85,3 +85,4 @@ The site deploys to Vercel as a standard Next.js app. `vercel.json` sets the bui
 All media (about 1 GB, mostly under `public/offline` and `public/service-experience`) ships in the repository and is served from Vercel's CDN. The largest file is 55 MB, under GitHub's 100 MB limit, so Git LFS isn't needed. Deploy from Git rather than `vercel deploy`: CLI uploads are limited to 100 MB on Hobby and 1 GB on Pro.
 
 `/output`, root-level `.mp4` drafts and other local working files are ignored by Git and are not part of the deployment.
+# tuklogic
