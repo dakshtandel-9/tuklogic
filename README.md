@@ -20,7 +20,7 @@ Open http://localhost:3000. The root opens the English experience at `/en`; Arab
 - `lib/offline-pages`, `lib/page-loaders.ts`: independently loaded page snapshots, avoiding a full-site import on each cold start.
 - `public/assets`: locally hosted original frontend modules and styles.
 - `public/locales`: English and Arabic translations.
-- `public/offline`: downloaded videos, audio, desktop/mobile animation frames, images, logos, and fonts (about 640 MB). Served from Cloudflare R2; not committed.
+- `public/offline`: downloaded videos, audio, desktop/mobile animation frames, images, logos, and fonts (about 640 MB). Served from Cloudflare R2 and not committed, except `public/offline/fonts`.
 - `public/images`: original saved assets retained for legacy paths. Served from Cloudflare R2; not committed.
 - `public/icons`, `public/media`: small original assets, committed.
 - `reference/local-assets.json`: the download inventory.
@@ -85,7 +85,7 @@ The site deploys to Vercel as a standard Next.js app. `vercel.json` sets the bui
 
 ### Media on Cloudflare R2
 
-The large media (about 1 GB) is stored in the public R2 bucket `tuklogic-media`, not in Git or the deployment. `next.config.ts` redirects `/offline/*`, `/images/*` and the media files under `/service-experience/*` to the bucket, keeping the same paths, so the captured pages and frontend modules need no changes. Page responses allow the bucket's origin in their content security policy.
+The large media (about 1 GB) is stored in the public R2 bucket `tuklogic-media`, not in Git or the deployment. `next.config.ts` redirects `/offline/*` (except the fonts, which stay in the deployment), `/images/*` and the media files under `/service-experience/*` to the bucket, keeping the same paths, so the captured pages and frontend modules need no changes. Page responses allow the bucket's origin in their content security policy.
 
 - The bucket's address is set in `lib/media-origin.ts`. To move to a custom domain, set `R2_MEDIA_ORIGIN` (for example `https://media.example.com`) in Vercel and redeploy.
 - The bucket's CORS policy must allow `GET` and `HEAD` from any origin: canvas frames, WebGL textures and Web Audio need it.

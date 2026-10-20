@@ -8,7 +8,8 @@ const mediaOrigin = getMediaOrigin();
 const serviceMedia = 'mp4|mp3|jpe?g|png|json|bin|ktx2';
 
 const mediaRoutes = [
-  { source: '/offline/:path*', destination: `${mediaOrigin}/offline/:path*` },
+  // Fonts (1.7 MB) stay on this origin so text renders and animates without waiting on R2.
+  { source: '/offline/:path((?!fonts/).*)', destination: `${mediaOrigin}/offline/:path` },
   { source: '/images/:path*', destination: `${mediaOrigin}/images/:path*` },
   // The clients page requests its logos without the /offline prefix.
   { source: '/client-logos/export/:path*', destination: `${mediaOrigin}/offline/client-logos/export/:path*` },

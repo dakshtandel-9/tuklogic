@@ -45,7 +45,8 @@ __pycache__/
 .venv/
 
 # large media, served from Cloudflare R2 (lib/media-origin.ts); upload changes with rclone
-/public/offline/
+/public/offline/*
+!/public/offline/fonts/
 /public/images/
 /public/service-experience/**/*.mp4
 /public/service-experience/**/*.mp3
