@@ -1,31 +1,87 @@
 {
-  "meta": {
-    "title": "عملاؤنا | خبراء تجربة المستخدم والحلول الرقمية",
-    "description": "تعرّف على العلامات التجارية والشركات الرائعة التي تعاونّا معها. اكتشف كيف ساعدنا الشركات الرائدة في تحقيق أهدافها الرقمية."
-  },
-  "breadcrumbs": {
-    "home": "الرئيسية",
-    "clients": "عملاؤنا"
-  },
-  "hero": {
-    "subtitle": "عملاؤنا",
-    "title1": "عملنا شهادة على",
-    "title2": "خبرتنا والتزامنا بالجودة."
-  },
-  "slider": {
-    "description": "ونحن نبحث عن أشخاص متميزين ملتزمين بأن يكونوا رائعين. ما المقصود بـ رائعين، قد تتساءل؟",
-    "previous": "السابق",
-    "next": "التالي"
-  },
-  "categories": {
-    "Government": "حكومي",
-    "E-Commerce & Retail": "التجارة الإلكترونية والتجزئة",
-    "Fintech & Banking": "التكنولوجيا المالية و المصرفية",
-    "Oil, Gas & Power": "النفط والغاز والطاقة",
-    "Telecom": "الاتصالات",
-    "Medical & Health": "الطب والصحة",
-    "Entertainment": "الترفيه",
-    "Consulting": "الاستشارات",
-    "Others": "أخرى"
-  }
+    "meta": {
+        "title": "عملاؤنا | خبراء تجربة المستخدم والحلول الرقمية",
+        "description": "تعرّف على العلامات التجارية والشركات الرائعة التي تعاونّا معها. اكتشف كيف ساعدنا الشركات الرائدة في تحقيق أهدافها الرقمية."
+    },
+    "breadcrumbs": {
+        "home": "الرئيسية",
+        "clients": "عملاؤنا"
+    },
+    "hero": {
+        "subtitle": "Our Partners",
+        "title1": "One trusted partner for the technology and people your business needs.",
+        "title2": "So you can focus on growth while we handle the rest.",
+        "description": "Tuklogic partners with growing businesses and established enterprises to deliver technology solutions and skilled talent. From ServiceNow, Workday and Oracle projects to IT and non-IT hiring, our long-term client relationships are built on trust, clear communication and results that last. Here is a look at the organizations we work with."
+    },
+    "sectionHeading": "Businesses That Trust Tuklogic to Deliver",
+    "list": [
+        {
+            "title": "Government & Public Sector",
+            "heading": "Technology Solutions for Smarter Public Services",
+            "description": "Tuklogic helps government organizations modernize public services through secure software development, AI-powered automation, cloud infrastructure, and intelligent digital solutions. We enable streamlined workflows, improved operational efficiency, and better digital experiences for citizens.",
+            "clients": []
+        },
+        {
+            "title": "Healthcare & Life Sciences",
+            "heading": "Transforming Healthcare Through Digital Innovation",
+            "description": "We empower healthcare providers and life sciences organizations with innovative digital solutions, AI-driven insights, intelligent automation, and secure cloud technologies. From healthcare applications to data-driven workflows, Tuklogic helps improve efficiency and support better-connected healthcare experiences.",
+            "clients": [
+                "Optum"
+            ]
+        },
+        {
+            "title": "Banking, Financial Services & Fintech",
+            "heading": "Secure and Intelligent Financial Technology Solutions",
+            "description": "Tuklogic delivers scalable financial technology solutions designed to streamline operations, automate processes, and enhance customer experiences. Our expertise in AI, software development, cloud computing, and CRM helps financial organizations build efficient, secure, and future-ready digital systems.",
+            "clients": [
+                "U.S. Bank",
+                "Intact",
+                "Freddie Mac"
+            ]
+        },
+        {
+            "title": "Retail & E-commerce",
+            "heading": "Powering the Future of Digital Commerce",
+            "description": "We help retail and e-commerce businesses grow through custom digital platforms, intelligent automation, customer relationship management, and data-driven marketing. Tuklogic enables businesses to improve customer engagement, optimize operations, and deliver seamless shopping experiences across digital channels",
+            "clients": [
+                "Sysco",
+                "Floor & Decor"
+            ]
+        },
+        {
+            "title": "Education & E-learning",
+            "heading": "Building Smarter Digital Learning Experiences",
+            "description": "Tuklogic helps educational institutions and e-learning businesses embrace digital transformation through custom web applications, mobile learning platforms, AI-powered tools, and cloud solutions. We simplify administrative processes, enhance accessibility, and create engaging digital learning experiences.",
+            "clients": []
+        },
+        {
+            "title": "IT & Software Technology",
+            "heading": "Accelerating Innovation Through Technology",
+            "description": "We partner with technology companies to develop scalable software, intelligent AI solutions, cloud-native applications, and automated business workflows. From product development to quality assurance and system integration, Tuklogic helps technology businesses innovate faster and scale confidently.",
+            "clients": [
+                "CGI",
+                "AT&T",
+                "Brightspeed",
+                "EPAM",
+                "DXC Technology",
+                "Fujitsu",
+                "Tata Consultancy Services (TCS)",
+                "EY"
+            ]
+        },
+        {
+            "title": "Manufacturing & Industrial",
+            "heading": "Driving Industrial Growth Through Smart Technology",
+            "description": "Tuklogic enables manufacturing and industrial businesses to modernize operations through IoT solutions, AI-powered analytics, ERP systems, and intelligent automation. Our technology solutions help streamline workflows, improve operational visibility, and support smarter, data-driven business decisions.",
+            "clients": [
+                "Centene"
+            ]
+        },
+        {
+            "title": "Real Estate & Construction",
+            "heading": "Transforming Real Estate Through Digital Solutions",
+            "description": "We help real estate and construction businesses simplify operations through custom software, CRM platforms, cloud solutions, and digital marketing. Tuklogic supports better lead management, streamlined project workflows, stronger customer relationships, and more efficient business operations.",
+            "clients": []
+        }
+    ]
 }

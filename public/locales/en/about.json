@@ -4,46 +4,34 @@
         "about": "About Us"
     },
     "hero": {
-        "title1": "Digital haute couture",
-        "title2": "team since 1435 ah",
-        "subtitle": "About us",
-        "description": "We craft premium digital experiences with the precision of haute couture. A specialized team working since 1435 AH to create carefully designed digital experiences that blend craft, beauty, and technology."
+        "subtitle": "Our Story",
+        "title1": "Powering Business with Technology and Skilled Talent",
+        "title2": "Built Around Your Business Goals",
+        "description": "We are an IT services and staffing company that delivers technology and talent under one roof. From Workday, ServiceNow, and Salesforce implementations to IoT and AI solutions, we help businesses plan, build, and run the systems they depend on. Our skilled professionals integrate seamlessly with your team, so you get the right expertise, faster delivery, and a single partner accountable for results."
     },
     "intro": {
-        "heading": "About Us",
-        "p1Before": "At Uxbert Labs, we are passionate about creating exceptional digital experiences through user-centered design and cutting-edge technology. Our team of designers, developers, and strategists work together to deliver innovative ",
-        "digitalSolutionsLink": "digital solutions",
-        "p1After": " that drive real results for our clients.",
-        "p2": "Uxbert Labs is proud to be part of the Super Tech Group, a diversified technology powerhouse that brings together expertise across multiple sectors. As a member of this group, we benefit from deep collaboration, shared resources, and cross-industry innovation."
+        "heading": "Your One-Stop IT Partner",
+        "p1": "Tuklogic is an IT services and staffing company that brings technology and talent together under one roof. Our team of experienced consultants, engineers, and recruiters delivers Workday, ServiceNow, and Salesforce implementations, along with IoT and AI solutions and a full range of IT services. We also place skilled professionals on contract or permanent basis, so your projects have the right people from day one. By combining delivery and talent, we help businesses move faster, reduce risk, and get measurable results from their technology investments."
     },
     "overview": {
-        "heading": "Overview",
-        "p1": "With offices in the heart of Riyadh, Dubai Design District, and Central London, UXBERT Labs is an award-winning CX/UX, Digital Innovation and Experience design lab. We’re the only innovation lab in the region focusing on scientifically proven e-commerce and digital product research, training, consulting, design and development.",
-        "p2": "Hosting the first Usability Lab in the Kingdom, we use state of the art technologies like eye tracking research devices and industry-leading usability research software to bring Saudi businesses a facility where they can focus on user research, evaluation and user testing of all their web and mobile applications and services across various devices and browsers."
+        "heading": "Our Story, Your Success",
+        "p1": "Tuklogic is a full-service IT and talent solutions company serving businesses across [country/regions], with teams in [city/cities]. We specialize in IT services, ServiceNow, Workday and Oracle implementation and support, and both IT and non-IT staffing. Our certified consultants and experienced recruiters help organizations modernize operations, streamline workflows and build high-performing teams. [Add recognition, such as partner status, certifications, awards or years in business.] What sets us apart is our single-partner approach: instead of juggling multiple vendors, clients get the right technology expertise and the right people from one trusted team, with a focus on measurable results, fast delivery and long-term relationships.",
+        "p2": "Behind every Tuklogic engagement is a structured, proven delivery process. We begin by understanding your business goals, then design a solution or talent plan that fits your timeline and budget. Our consultants follow best-practice implementation methods across ServiceNow, Workday and Oracle, with clear milestones, quality checks and transparent communication at every stage. On the staffing side, our recruiters use a rigorous screening process, covering skills assessment, background verification and culture fit, to deliver qualified IT and non-IT professionals quickly. Supported by [delivery centers / remote-first teams / 24x7 support], we offer flexible engagement models, including project-based, contract, contract-to-hire and permanent placement, so you can scale up or down as your needs change."
     },
     "beliefs": {
-        "heading": "Our Beliefs",
-        "p1a": "We believe in designing and building web and mobile applications that work for people, NOT the other way around. From ",
-        "researchLink": "research",
-        "p1b": ", to ",
-        "designLink": "design",
-        "p1c": ", to testing, we do not stop until your customers are smiling and your business is booming.",
-        "p2": "We do this by practicing scientific, data-driven techniques and processes that our expert consultants have perfected over the years.",
-        "p3a": "The clients we work with depend on us to ensure that their websites, applications, intranets and products are designed to meet their user's needs and their business's goals. We are experts in User Experience, Usability Engineering & User Research, and as a ",
-        "presentLink": "design and development agency",
-        "p3b": ", helping our clients and their customers achieve their full potential is why we do what we do. Check out our case studies to see our work in action. Check out our ",
+        "heading": "Our Mission and Values",
+        "paragraphs": [
+            "At Tuklogic, we believe technology works best when it is guided by the right people. Great software alone does not transform a business; skilled professionals who understand your goals, your industry and your day-to-day challenges do. That is why we combine enterprise platform expertise in ServiceNow, Workday and Oracle with dependable IT and non-IT staffing under one roof.",
+            "For our customers, this belief means fewer vendors to manage, faster project delivery and solutions that fit how their teams actually work. We take responsibility for outcomes, communicate openly and build long-term partnerships grounded in trust. The result is lower risk, better use of your investment and a team you can rely on as your business grows.",
+            "We put our belief into practice through a simple, disciplined approach. We start by listening, so every solution is built around your goals rather than a generic template. We plan in clear phases, with defined milestones, regular updates and quality checks at each step. Our consultants and recruiters work as one team, sharing knowledge so technology and talent stay aligned. We stay flexible, adapting to changes in scope, timeline or budget. And we measure success by your results, supporting you long after go-live or placement.",
+            "Tuklogic brings deep expertise across the services businesses depend on most. Our teams deliver IT services and managed support, ServiceNow workflows and automation, Workday HR and finance solutions, and Oracle applications and cloud. Alongside this, our recruiters place skilled professionals in IT and non-IT roles, from developers, analysts and engineers to administrators, operations and support staff, on contract, contract-to-hire or permanent terms.",
+            "Whether you are launching a new platform, improving an existing one or building out your team, we have the experience to help you do it well and on time."
+        ],
+        "closingBefore": "Explore our ",
+        "servicesLink": "services",
+        "closingMid": " and ",
         "caseStudiesLink": "case studies",
-        "p3c": " to see our work in action."
-    },
-    "press": {
-        "title": "In the News"
-    },
-    "images": {
-        "supertech": "Supertech Logo",
-        "supertechMobile": "logo of supertech",
-        "uxbertLabs": "logo of UXBERT labs the experience matters",
-        "webook": "logo of webook.com in pink colour",
-        "halaYalla": "logo of halla yalla"
+        "closingAfter": " to see how we work, or contact us today to discuss your goals. Let’s build something that lasts."
     },
     "meta": {
         "title": "About UXBERT Labs | Top UX Design Agency in Riyadh, Dubai & London",

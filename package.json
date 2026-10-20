@@ -10,6 +10,7 @@
     "build": "vinext build",
     "start": "vinext start",
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next",
+    "check:case-studies": "node scripts/check-case-studies.mjs",
     "prepare:replica": "python3 scripts/prepare-replica.py && node scripts/disable-integrations.mjs && python3 scripts/prepare-offline.py",
     "assets:download": "python3 scripts/cache-public-content.py && python3 scripts/localize-assets.py && python3 scripts/prepare-offline.py",
     "postbuild": "node scripts/trim-deployment.mjs"

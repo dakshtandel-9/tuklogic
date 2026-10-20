@@ -38,6 +38,31 @@ Public content is a snapshot, not a live feed. Explicit links to third-party sit
 
 Contact and course form submissions are intentionally not connected to the original company's inbox. POST endpoints return an explicit 501 response until a delivery service is configured. Analytics and external agent integrations are disabled. No upstream cookies or visitor authentication headers are forwarded by the public-content gateway.
 
+## Case study portfolio
+
+The case study collection and its nine project pages are authored locally, using the approved content from `content.pdf`:
+
+- `public/case-studies/catalog.js` is the shared source for project copy, artwork, categories and homepage links.
+- `lib/case-studies.ts` renders the collection, filters, individual pages and missing-project response.
+- `lib/case-studies-ar.ts` provides the Arabic project copy.
+- `public/case-studies/styles.css` and `interactions.js` provide responsive styling and progressive enhancement.
+- `/en/case-studies` and `/ar/case-studies` list all nine projects. The retired agency project URLs redirect to their locale's collection.
+
+The old case study snapshots have been removed from the active route inventory. `prepare-offline.py` excludes them from future snapshot refreshes. The original files in `reference/pages` remain historical captures and are not served.
+
+Run `npm run check:case-studies` against the local development server to verify every project, supplied content section, image and retired URL.
+
+## Services experience
+
+`/en/digital-services` and `/ar/digital-services` serve the TUKLOGIC services experience from the `divya2` project: the WebGL scenes, monogram, service content and videos.
+
+- `public/service-experience`: the copied `reference` renderer and scene assets, `content` data and videos, `og.jpg` and `unsupported.html`.
+- `lib/service-experience-document.ts`: the page document. Its `<base href="/service-experience/">` resolves the experience's relative asset paths.
+- `lib/services-page.ts`: resolves the page, its client-routed sections (`about`, `work`, `work/<project>`, …) and redirects retired per-service URLs to the services page.
+- `public/services-link.js`: added to every captured page; Services links and router navigation load the services document instead of the captured site's client-side services route.
+
+The copied `reference/js/app.1780406240914.js` has two changes from `divya2`: CMS data loads from the relative `content/` path, and the client router's root comes from `window.SERVICE_ROUTER_ROOT`. Reapply both when copying a newer `divya2` build.
+
 ## Updating the capture
 
 ```sh

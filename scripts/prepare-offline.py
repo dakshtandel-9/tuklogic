@@ -56,12 +56,18 @@ for path in list((PUBLIC / 'assets').glob('*')) + list((PUBLIC / 'locales').rglo
 
 pages_path = ROOT / 'lib/pages.json'
 pages = json.loads(pages_path.read_text())
-pages = {route: localize(page) for route, page in pages.items()}
+# Case studies are authored in lib/case-studies.ts using the approved catalog,
+# and services are the experience in lib/services-page.ts. A capture refresh
+# must not restore the retired agency pages.
+pages = {route: localize(page) for route, page in pages.items()
+         if not re.match(r'^/(?:en|ar)/(?:case-studies|digital-services)(?:/|$)', route)}
 pages_path.write_text(json.dumps(pages, separators=(',', ':')))
 # Import one document per request instead of compiling the entire 28 MB capture
 # into the development worker whenever any page is opened or edited.
 page_dir = ROOT / 'lib/offline-pages'
 page_dir.mkdir(exist_ok=True)
+for legacy_page in [*page_dir.glob('*__case-studies*.json'), *page_dir.glob('*__digital-services*.json')]:
+    legacy_page.unlink()
 loaders = []
 for route, document in sorted(pages.items()):
     name = route.strip('/').replace('/', '__') + '.json'

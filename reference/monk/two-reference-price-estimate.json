@@ -1,0 +1,13 @@
+{
+  "model": "xai/grok-imagine-image-2.0",
+  "quality": "medium",
+  "resolution": "2k",
+  "reference_count": 2,
+  "note": "Pricing-only request using existing hosted image URLs as placeholders; no generation submitted.",
+  "quote": {
+    "type": "estimate",
+    "credits": "1.600",
+    "usd": "0.100",
+    "discount": null
+  }
+}

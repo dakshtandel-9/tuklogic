@@ -4,50 +4,42 @@
         "contact": "تواصل معنا"
     },
     "hero": {
-        "title": "يسعدنا تواصلكم معنا",
-        "subtitle": "تواصل معنا",
-        "description": "يسعدنا تواصلكم معنا سواء كنتم ترغبون في بدء مشروع جديد، أو التعرف على خدماتنا بشكل أعمق، أو لديكم أي استفسار فريقنا جاهز لدعمكم."
+        "subtitle": "Let's Talk Business",
+        "title": "Ready to Bring Your Vision to Life?",
+        "description": "Have a project in mind or looking to transform your business with technology? Get in touch with Tuklogic to discuss your ideas, explore our services, or find the right solutions for your needs. Whether it's software development, AI, cloud computing, digital transformation, or business automation, our team is ready to understand your goals and help turn your vision into reality. Let's start a conversation and build something impactful together."
     },
-    "labsHeading": "UXBERT LABS",
-    "sectionInterest": "هل مهتم بخدماتنا؟",
+    "labsHeading": "Tuklogic consulting",
+    "sectionInterest": "Ready to Start Your Next Project With Tuklogic?",
     "contactCard": {
         "address": "العنوان",
         "email": "البريد الإلكتروني",
-        "phone": "الهاتف",
-        "locationOnMap": "الموقع على الخريطة"
-    },
-    "locations": {
-        "sa": {
-            "title": "المملكة العربية السعودية",
-            "flagAlt": "أيقونة علم المملكة العربية السعودية",
-            "address": "7424 طريق تخصصي، 12314 الطابق الأول، مكاتب 101 إلى 105، الرياض، المملكة العربية السعودية"
-        },
-        "uae": {
-            "title": "الإمارات العربية المتحدة",
-            "flagAlt": "أيقونة علم الإمارات العربية المتحدة",
-            "address": "مكاتب الساحة، حي برج خليفة، دبي، الإمارات العربية المتحدة"
-        }
+        "phone": "الهاتف"
     },
     "form": {
-        "getInTouch": "تواصل معنا",
-        "intro": "أخبرنا باختصار عن احتياجاتك لنتمكن من خدمتك بشكل أفضل:",
-        "selectService": "الخدمة التي مهتم بها",
+        "getInTouch": "Tell Us How We Can Help",
+        "intro": "Share a few details about yourself, your business, and the project you're planning. Tell us about your goals, challenges, and the services you're interested in. Our team will review your inquiry and get in touch to discuss how Tuklogic can help bring your ideas to life.",
+        "selectService": "Which services are you interested in exploring with Tuklogic?",
         "selectCourse": "اختر دورة",
         "services": {
-            "design": "تصميم",
-            "development": "تطوير",
-            "marketing": "تسويق",
-            "consulting": "استشارات",
-            "ai": "الذكاء الاصطناعي (AI)"
+            "web-mobile-game-development": "Web, Mobile & Game Development",
+            "generative-ai": "Generative AI Solutions",
+            "computer-vision": "Computer Vision Solutions",
+            "nlp": "Natural Language Processing (NLP)",
+            "ai-solutions": "Artificial Intelligence (AI) Solutions",
+            "iot": "Internet of Things (IoT) Solutions",
+            "cloud": "Cloud Solutions",
+            "crm": "CRM Solution",
+            "servicenow": "ServiceNow Solutions",
+            "digital-marketing": "Digital Marketing"
         },
         "placeholders": {
-            "name": "الاسم",
-            "phone": "رقم الهاتف",
-            "email": "البريد الإلكتروني",
-            "company": "اسم الشركة",
-            "projectSummary": "ملخص عن مشروعك"
+            "name": "Full Name",
+            "phone": "phone number",
+            "email": "Mail address",
+            "company": "Company you represent",
+            "projectSummary": "Quick snap on your requirement"
         },
-        "submit": "إرسال الرسالة",
+        "submit": "Send Your Inquiry",
         "submitting": "جاري الإرسال...",
         "dropdownAlt": "سهم القائمة",
         "sendIconAlt": "أيقونة الإرسال",
@@ -71,7 +63,7 @@
         "projectSummaryMax": "ملخص المشروع لا يتجاوز 1000 حرف"
     },
     "status": {
-        "success": "تم إرسال الرسالة بنجاح!",
+        "success": "Thank you for reaching out to Tuklogic! We've received your inquiry and appreciate your interest in working with us. Our team will review your message and get back to you soon.",
         "failed": "تعذر إرسال الرسالة. حاول مرة أخرى.",
         "error": "حدث خطأ. حاول مرة أخرى.",
         "wait": "يرجى الانتظار قليلاً قبل الإرسال مرة أخرى.",
@@ -82,5 +74,16 @@
     "meta": {
         "title": "تواصل مع فرق تجربة المستخدم لدينا في الرياض ودبي | UXBERT Labs",
         "description": "UXBERT Labs وكالة رقمية في الرياض ودبي. أي خدمة تحتاجها، لدينا الحل. تواصل معنا لمناقشة مشروعك."
+    },
+    "office": {
+        "address": "8 The Green , STE A\nDover , Delaware 19901",
+        "phones": [
+            "1 (302) 549-0510",
+            "+91 95894 32030"
+        ],
+        "emails": [
+            "info@tuklogic.com",
+            "sales@tuklogic.com"
+        ]
     }
 }

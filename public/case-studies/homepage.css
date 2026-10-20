@@ -1,0 +1,26 @@
+/* Keep the existing cinematic homepage; replace its placeholder detail dump with project links. */
+.tuk-project-directory{position:relative;z-index:500;padding:90px max(5vw,24px);background:#101015;color:#f4f3f0}
+.tuk-project-directory-heading{display:flex;justify-content:space-between;align-items:end;gap:25px;margin-bottom:35px}
+.tuk-project-directory-heading p{font-size:11px;letter-spacing:.12em;color:#ff75a7;margin-bottom:14px}
+.tuk-project-directory-heading h2{font-size:clamp(32px,4vw,56px);line-height:1.1}
+.tuk-project-directory-heading>a{font-size:14px;border-bottom:1px solid #ffffff60;padding-bottom:7px;white-space:nowrap}
+.tuk-project-directory-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:34px 24px}
+.tuk-project-directory-card{display:block;min-width:0}
+.tuk-project-directory-art{aspect-ratio:1.5;overflow:hidden;border-radius:3px;background:radial-gradient(ellipse at 50% 65%,color-mix(in srgb,var(--case-color) 40%,#17171d),#17171d)}
+.tuk-project-directory-art img{width:100%;height:100%;object-fit:contain;transition:transform .35s}
+.tuk-project-directory-card:hover img{transform:scale(1.04)}
+.tuk-project-directory-card>p{font-size:10px;color:#b9b6c4;margin:17px 0 9px}
+.tuk-project-directory-card h3{display:flex;align-items:center;justify-content:space-between;font-size:29px;line-height:1.1}
+.tuk-project-directory-card h3>span{font-size:20px;color:#b9b6c4}
+.tuk-project-directory-card:focus-visible{outline:2px solid #ff498b;outline-offset:7px}
+@media(max-width:850px){.tuk-project-directory-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.tuk-project-directory{padding-block:50px}.tuk-project-directory-grid{grid-template-columns:1fr;gap:30px}.tuk-project-directory-heading{display:block}.tuk-project-directory-heading>a{display:inline-block;margin-top:20px}.tuk-project-directory-card h3{font-size:32px}}
+@media(prefers-reduced-motion:reduce){.tuk-project-directory-art img{transition:none}}
+
+/* Service illustrations have their own asset set and sizing. */
+.tuk-services .step-imgs{position:sticky;top:20vh;display:flex;width:40%;margin-top:15vh;padding-inline:0!important;align-items:center!important;justify-content:center!important;height:clamp(300px,28vw,420px)!important}
+.tuk-services .step-imgs img{object-fit:contain;max-width:420px!important;max-height:420px!important}
+@media(max-width:1023px){.tuk-services .step-imgs{position:relative;top:auto;width:100%;height:260px!important;margin-top:32px}.tuk-services .step-imgs img{max-width:260px!important;max-height:260px!important}}
+
+/* Client logos are the brands' original colour files; show them as one flat tone like the rest of the strip. */
+.client_logo .logo{filter:brightness(0) invert(1)}

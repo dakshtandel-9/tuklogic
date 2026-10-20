@@ -1,0 +1,17 @@
+Service card videos from Pexels (https://www.pexels.com/license/), trimmed to 14s at 720p.
+
+web-development.mp4  Web Development  https://www.pexels.com/video/11274341/
+app-development.mp4  App Development  https://www.pexels.com/video/5150801/
+game-development.mp4  Game Development  https://www.pexels.com/video/4247319/
+generative-ai.mp4  Generative AI  https://www.pexels.com/video/16049995/
+computer-vision.mp4  Computer Vision  https://www.pexels.com/video/8090419/
+nlp-solutions.mp4  NLP Solutions  https://www.pexels.com/video/18069804/
+ai-solutions.mp4  AI Solutions  https://www.pexels.com/video/32386523/
+iot-solutions.mp4  IoT Solutions  https://www.pexels.com/video/3866849/
+cloud-solutions.mp4  Cloud Solutions  https://www.pexels.com/video/5028622/
+crm-solutions.mp4  CRM Solutions  https://www.pexels.com/video/6100414/
+servicenow.mp4  ServiceNow  https://www.pexels.com/video/8201292/
+quality-assurance.mp4  Quality Assurance  https://www.pexels.com/video/7989676/
+digital-marketing.mp4  Digital Marketing  https://www.pexels.com/video/7308291/
+staffing.mp4  Staffing  https://www.pexels.com/video/4434067/
+erp-solutions.mp4  ERP Solutions  https://www.pexels.com/video/4281239/

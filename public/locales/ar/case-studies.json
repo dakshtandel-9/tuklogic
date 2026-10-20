@@ -1,15 +1,15 @@
 {
   "meta": {
-    "title": "قصص النجاح في تجربة المستخدم والمنتجات الرقمية | UXBERT Labs",
-    "description": "اطّلع على كيف نحقق النتائج عبر أبحاث تجربة المستخدم وتصميم واجهات المستخدم والاستراتيجية الرقمية. تعرض قصص النجاح حلولًا واقعية ونموًا للأعمال."
+    "title": "دراسات الحالة — TUKLOGIC",
+    "description": "استكشف أعمالنا في التطوير والذكاء الاصطناعي وإنترنت الأشياء ومنصات الأعمال والتسويق والتوظيف."
   },
   "breadcrumbs": {
     "home": "الرئيسية",
     "caseStudies": "قصص النجاح"
   },
   "hero": {
-    "subtitle": "دراسات حالة مبنية على البيانات في تجربة المستخدم من مشاريع عالمية",
-    "title": "قصص النجاح"
+    "subtitle": "أفكار تتحول إلى أثر حقيقي.",
+    "title": "دراسات الحالة"
   },
   "filters": {
     "platform": "المنصة",
@@ -18,39 +18,28 @@
   "upNext": {
     "label": "التالي"
   },
-  "platforms": {
-    "app": "تطبيق",
-    "website": "موقع"
-  },
+  "platforms": {},
   "cases": {
-    "webook": "ويبوك",
-    "wbk": "ويبوك",
-    "riyadh-season": "موسم الرياض",
-    "the-ring": "ذا رينج",
-    "koora-break": "كورة بريك",
-    "joy-awards": "جوائز Joy",
-    "alinma-pay": "الإنماء",
-    "dzrt": "ديزيرت",
-    "unification-strategy": "استراتيجية التوحيد",
-    "sagp": "SAGP",
-    "misk": "مسك",
-    "asaan": "آسان",
-    "alaa-khotah": "على خطاه",
-    "golden-pen": "القلم الذهبي",
-    "ewc": "كأس العالم للرياضات الإلكترونية",
-    "ewc-abbreviation": "EWC"
+    "smart-retail": "Smart Retail",
+    "ai-content": "AI Content",
+    "text-intelligence": "Text Intelligence",
+    "ai-automation": "AI Automation",
+    "connected-systems": "Connected Systems",
+    "sales-hub": "Sales Hub",
+    "it-workflow": "IT Workflow",
+    "digital-growth": "Digital Growth",
+    "talent-connect": "Talent Connect"
   },
   "categories": {
-    "art": "الفن",
-    "digitalMagazine": "مجلة رقمية",
-    "digitalTransformation": "التحول الرقمي",
-    "eCommerce": "التجارة الإلكترونية",
-    "eSports": "الرياضات الإلكترونية",
-    "educational": "تعليمي",
-    "entertainment": "الترفيه",
-    "events": "الفعاليات",
-    "financial": "القطاع المالي",
-    "sports": "الرياضة"
+    "Development — Web, App & Game": "Development — Web, App & Game",
+    "Generative AI": "Generative AI",
+    "NLP Solutions": "NLP Solutions",
+    "AI Solutions": "AI Solutions",
+    "IoT Solutions": "IoT Solutions",
+    "CRM Solutions": "CRM Solutions",
+    "ServiceNow": "ServiceNow",
+    "Digital Marketing": "Digital Marketing",
+    "Staffing — IT & Non-IT": "Staffing — IT & Non-IT"
   },
   "noResults": "لا توجد نتائج للفلاتر المحددة."
 }
