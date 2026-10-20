@@ -1,8 +1,0 @@
- <svg xmlns="http://www.w3.org/2000/svg" width="40" height="41" fill="none" view-box="0 0 40 41">
-            <path
-              fill="#fff"
-              fill-rule="evenodd"
-              d="M13.326 10.083c0-.69.56-1.25 1.25-1.25h15.841c.69 0 1.25.56 1.25 1.25v17.493a1.25 1.25 0 1 1-2.5 0V13.101l-17.45 17.45a1.25 1.25 0 1 1-1.767-1.768l17.45-17.45H14.576c-.69 0-1.25-.56-1.25-1.25Z"
-              clip-rule="evenodd"
-            />
-          </svg>

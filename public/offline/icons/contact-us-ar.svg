@@ -1,8 +1,0 @@
-<svg width="160" height="168" viewBox="0 0 160 168" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <defs>
-        <path id="contact-us-ar-circle" d="M 80,84 m 0,-70 a 70,70 0 1,1 0,140 a 70,70 0 1,1 0,-140" />
-    </defs>
-    <text fill="white" font-size="13" font-weight="500" font-family="Tahoma, Arial, sans-serif" xml:space="preserve">
-        <textPath xlink:href="#contact-us-ar-circle" startOffset="0" textLength="439" lengthAdjust="spacing">تواصل معنا • تواصل معنا • تواصل معنا • تواصل معنا • تواصل معنا •</textPath>
-    </text>
-</svg>

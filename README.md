@@ -20,8 +20,9 @@ Open http://localhost:3000. The root opens the English experience at `/en`; Arab
 - `lib/offline-pages`, `lib/page-loaders.ts`: independently loaded page snapshots, avoiding a full-site import on each cold start.
 - `public/assets`: locally hosted original frontend modules and styles.
 - `public/locales`: English and Arabic translations.
-- `public/offline`: downloaded videos, audio, desktop/mobile animation frames, images, logos, and fonts (about 575 MB).
-- `public/images`, `public/icons`, `public/media`: original saved assets retained for legacy paths.
+- `public/offline`: downloaded videos, audio, desktop/mobile animation frames, images, logos, and fonts (about 640 MB). Served from Cloudflare R2; not committed.
+- `public/images`: original saved assets retained for legacy paths. Served from Cloudflare R2; not committed.
+- `public/icons`, `public/media`: small original assets, committed.
 - `reference/local-assets.json`: the download inventory.
 - `reference/api/offline-content.json`: saved English/Arabic articles, categories, tags, and career listings.
 - `reference/api/services.json`: local service data.
@@ -56,7 +57,7 @@ Run `npm run check:case-studies` against the local development server to verify 
 
 `/en/digital-services` and `/ar/digital-services` serve the TUKLOGIC services experience from the `divya2` project: the WebGL scenes, monogram, service content and videos.
 
-- `public/service-experience`: the copied `reference` renderer and scene assets, `content` data and videos, `og.jpg` and `unsupported.html`.
+- `public/service-experience`: the copied `reference` renderer and scene assets, `content` data and videos, `og.jpg` and `unsupported.html`. Its scripts, worker, shaders and fonts are committed; its media (images, video, audio, geometry and JSON data) is served from Cloudflare R2.
 - `lib/service-experience-document.ts`: the page document. Its `<base href="/service-experience/">` resolves the experience's relative asset paths.
 - `lib/services-page.ts`: resolves the page, its client-routed sections (`about`, `work`, `work/<project>`, …) and redirects retired per-service URLs to the services page.
 - `public/services-link.js`: added to every captured page; Services links and router navigation load the services document instead of the captured site's client-side services route.
@@ -82,7 +83,22 @@ The site deploys to Vercel as a standard Next.js app. `vercel.json` sets the bui
 2. In Vercel, import the repository. The framework preset, build command and Node version (from `engines`) are picked up automatically.
 3. No environment variables are required. `HF_CREDENTIALS` is only used by local video generation scripts.
 
-All media (about 1 GB, mostly under `public/offline` and `public/service-experience`) ships in the repository and is served from Vercel's CDN. The largest file is 55 MB, under GitHub's 100 MB limit, so Git LFS isn't needed. Deploy from Git rather than `vercel deploy`: CLI uploads are limited to 100 MB on Hobby and 1 GB on Pro.
+### Media on Cloudflare R2
+
+The large media (about 1 GB) is stored in the public R2 bucket `tuklogic-media`, not in Git or the deployment. `next.config.ts` redirects `/offline/*`, `/images/*` and the media files under `/service-experience/*` to the bucket, keeping the same paths, so the captured pages and frontend modules need no changes. Page responses allow the bucket's origin in their content security policy.
+
+- The bucket's address is set in `lib/media-origin.ts`. To move to a custom domain, set `R2_MEDIA_ORIGIN` (for example `https://media.example.com`) in Vercel and redeploy.
+- The bucket's CORS policy must allow `GET` and `HEAD` from any origin: canvas frames, WebGL textures and Web Audio need it.
+- The `r2.dev` address is rate-limited and not cached at Cloudflare's edge. For production traffic, connect a custom domain to the bucket and set `R2_MEDIA_ORIGIN`.
+- R2's `images/` folder also contains the files that only exist in `offline/images`, matching the old `/images` to `/offline/images` fallback.
+
+To add or change media, update the local file and upload it with rclone (configured with a remote named `r2`), keeping the same path:
+
+```sh
+rclone copy public/offline r2:tuklogic-media/offline --progress --header-upload "Cache-Control: public, max-age=604800"
+```
+
+Browsers may keep an old copy for up to a week; give a changed file a new name to update it immediately.
 
 `/output`, root-level `.mp4` drafts and other local working files are ignored by Git and are not part of the deployment.
 # tuklogic

@@ -4,6 +4,7 @@ import { getCaseStudyDocument } from '../../../lib/case-studies';
 import { getCaseStudiesCollection, withArabicCaseStudyTags } from '../../../lib/case-studies-collection';
 import { getCaseStudyDetail } from '../../../lib/case-study-detail';
 import { getServicesDocument } from '../../../lib/services-page';
+import { getMediaOrigin } from '../../../lib/media-origin';
 
 /** Serve the captured document with its original locally hosted frontend runtime. */
 export async function GET(request: Request) {
@@ -33,6 +34,7 @@ export async function GET(request: Request) {
   if (!html) {
     return new Response('Page not found', { status: 404, headers: { 'Content-Type': 'text/plain; charset=utf-8' } });
   }
+  const mediaSource = ` ${getMediaOrigin()}`;
   return new Response(applyHeaderBranding(withArabicCaseStudyTags(html)), {
     status: caseStudy?.status ?? 200,
     headers: {
@@ -40,8 +42,8 @@ export async function GET(request: Request) {
       'Cache-Control': 'public, max-age=300',
       'X-Content-Type-Options': 'nosniff',
       'Referrer-Policy': 'strict-origin-when-cross-origin',
-      // Copied modules may only load resources from this local site.
-      'Content-Security-Policy': "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob:; font-src 'self' data:; connect-src 'self' ws://localhost:* ws://127.0.0.1:*; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'",
+      // Copied modules may only load resources from this site and the R2 media origin.
+      'Content-Security-Policy': `default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'${mediaSource}; img-src 'self' data: blob:${mediaSource}; media-src 'self' blob:${mediaSource}; font-src 'self' data:${mediaSource}; connect-src 'self'${mediaSource} ws://localhost:* ws://127.0.0.1:*; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'`,
     },
   });
 }
