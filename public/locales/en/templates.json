@@ -1,6 +1,6 @@
 {
   "meta": {
-    "title": "Workflow Templates | UXBERT Labs",
+    "title": "Workflow Templates | TUKLOGIC",
     "description": "Ready to use workflows for smarter automation. Speed up your processes with professionally designed workflow templates."
   },
   "breadcrumbs": {
@@ -19,19 +19,19 @@
     "seeTemplates": "See Templates",
     "ux": {
       "name": "UX",
-      "metaTitle": "UX Workflow Templates | UXBERT LABS",
+      "metaTitle": "UX Workflow Templates | TUKLOGIC",
       "metaDescription": "Streamline UX research, design reviews, and user testing workflows to deliver better experiences faster.",
       "description": "Streamline UX research, design reviews, and user testing workflows to deliver better experiences faster."
     },
     "strategy": {
       "name": "Strategy",
-      "metaTitle": "Strategy Workflow Templates | UXBERT LABS",
+      "metaTitle": "Strategy Workflow Templates | TUKLOGIC",
       "metaDescription": "Align teams around strategic goals, track initiatives, and automate reporting across your organisation.",
       "description": "Align teams around strategic goals, track initiatives, and automate reporting across your organisation."
     },
     "pmo": {
       "name": "PMO",
-      "metaTitle": "PMO Workflow Templates | UXBERT LABS",
+      "metaTitle": "PMO Workflow Templates | TUKLOGIC",
       "metaDescription": "Automate project status updates, resource allocation, and cross-team handoffs to keep every initiative on track.",
       "description": "Automate project status updates, resource allocation, and cross-team handoffs to keep every initiative on track."
     }

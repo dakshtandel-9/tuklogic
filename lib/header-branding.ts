@@ -8,7 +8,7 @@ export function applyHeaderBranding(html: string): string {
       `<a href="mailto:${email}" class="_underline subFont block w-full text-start text-base" dir="ltr">${email}</a>`;
     html =
       html.slice(0, footerAt) +
-      html.slice(footerAt).replace(link('hello@uxbert.com'), link('info@tuklogic.com') + link('sales@tuklogic.com'));
+      html.slice(footerAt).replace(link('info@tuklogic.com'), link('info@tuklogic.com') + link('sales@tuklogic.com'));
   }
   return html.replace(
     /(<a\b[^>]*class="main_logo intElements\b[^>]*>)<img\b[^>]*\/?>/g,

@@ -43,7 +43,7 @@ export async function renderInSiteDocument(doc: SiteDocument): Promise<string> {
     .replace(/<title>[^<]*<\/title>/, `<title>${escapeHtml(doc.title)}</title>`)
     .replace(/(<meta (?:name|property)="(?:twitter:|og:)?title" content=")[^"]*/g, `$1${escapeHtml(doc.title)}`)
     .replace(/(<meta (?:name|property)="(?:twitter:|og:)?description" content=")[^"]*/g, `$1${escapeHtml(doc.description)}`)
-    .replace(/https:\/\/uxbert\.com\/(en|ar)\/about\//g, (_, lang) => `${origin}/${lang}${path}`)
+    .replace(/https:\/\/tuklogic\.com\/(en|ar)\/about\//g, (_, lang) => `${origin}/${lang}${path}`)
     .replace('<link rel="modulepreload" href="/assets/about-CZJChM-C.js"/><link rel="modulepreload" href="/assets/index-TXdbGZo3.js"/>', doc.preload)
     .replace('<meta property="og:type" content="website"/>', `<meta property="og:type" content="${doc.ogType ?? 'website'}"/>`);
   if (doc.image) {
