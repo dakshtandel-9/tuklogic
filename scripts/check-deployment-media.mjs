@@ -30,7 +30,10 @@ await Promise.all(Array.from({ length: 4 }, async () => {
     assert.equal(response.status, 200, `${path}: HTTP ${response.status}`);
     assert.ok(!response.headers.has('location'), `${path}: media must stay on the site's origin`);
     assert.match(response.headers.get('content-type') || '', /image|video|font|css|json/, `${path}: wrong content type`);
-    assert.ok(Number(response.headers.get('content-length')) > 0, `${path}: empty asset`);
+    // Vercel compresses text assets (CSS, JSON) and then sends no Content-Length, so measure the body instead.
+    const size = response.headers.has('content-length') ? Number(response.headers.get('content-length'))
+      : (await (await fetch(new URL(path, origin), { signal: AbortSignal.timeout(30000) })).arrayBuffer()).byteLength;
+    assert.ok(size > 0, `${path}: empty asset`);
     checks += 1;
   }
 }));
