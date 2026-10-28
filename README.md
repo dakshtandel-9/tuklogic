@@ -114,4 +114,6 @@ node --test scripts/check-frame-loader.mjs scripts/check-loading-progress.mjs sc
 
 The character player uses `public/assets/frame-loader.js`: one shared queue of eight downloads, three attempts per frame, fresh retry URLs, cancellation on unmount, and readiness only after every required sequence loads. Frames are stored in playback order starting at index zero; they are decoded on demand to avoid retaining entire HD sequences as bitmaps.
 
+The phone homepage uses separate portrait clips in `public/offline/mobile-videos`, referenced by `public/assets/ScenesMobile-COIEeUsU.js`. Run `python3 scripts/prepare-mobile-characters.py` to derive its five updated character loops from the installed desktop hold frames. It preserves faces, hands and paired characters with scene-specific crops, and excludes entry glitches and screen reveals. New clips use versioned filenames; update `VERSION` in the script and the five mobile references together for future replacements, then upload the clips to R2. This does not alter desktop frames or the original mobile clips. The deployment media check covers the mobile video URLs too.
+
 `/output` (backups of replaced media and small editing scripts), root-level `.mp4` drafts and other local working files are ignored by Git and are not part of the deployment.

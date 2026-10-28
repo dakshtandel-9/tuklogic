@@ -20,6 +20,10 @@ for (const match of source.matchAll(/sceneName:"([^"]+)"[^}]*?inFrames:(\d+)(?:,
 }
 const present = await readFile(new URL('../public/assets/present-Dq_t0PBs.js', import.meta.url), 'utf8');
 for (const match of present.matchAll(/"(\/offline\/images\/services\/[^" ]+)"/g)) paths.add(match[1]);
+// Phones use independent clips; desktop frame checks cannot catch stale or
+// missing mobile character artwork.
+const mobile = await readFile(new URL('../public/assets/ScenesMobile-COIEeUsU.js', import.meta.url), 'utf8');
+for (const match of mobile.matchAll(/src:"(\/mobile-videos\/[^" ]+)"/g)) paths.add(`/offline${match[1]}`);
 
 let checks = 0;
 const remaining = [...paths];
