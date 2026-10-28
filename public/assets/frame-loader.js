@@ -5,7 +5,7 @@
 // same names, so returning visitors download the new ones instead of their old copies.
 export const FRAMES_VERSION = '20261029';
 
-export function createFrameLoader({ concurrency = 8, attempts = 3, timeoutMs = 20000,
+export function createFrameLoader({ concurrency = 12, attempts = 3, timeoutMs = 20000,
   createImage = () => new Image(), retryDelay = attempt => new Promise(resolve => setTimeout(resolve, attempt * 300)),
 } = {}) {
   const queue = [];

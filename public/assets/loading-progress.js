@@ -1,5 +1,7 @@
 // Display each percentage for the same duration, regardless of cache/network speed.
-export const PROGRESS_STEP_MS = 60;
+// Each number also waits for two painted frames (about 33 ms), so a full count
+// takes roughly four seconds when everything is already loaded.
+export const PROGRESS_STEP_MS = 10;
 export const LOADING_PAUSE_PERCENT = 50;
 
 export function createLoadingProgress({ onProgress, onComplete, requirePaint = false }) {

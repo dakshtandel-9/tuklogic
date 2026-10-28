@@ -58,7 +58,7 @@ const LoadingIntro = ({ ready, onComplete }) => {
   return jsx.jsxs("div", {
     className: "scene full_bg f a-c j-c", style: { zIndex: 10000 }, id: "wormhole-intro",
     children: [
-      jsx.jsx(Video, { src: "/videos/wormhole.webm", loop: true, muted: true, autoPlay: true, playsInline: true }),
+      jsx.jsx(Video, { src: "/videos/wormhole-20261029.webm", loop: true, muted: true, autoPlay: true, playsInline: true }),
       jsx.jsxs("div", {
         id: "main_progress", className: "main_progress f a-c j-c",
         children: [jsx.jsx("i", { className: "full_bg spinner" }), jsx.jsxs("h3", { id: "mainProgress", children: [progress, "%"] })],

@@ -1,32 +1,51 @@
-import{loadFrames}from"./frame-loader.js";import{Q as A,ak as L,g as r,j as m,a8 as F}from"./ui-components-krT5pv9S.js";import{A as U}from"./AudioText-DReP9lcs.js";import{t as V}from"./main-B2LH-fDE.js";const y="/offline",D=({onFinished:j,loaded:f})=>{const{t:P}=A("home"),R=L(o=>o.audios),[g,$]=r.useState(!1),[v,_]=r.useState(!1),[p]=r.useState("/scenes/desktop/eh/intro.mp4?v=20261029"),{isBelowSm:b}=V("sm"),E=L(o=>o.quality);r.useEffect(()=>{g&&j?.()},[g,j]);const introDone=r.useRef(!1),a=r.useRef(null),finishIntro=()=>{introDone.current||(introDone.current=!0,$(!0))},C=r.useCallback(()=>{
+import{loadFrames}from"./frame-loader.js";import{Q as A,ak as L,g as r,j as m,a8 as F}from"./ui-components-krT5pv9S.js";import{A as U}from"./AudioText-DReP9lcs.js";import{t as V}from"./main-B2LH-fDE.js";const y="/offline",STORY_FRAMES=[["egypt",64,33,34],["china",36,20,36],["greek",37,47,36],["islamic",37,61,34],["steve",23,50,35],["uxbert",58,44,0]],D=({onFinished:j,loaded:f})=>{const{t:P}=A("home"),R=L(o=>o.audios),[g,$]=r.useState(!1),[v,_]=r.useState(!1),[p]=r.useState("/scenes/desktop/eh/intro.mp4?v=20261029"),{isBelowSm:b}=V("sm"),E=L(o=>o.quality);r.useEffect(()=>{g&&j?.()},[g,j]);const introDone=r.useRef(!1),framesReady=r.useRef(Promise.resolve()),warming=r.useRef(null),a=r.useRef(null),finishIntro=()=>{
+  // The first scene needs the throw and loop frames. They load while the intro plays,
+  // so this only waits when the connection could not fetch them in time.
+  introDone.current||(introDone.current=!0,framesReady.current.then(()=>{
+    // Each scene loads after the previous one through the same queue; drop the
+    // remaining warm-up so it never waits behind later eras.
+    warming.current?.abort();
+    $(!0)
+  },()=>{}))
+},C=r.useCallback(()=>{
   let disposed=!1,reported=!1;
   const e=a.current,controller=new AbortController;
   if(!e)return;
   const mobile=window.matchMedia("(max-width: 576px)").matches;
-  let n=[],i=[],l=!1,c=mobile;
+  // Filled in place as frames arrive. The homepage keeps these arrays and mounts
+  // the first scene only after framesReady resolves, when they are complete.
+  const n=[],i=[];
   const S=()=>{
-    if(disposed||reported||!l||!c)return;
+    if(disposed||reported)return;
     reported=!0;
     // Asset readiness never hides the loader. Its visible 100% transition
     // invokes this start callback only after the countdown has been painted.
     f(100,!0,n,i,()=>{if(!disposed){_(!0)}});
   };
-  const onCanPlay=()=>{l=!0;S()};
+  const onCanPlay=()=>S();
   const onError=event=>{console.error("Error loading video:",event)};
   e.addEventListener("canplay",onCanPlay);
   e.addEventListener("error",onError);
   if(e.readyState>=3)onCanPlay();
   else e.load();
-  if(!mobile)(async()=>{
-    try{
-      n=await loadFrames(`${y}/frames/eh/throw-${E}`,120,{signal:controller.signal});
-      i=await loadFrames(`${y}/frames/eh/loop-${E}`,61,{signal:controller.signal});
-      if(!disposed){c=!0;S()}
-    }catch(error){if(error.name!=="AbortError")console.error("Unable to preload opening frames:",error)}
-  })();
+  if(!mobile){
+    const options=images=>({signal:controller.signal,onFrame:(image,index)=>{images[index]=image}});
+    framesReady.current=Promise.all([
+      loadFrames(`${y}/frames/eh/throw-${E}`,120,options(n)),
+      loadFrames(`${y}/frames/eh/loop-${E}`,61,options(i)),
+    ]);
+    framesReady.current.catch(error=>{if(error.name!=="AbortError")console.error("Unable to preload opening frames:",error)});
+    // The network is otherwise idle during the intro. Cache the eras in story order
+    // behind the opening frames; the scenes reuse whatever finished.
+    warming.current=new AbortController;
+    for(const[scene,...counts]of STORY_FRAMES)["in","hold","out"].forEach((part,index)=>{
+      counts[index]&&loadFrames(`${y}/frames/${scene}/${part}-${E}`,counts[index],{signal:warming.current.signal}).catch(()=>{});
+    });
+  }
   return()=>{
     disposed=!0;
     controller.abort();
+    warming.current?.abort();
     e.removeEventListener("canplay",onCanPlay);
     e.removeEventListener("error",onError);
   };
