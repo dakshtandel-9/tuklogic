@@ -24,3 +24,87 @@
 
 /* Client logos are the brands' original colour files; show them as one flat tone like the rest of the strip. */
 .client_logo .logo{filter:brightness(0) invert(1)}
+
+/* Present: keep the desktop composition; give phones and tablets fluid columns. */
+@media(max-width:1023px){
+  .tuk-present{--present-gutter:clamp(20px,5vw,40px)}
+  .tuk-present .x_padding{padding-inline:var(--present-gutter)}
+  .tuk-present section{scroll-margin-top:110px}
+  .tuk-present .tuk-present-hero{margin-block:0 24px}
+  .tuk-present .hero_set{height:auto;min-height:100svh;padding-block:112px 56px}
+  .tuk-present .hero_content{height:auto;width:100%;gap:24px}
+  .tuk-present .hero_content h1{font-size:clamp(30px,5.8vw,52px);line-height:1.18;gap:12px;overflow-wrap:anywhere}
+  .tuk-present .hero_content .scrollTo{margin-top:8px}
+  .tuk-present .hero_content .scrollTo img{width:80px;height:80px}
+  .tuk-present .present-tabs{margin:0;width:100%;max-width:100%;padding-inline:var(--present-gutter);gap:20px;flex-wrap:nowrap;justify-content:flex-start!important;overflow-x:auto!important;overscroll-behavior-x:contain;scroll-padding-inline:var(--present-gutter);top:72px!important;font-size:16px;pointer-events:auto}
+  .tuk-present .present-tabs button{flex:0 0 auto;min-height:44px;touch-action:pan-x}
+  .tuk-present .present-tabs h3{font-size:inherit;line-height:1.3}
+  .tuk-present .art-bottom-cont{padding-inline:var(--present-gutter);align-items:flex-start;gap:12px}
+  .tuk-present .art-bottom-cont .big-font{max-width:100%;font-size:clamp(28px,7.5vw,46px)!important;line-height:1.12;white-space:normal;overflow-wrap:anywhere;margin:0}
+  .tuk-present .art-bottom-cont .desc{top:0;width:100%;gap:0 .28em;font-size:clamp(14px,2vw,18px);line-height:1.5;padding:0}
+  .tuk-present .art-bottom-cont .rec_btn{min-height:44px;min-width:120px;font-size:12px;flex-shrink:0}
+  .tuk-present .art-bottom-cont .rec_btn .arrow img{width:16px}
+  .tuk-present .tuk-project-directory{padding:56px var(--present-gutter)}
+  .tuk-present .tuk-project-directory-heading h2{font-size:clamp(30px,5vw,42px)}
+  .tuk-present .tuk-project-directory-card h3{font-size:clamp(24px,4.5vw,32px);gap:12px;overflow-wrap:anywhere}
+  .tuk-present .tuk-project-directory-card h3>span{flex-shrink:0}
+  .tuk-present .tuk-services{margin-top:0;padding-block:56px;overflow:hidden}
+  .tuk-present .section_title{width:100%;max-width:100%;gap:16px}
+  .tuk-present .section_title h2{font-size:clamp(28px,4.4vw,42px);line-height:1.22;overflow-wrap:anywhere}
+  .tuk-present .tuk-services .section_head{padding-bottom:0}
+  .tuk-present .tuk-services .service-container{width:100%;flex-direction:column;padding:0}
+  .tuk-present .tuk-services .step-imgs{height:clamp(200px,32vw,280px)!important;margin-block:24px 16px;flex-shrink:0}
+  .tuk-present .tuk-services .step-imgs img{width:100%;height:100%;max-width:280px!important;max-height:280px!important;object-fit:contain}
+  .tuk-present .Slider3d{width:100%;min-width:0;padding-bottom:12px;overflow:hidden}
+  .tuk-present .Slider3d .swiper{width:100%;min-width:0;overflow:hidden!important;padding-bottom:28px}
+  .tuk-present .Slider3d .swiper-slide{width:100%!important;min-width:0;box-sizing:border-box;padding:0}
+  .tuk-present .Slider3d .swiper-pagination{position:relative;bottom:auto!important;display:flex;justify-content:center;flex-wrap:wrap;gap:6px;margin-top:24px}
+  .tuk-present .Slider3d .swiper-pagination-bullet{margin:0!important;width:8px;height:8px}
+  .tuk-present .Slider3d .step{width:100%;min-width:0;gap:16px;justify-content:flex-start}
+  .tuk-present .Slider3d .step>strong{font-size:14px}
+  .tuk-present .Slider3d .step>h2{width:100%;font-size:clamp(28px,4.8vw,38px)!important;line-height:1.2;overflow-wrap:anywhere}
+  .tuk-present .Slider3d .step>h2 br{display:none}
+  .tuk-present .Slider3d .step>span{display:block;width:100%;font-size:16px;line-height:1.75!important}
+  .tuk-present .Slider3d .step>div{display:grid;width:100%;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 20px}
+  .tuk-present .Slider3d .step ul{width:100%;min-width:0;white-space:normal;padding:0}
+  .tuk-present .Slider3d .step li{min-width:0;opacity:.8;margin-bottom:10px;overflow-wrap:anywhere}
+  .tuk-present .Slider3d .step li span,.tuk-present .Slider3d .step li a{display:block;padding:0!important;font-size:14px;line-height:1.5}
+  .tuk-present .tuk-service-controls{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-block:8px 24px}
+  .tuk-present .tuk-service-controls button{width:44px;height:44px;border:1px solid #ffffff50;color:#fff;background:transparent;font-size:22px;cursor:pointer}
+  .tuk-present .tuk-service-controls button:disabled{opacity:.3;cursor:default}
+  .tuk-present .tuk-service-controls span{font-size:14px;letter-spacing:.08em;font-variant-numeric:tabular-nums;direction:ltr}
+  .tuk-present .tuk-service-controls button:focus-visible{outline:2px solid #ff498b;outline-offset:3px}
+  .tuk-present .section_head.f{flex-wrap:wrap;align-items:flex-start;gap:24px}
+  .tuk-present .faq_q{gap:16px;align-items:flex-start}
+  .tuk-present .faq_q_text{min-width:0;flex:1;font-size:clamp(18px,2.8vw,22px);line-height:1.4;overflow-wrap:anywhere}
+  .tuk-present .faq_toggle{flex-shrink:0;margin-top:5px}
+  .tuk-present .faq_a{font-size:16px;line-height:1.75}
+  .tuk-present .faq_a .SplitClass{width:100%}
+}
+@media(min-width:601px) and (max-width:1023px){
+  .tuk-present .present-ph{width:min(65vw,540px)!important;max-height:36vh!important}
+  .tuk-present .present-ph-lg{width:min(72vw,580px)!important;max-height:40vh!important}
+  .tuk-present .present-title{max-width:85vw!important;height:24vh!important}
+}
+@media(max-width:360px){
+  .tuk-present .Slider3d .step>div{grid-template-columns:1fr}
+}
+@media(min-width:1024px) and (max-width:1200px){
+  .tuk-present .present-tabs{top:72px!important;margin:0;padding-inline:32px;gap:20px;flex-wrap:nowrap;justify-content:flex-start!important;overflow-x:auto!important;font-size:16px}
+  .tuk-present .present-tabs h3{font-size:inherit}
+  .tuk-present .present-tabs button{min-height:44px;flex-shrink:0}
+  .tuk-present .art-bottom-cont{padding-inline:5vw;flex-direction:column;align-items:flex-start;gap:12px}
+  .tuk-present .art-bottom-cont .big-font{max-width:100%;font-size:46px!important;white-space:normal}
+  .tuk-present .art-bottom-cont .desc{width:min(70vw,700px);top:0;font-size:18px;line-height:1.5}
+}
+@media(max-width:1200px) and (max-height:600px) and (orientation:landscape){
+  .tuk-present .hero_set{min-height:600px}
+  .tuk-present .hero_content h1{font-size:32px}
+  .tuk-present .art-bottom-cont{width:52%;margin-inline-start:auto;gap:8px;padding-inline:20px}
+  .tuk-present .art-bottom-cont .big-font{font-size:clamp(22px,3.2vw,28px)!important}
+  .tuk-present .art-bottom-cont .desc{max-width:100%;font-size:14px}
+  .tuk-present .present-ph,.tuk-present .present-ph-lg{width:38vw!important;max-height:32vh!important;translate:-24vw calc(110px + 10svh)!important}
+  .tuk-present .present-title{height:22vh!important;max-width:42vw!important;translate:-24vw calc(210px + 10svh)!important}
+  html[dir=rtl] .tuk-present .present-ph,html[dir=rtl] .tuk-present .present-ph-lg{translate:24vw calc(110px + 10svh)!important}
+  html[dir=rtl] .tuk-present .present-title{translate:24vw calc(210px + 10svh)!important}
+}
