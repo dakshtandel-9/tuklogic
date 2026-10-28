@@ -1,5 +1,10 @@
 // Share one queue across every scene, rather than requesting hundreds of images
 // simultaneously. Keep frame order stable even when downloads finish out of order.
+
+// Browsers keep frames for a week. Change this whenever frames are replaced under the
+// same names, so returning visitors download the new ones instead of their old copies.
+export const FRAMES_VERSION = '20261029';
+
 export function createFrameLoader({ concurrency = 8, attempts = 3, timeoutMs = 20000,
   createImage = () => new Image(), retryDelay = attempt => new Promise(resolve => setTimeout(resolve, attempt * 300)),
 } = {}) {
@@ -60,7 +65,7 @@ export function createFrameLoader({ concurrency = 8, attempts = 3, timeoutMs = 2
 
   return async function loadFrames(basePath, count, { signal, onFrame } = {}) {
     return Promise.all(Array.from({ length: count }, (_, index) =>
-      load(`${basePath}/frame_${index + 1}.webp`, signal).then(image => {
+      load(`${basePath}/frame_${index + 1}.webp?v=${FRAMES_VERSION}`, signal).then(image => {
         if (signal?.aborted) throw aborted();
         onFrame?.(image, index);
         return image;
