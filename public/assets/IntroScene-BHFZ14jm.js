@@ -22,13 +22,12 @@ import{loadFrames}from"./frame-loader.js";import{Q as A,ak as L,g as r,j as m,a8
     // invokes this start callback only after the countdown has been painted.
     f(100,!0,n,i,()=>{if(!disposed){_(!0)}});
   };
-  const onCanPlay=()=>S();
-  const onError=event=>{console.error("Error loading video:",event)};
-  e.addEventListener("canplay",onCanPlay);
-  e.addEventListener("error",onError);
-  if(e.readyState>=3)onCanPlay();
-  else e.load();
-  if(!mobile){
+  let framesStarted=!1;
+  // Frames start only once the intro can play, so they never compete with the
+  // film the loader is waiting for; they are not shown until the intro ends.
+  const startFrames=()=>{
+    if(mobile||framesStarted)return;
+    framesStarted=!0;
     const options=images=>({signal:controller.signal,onFrame:(image,index)=>{images[index]=image}});
     framesReady.current=Promise.all([
       loadFrames(`${y}/frames/eh/throw-${E}`,120,options(n)),
@@ -41,7 +40,13 @@ import{loadFrames}from"./frame-loader.js";import{Q as A,ak as L,g as r,j as m,a8
     for(const[scene,...counts]of STORY_FRAMES)["in","hold","out"].forEach((part,index)=>{
       counts[index]&&loadFrames(`${y}/frames/${scene}/${part}-${E}`,counts[index],{signal:warming.current.signal}).catch(()=>{});
     });
-  }
+  };
+  const onCanPlay=()=>{startFrames();S()};
+  const onError=event=>{console.error("Error loading video:",event)};
+  e.addEventListener("canplay",onCanPlay);
+  e.addEventListener("error",onError);
+  if(e.readyState>=3)onCanPlay();
+  else e.load();
   return()=>{
     disposed=!0;
     controller.abort();
