@@ -68,3 +68,65 @@ test('unmount cancels pending updates and completion', t => {
   assert.deepEqual(values, [0, 1]);
   assert.equal(completions(), 0);
 });
+
+test('a busy React render cannot let the timer skip a displayed number', t => {
+  t.mock.timers.enable({ apis: ['setTimeout'] });
+  const values = [];
+  let completed = false;
+  const counter = createLoadingProgress({
+    requirePaint: true,
+    onProgress: value => values.push(value),
+    onComplete: () => { completed = true; },
+  });
+  counter.markReady();
+  t.mock.timers.tick(60000);
+  assert.deepEqual(values, [0], 'wait for the initial visible commit');
+  for (let value = 0; value < 100; value += 1) {
+    counter.confirmPainted(value - 1); // Stale render acknowledgements do nothing.
+    t.mock.timers.tick(10000);
+    assert.equal(values.at(-1), value);
+    counter.confirmPainted(value);
+    t.mock.timers.tick(PROGRESS_STEP_MS);
+    assert.equal(values.at(-1), value + 1);
+    assert.equal(completed, false, '100 must also be painted before completion');
+  }
+  assert.deepEqual(values, Array.from({ length: 101 }, (_, value) => value));
+  counter.confirmPainted(100);
+  assert.equal(completed, true);
+});
+
+test('assets becoming ready at 70 cannot complete the visible countdown early', t => {
+  t.mock.timers.enable({ apis: ['setTimeout'] });
+  const values = [];
+  let completions = 0;
+  const counter = createLoadingProgress({
+    requirePaint: true,
+    onProgress: value => values.push(value),
+    onComplete: () => { completions += 1; },
+  });
+  // Loading pauses at 50 until the real assets are ready.
+  for (let value = 0; value < 50; value += 1) {
+    counter.confirmPainted(value);
+    t.mock.timers.tick(PROGRESS_STEP_MS);
+  }
+  counter.confirmPainted(50);
+  t.mock.timers.tick(10000);
+  assert.equal(values.at(-1), 50);
+  counter.markReady();
+  t.mock.timers.tick(PROGRESS_STEP_MS);
+  for (let value = 51; value < 100; value += 1) {
+    if (value === 70) {
+      counter.markReady();
+      t.mock.timers.tick(10000);
+      assert.equal(values.at(-1), 70);
+      assert.equal(completions, 0);
+    }
+    counter.confirmPainted(value);
+    t.mock.timers.tick(PROGRESS_STEP_MS);
+  }
+  assert.equal(values.at(-1), 100);
+  assert.equal(completions, 0);
+  counter.confirmPainted(100);
+  counter.confirmPainted(100);
+  assert.equal(completions, 1);
+});

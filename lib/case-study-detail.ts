@@ -95,8 +95,8 @@ const heroAurora = (x: Ctx) => `<section class="tcs-hero tcs-hero--aurora tcs-wr
   ${discover(x, 'tcs-center-link')}
 </section>`;
 
-/** Facts only; the product is shown further down the page. */
-const heroPlain = (x: Ctx, variant: string) => `<section class="tcs-hero tcs-hero--${variant} tcs-wrap" aria-label="${escape(x.project.title)}">${facts(x)}<span class="tcs-hero-space" aria-hidden="true"></span></section>`;
+/** Facts over a wide scene of the product at work; the product render itself is shown further down the page. */
+const heroPlain = (x: Ctx, variant: string) => `<section class="tcs-hero tcs-hero--${variant} tcs-wrap" aria-label="${escape(x.project.title)}">${facts(x)}<figure class="tcs-hero-scene"><img src="/offline/images/work-images/${x.project.slug}-hero.webp" alt="" aria-hidden="true" width="1344" height="752" decoding="async" fetchpriority="high"></figure></section>`;
 
 /** Product in concentric rings with the five stages placed around the outer ring. */
 function heroOrbit(x: Ctx) {

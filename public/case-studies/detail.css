@@ -254,7 +254,14 @@
 .tcs-numbered { display: grid; gap: 0; counter-reset: none; }
 .tcs-numbered li { display: flex; gap: 1em; align-items: baseline; padding: .9em 0; border-top: 1px solid rgb(255 255 255 / .12); font-family: Rajdhani, sans-serif; font-size: 5.4vw; font-weight: 600; line-height: 1.2; }
 .tcs-numbered li span { flex: none; color: var(--tcs-accent); font-size: .7em; }
-.tcs-hero-space { display: block; height: 30vw; }
+/* Wide product scene on the editorial and glow heroes; its edges fade into the page so the generated backdrop never shows a seam. */
+.tcs-hero-scene { position: relative; width: 112%; margin: 0 -6%; }
+.tcs-hero-scene img {
+  display: block; width: 100%; height: auto;
+  -webkit-mask-image: radial-gradient(72% 70% at 50% 50%, #000 62%, transparent 100%);
+  mask-image: radial-gradient(72% 70% at 50% 50%, #000 62%, transparent 100%);
+  animation: tcs-float 7s ease-in-out infinite;
+}
 
 /* ---------- Hero backgrounds ---------- */
 .tcs--aurora .tcs-hero-bg {
@@ -303,8 +310,6 @@
 .tcs-aurora-floor { position: absolute; inset: auto 8% -4% 8%; height: 18%; border-radius: 50%; background: radial-gradient(closest-side, color-mix(in srgb, var(--tcs-color) 55%, transparent), transparent); filter: blur(10px); }
 @keyframes tcs-float { 50% { transform: translateY(-1.6%); } }
 
-.tcs-hero--editorial .tcs-hero-space, .tcs-hero--glow .tcs-hero-space { height: 26vw; }
-.tcs-hero--glow .tcs-hero-space { position: relative; }
 
 .tcs-orbit { position: relative; width: min(100%, 82vw); aspect-ratio: 1; margin: 6vw auto 0; }
 .tcs-orbit-ring { position: absolute; inset: 0; border: 1px solid color-mix(in srgb, var(--tcs-accent) 35%, transparent); border-radius: 50%; }
@@ -616,12 +621,11 @@
   .tcs-dots li { font-size: clamp(14px, 1.1vw, 19px); }
   .tcs-dots--large li { font-size: clamp(20px, 1.8vw, 32px); }
   .tcs-numbered li { font-size: clamp(18px, 1.6vw, 28px); }
-  .tcs-hero-space { height: 14vw; }
+  .tcs-hero-scene { width: min(100%, 1240px); margin: -2vw auto -3vw; }
 
   .tcs-hero--aurora { gap: 3vw; }
   .tcs-aurora { padding-top: 6vw; }
   .tcs-aurora-product { width: 72%; }
-  .tcs-hero--editorial .tcs-hero-space, .tcs-hero--glow .tcs-hero-space { height: 18vw; }
 
   .tcs-orbit { width: min(68vw, 880px); margin-top: 3vw; }
   .tcs-orbit-stages li { font-size: clamp(11px, .8vw, 14px); }
