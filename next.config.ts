@@ -20,8 +20,10 @@ const mediaRoutes = [
 ];
 
 const nextConfig: NextConfig = {
-  async redirects() {
-    return mediaRoutes.map(route => ({ ...route, permanent: false }));
+  async rewrites() {
+    // Proxy media on the site's origin. Redirecting every frame adds a network
+    // round trip and makes videos, canvas textures and fetches depend on CORS.
+    return { beforeFiles: mediaRoutes };
   },
 };
 

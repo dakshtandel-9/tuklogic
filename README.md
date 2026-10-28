@@ -85,7 +85,7 @@ The site deploys to Vercel as a standard Next.js app. `vercel.json` sets the bui
 
 ### Media on Cloudflare R2
 
-The large media (about 1 GB) is stored in the public R2 bucket `tuklogic-media`, not in Git or the deployment. `next.config.ts` redirects `/offline/*` (except the fonts, which stay in the deployment), `/images/*` and the media files under `/service-experience/*` to the bucket, keeping the same paths, so the captured pages and frontend modules need no changes. Page responses allow the bucket's origin in their content security policy.
+The large media (about 1 GB) is stored in the public R2 bucket `tuklogic-media`, not in Git or the deployment. `next.config.ts` proxies `/offline/*` (except the fonts, which stay in the deployment), `/images/*` and the media files under `/service-experience/*` to the bucket. Requests stay on the site's origin, avoiding a redirect for every animation frame and cross-origin video/texture failures. Byte ranges are forwarded for video playback and seeking.
 
 - The bucket's address is set in `lib/media-origin.ts`. To move to a custom domain, set `R2_MEDIA_ORIGIN` (for example `https://media.example.com`) in Vercel and redeploy.
 - The bucket's CORS policy must allow `GET` and `HEAD` from any origin: canvas frames, WebGL textures and Web Audio need it.
@@ -102,3 +102,19 @@ Browsers may keep an old copy for up to a week; give a changed file a new name t
 
 `/output`, root-level `.mp4` drafts and other local working files are ignored by Git and are not part of the deployment.
 # tuklogic
+
+## Checking production media delivery
+
+Build and run Next.js to test the same media rewrites used on Vercel:
+
+```sh
+npx next build
+npx next start --port 3100
+# In another terminal:
+node scripts/check-deployment-media.mjs
+node --test scripts/check-frame-loader.mjs scripts/check-loading-progress.mjs
+```
+
+`MEDIA_TEST_ORIGIN=https://your-deployment.example` runs the media checks against a deployment. The checks cover service artwork, character sequence boundaries, fonts, service experience data, same-origin delivery, and video byte ranges.
+
+The character player uses `public/assets/frame-loader.js`: one shared queue of eight downloads, three attempts per frame, fresh retry URLs, cancellation on unmount, and readiness only after every required sequence loads. Frames are stored in playback order starting at index zero; they are decoded on demand to avoid retaining entire HD sequences as bitmaps.
