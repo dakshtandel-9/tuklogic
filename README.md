@@ -88,6 +88,7 @@ The site runs on Vercel; its large media (about 1 GB) lives on Cloudflare R2.
 1. **Code**: commit and push to `main`. Vercel deploys within a minute or two; the commit on GitHub shows a green check when it is live.
 2. **Media**: change the file under `public/offline`, `public/images` or `public/service-experience`, then run `npm run media:upload`. It sends only changed files and ends with `rclone check` reporting `0 differences found`. Then redeploy in Vercel (Deployments → latest → Redeploy), because Vercel's edge keeps the copies it already fetched from R2.
 3. **Check**: `MEDIA_TEST_ORIGIN=https://tuklogic.vercel.app node scripts/check-deployment-media.mjs` checks every era's frames, the videos, fonts and service media through the live site, including video byte ranges.
+4. **Warm**: `node scripts/warm-cache.mjs` requests every frame and image through the live site, so Vercel's edge holds them before visitors arrive (about two minutes). The edge cache is per region, so this warms the region nearest to you; run it again after each deploy or media upload.
 
 ### Caching
 
