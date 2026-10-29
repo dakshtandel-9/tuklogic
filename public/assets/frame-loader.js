@@ -5,8 +5,10 @@
 // same names, so returning visitors download the new ones instead of their old copies.
 export const FRAMES_VERSION = '20261029';
 
-export function createFrameLoader({ concurrency = 12, attempts = 3, timeoutMs = 20000,
-  createImage = () => new Image(), retryDelay = attempt => new Promise(resolve => setTimeout(resolve, attempt * 300)),
+// A stalled request is abandoned after timeoutMs and retried on a fresh URL, so one
+// slow connection costs seconds, not the minute three 20 s attempts used to take.
+export function createFrameLoader({ concurrency = 12, attempts = 4, timeoutMs = 8000,
+  createImage = () => new Image(), retryDelay = attempt => new Promise(resolve => setTimeout(resolve, attempt * 400)),
 } = {}) {
   const queue = [];
   let active = 0;
@@ -64,12 +66,31 @@ export function createFrameLoader({ concurrency = 12, attempts = 3, timeoutMs = 
   });
 
   return async function loadFrames(basePath, count, { signal, onFrame } = {}) {
-    return Promise.all(Array.from({ length: count }, (_, index) =>
+    let lastError = null;
+    const frames = await Promise.all(Array.from({ length: count }, (_, index) =>
       load(`${basePath}/frame_${index + 1}.webp?v=${FRAMES_VERSION}`, signal).then(image => {
         if (signal?.aborted) throw aborted();
         onFrame?.(image, index);
         return image;
+      }, error => {
+        if (error.name === 'AbortError') throw error;
+        lastError = error;
+        return null;
       })));
+    if (signal?.aborted) throw aborted();
+    if (!lastError) return frames;
+    // A frame that still fails after every retry must not hide the whole scene: every
+    // later era waits for this one to report ready. Show its nearest loaded neighbour,
+    // which reads as a dropped frame, and fail only when nothing loaded at all.
+    if (!frames.some(Boolean)) throw lastError;
+    console.warn(`Some frames of ${basePath} could not load; using neighbouring frames.`, lastError);
+    return frames.map((image, index) => {
+      if (image) return image;
+      for (let distance = 1; ; distance += 1) {
+        const near = frames[index - distance] || frames[index + distance];
+        if (near) { onFrame?.(near, index); return near; }
+      }
+    });
   };
 }
 

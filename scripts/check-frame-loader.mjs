@@ -53,11 +53,30 @@ test('retries transient failures before declaring a sequence ready', async () =>
   assert.equal(frames[1].url, `/scene/frame_2.webp?v=${FRAMES_VERSION}&retry=3`);
 });
 
-test('failed downloads reject rather than marking missing frames as loaded', async () => {
+test('a frame that never loads borrows its neighbour so the scene still plays', async () => {
   const network = images({ fail: url => url.endsWith('frame_2.webp') });
   const loader = createFrameLoader({ ...network, retryDelay: async () => {} });
+  const reported = [];
+  const frames = await loader('/scene', 3, { onFrame: (image, index) => { reported[index] = image; } });
+  assert.equal(network.calls.get('/scene/frame_2.webp'), 4);
+  assert.equal(frames.length, 3);
+  assert.equal(frames[1], frames[0]);
+  assert.ok(frames.every(Boolean));
+  assert.deepEqual(reported, frames);
+});
+
+test('a missing first frame borrows the next one', async () => {
+  const network = images({ fail: url => url.endsWith('frame_1.webp') });
+  const loader = createFrameLoader({ ...network, retryDelay: async () => {} });
+  const frames = await loader('/scene', 3);
+  assert.equal(frames[0], frames[1]);
+  assert.equal(frames[1].url, `/scene/frame_2.webp?v=${FRAMES_VERSION}`);
+});
+
+test('a sequence with no frames at all still rejects', async () => {
+  const network = images({ fail: () => true });
+  const loader = createFrameLoader({ ...network, retryDelay: async () => {} });
   await assert.rejects(loader('/scene', 3), /Failed to load frame/);
-  assert.equal(network.calls.get('/scene/frame_2.webp'), 3);
 });
 
 test('aborting a scene cancels active and queued downloads', async () => {

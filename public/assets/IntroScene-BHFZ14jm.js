@@ -1,12 +1,19 @@
-import{loadFrames}from"./frame-loader.js";import{Q as A,ak as L,g as r,j as m,a8 as F}from"./ui-components-krT5pv9S.js";import{A as U}from"./AudioText-DReP9lcs.js";import{t as V}from"./main-B2LH-fDE.js";const y="/offline",STORY_FRAMES=[["egypt",64,33,34],["china",36,20,36],["greek",37,47,36],["islamic",37,61,34],["steve",23,50,35],["uxbert",58,44,0]],D=({onFinished:j,loaded:f})=>{const{t:P}=A("home"),R=L(o=>o.audios),[g,$]=r.useState(!1),[v,_]=r.useState(!1),[p]=r.useState("/scenes/desktop/eh/intro.mp4?v=20261029"),{isBelowSm:b}=V("sm"),E=L(o=>o.quality);r.useEffect(()=>{g&&j?.()},[g,j]);const introDone=r.useRef(!1),framesReady=r.useRef(Promise.resolve()),warming=r.useRef(null),a=r.useRef(null),finishIntro=()=>{
+import{loadFrames}from"./frame-loader.js";import{Q as A,ak as L,g as r,j as m,a8 as F}from"./ui-components-krT5pv9S.js";import{A as U}from"./AudioText-DReP9lcs.js";import{t as V}from"./main-B2LH-fDE.js";const y="/offline",STORY_FRAMES=[["egypt",64,33,34],["china",36,20,36],["greek",37,47,36],["islamic",37,61,34],["steve",23,50,35],["uxbert",58,44,0]],D=({onFinished:j,loaded:f})=>{const{t:P}=A("home"),R=L(o=>o.audios),[g,$]=r.useState(!1),[v,_]=r.useState(!1),[p]=r.useState("/scenes/desktop/eh/intro.mp4?v=20261029b"),{isBelowSm:b}=V("sm"),E=L(o=>o.quality);r.useEffect(()=>{g&&j?.()},[g,j]);const introDone=r.useRef(!1),framesReady=r.useRef(Promise.resolve()),retryOpening=r.useRef(null),warming=r.useRef(null),a=r.useRef(null),finishIntro=()=>{
   // The first scene needs the throw and loop frames. They load while the intro plays,
   // so this only waits when the connection could not fetch them in time.
-  introDone.current||(introDone.current=!0,framesReady.current.then(()=>{
+  const go=()=>{
     // Each scene loads after the previous one through the same queue; drop the
     // remaining warm-up so it never waits behind later eras.
     warming.current?.abort();
     $(!0)
-  },()=>{}))
+  };
+  // Opening frames that failed outright (not merely a few frames) are fetched again
+  // ahead of the warm-up rather than leaving the intro's last frame on screen.
+  introDone.current||(introDone.current=!0,framesReady.current.then(go,error=>{
+    if(error?.name==="AbortError")return;
+    warming.current?.abort();
+    retryOpening.current?.().then(go,()=>{})
+  }))
 },C=r.useCallback(()=>{
   let disposed=!1,reported=!1;
   const e=a.current,controller=new AbortController;
@@ -29,10 +36,12 @@ import{loadFrames}from"./frame-loader.js";import{Q as A,ak as L,g as r,j as m,a8
     if(mobile||framesStarted)return;
     framesStarted=!0;
     const options=images=>({signal:controller.signal,onFrame:(image,index)=>{images[index]=image}});
-    framesReady.current=Promise.all([
+    const opening=()=>Promise.all([
       loadFrames(`${y}/frames/eh/throw-${E}`,120,options(n)),
       loadFrames(`${y}/frames/eh/loop-${E}`,61,options(i)),
     ]);
+    retryOpening.current=opening;
+    framesReady.current=opening();
     framesReady.current.catch(error=>{if(error.name!=="AbortError")console.error("Unable to preload opening frames:",error)});
     // The network is otherwise idle during the intro. Cache the eras in story order
     // behind the opening frames; the scenes reuse whatever finished.
