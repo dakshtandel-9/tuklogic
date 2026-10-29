@@ -15,5 +15,5 @@ export function getServicesDocument(url: URL): ServicesResult | null {
     || (segments.length === 2 && segments[0] === 'work');
   // Retired per-service pages now open the services experience.
   if (!routed) return { redirect: root };
-  return { html: serviceExperienceDocument(url.origin, root) };
+  return { html: serviceExperienceDocument(url.origin, root, url.pathname) };
 }

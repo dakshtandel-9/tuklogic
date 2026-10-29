@@ -16,8 +16,8 @@ function setup(reducedMotion = false) {
   panel.classList = { add: value => classes.add(value), remove: value => classes.delete(value) };
   panel.showModal = () => { panel.open = true; };
   panel.close = () => { panel.open = false; panel.dispatchEvent(new Event('close')); };
-  const close = new EventTarget();
-  const elements = { 'site-menu-toggle': toggle, 'site-menu-panel': panel, 'site-menu-close': close };
+  const close = toggle;
+  const elements = { 'site-menu-toggle': toggle, 'site-menu-panel': panel };
   const timers = new Map();
   let timerId = 0;
   vm.runInNewContext(source, {
@@ -42,7 +42,7 @@ test('both website runtimes use the same seven localized destinations', () => {
   assert.equal(translated[0].label, 'translated:menu.thePast');
 });
 
-test('Menu opens the modal and Close restores button focus after the animation', () => {
+test('the same header button opens and closes the modal, restoring focus after the animation', () => {
   const ui = setup();
   ui.toggle.dispatchEvent(new Event('click'));
   assert.equal(ui.panel.open, true);

@@ -62,7 +62,9 @@ Run `npm run check:case-studies` against the local development server to verify 
 - `lib/services-page.ts`: resolves the page, its client-routed sections (`about`, `work`, `work/<project>`, …) and redirects retired per-service URLs to the services page.
 - `public/services-link.js`: added to every captured page; Services links and router navigation load the services document instead of the captured site's client-side services route.
 
-The copied `reference/js/app.1780406240914.js` has two changes from `divya2`: CMS data loads from the relative `content/` path, and the client router's root comes from `window.SERVICE_ROUTER_ROOT`. Reapply both when copying a newer `divya2` build.
+The copied `reference/js/app.1780406240914.js` loads CMS data from the relative `content/` path, and the client router's root comes from `window.SERVICE_ROUTER_ROOT`. Reapply both when copying a newer `divya2` build, together with the header audio hooks below.
+
+The services page also has the common logo, language switch, audio button and menu. `public/service-header.css` keeps the header isolated from the renderer, and `public/service-header.js` connects its audio button to `AppState`'s `Global/audioEnabled` state. The renderer exposes `GlobalAudio3D.activateFromHeader()` so both keyboard and touch activation can unlock Web Audio; its `noMusic` check honors `window.SERVICE_SITE_HEADER` so music remains available on phones. Preserve these two small hooks when updating the renderer. The native song selector sits below the header; language switching retains the current services section.
 
 ## Updating the capture
 

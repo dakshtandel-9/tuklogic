@@ -1,0 +1,84 @@
+/* The shared site header, isolated from the services renderer's own styles. */
+#service-site-header {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 2147482000;
+  box-sizing: border-box;
+  padding: env(safe-area-inset-top, 0px) max(20px, 5vw);
+  color: #fff;
+  font: 400 14px / 1.2 TuklogicNav, sans-serif;
+  pointer-events: none;
+  background: linear-gradient(rgb(9 2 37 / 35%), transparent);
+}
+
+#service-site-header *, #service-site-header *::before { box-sizing: border-box; }
+#service-site-header .header_set {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 72px;
+  padding-block: 14px;
+  border-bottom: 1px solid rgb(255 255 255 / 15%);
+  pointer-events: auto;
+}
+#service-site-header .main_logo { text-decoration: none; }
+#service-site-header .service-header-actions { display: flex; align-items: center; gap: 12px; }
+#service-site-header .service-header-control {
+  position: relative;
+  display: inline-flex;
+  flex: 0 0 44px;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid rgb(255 255 255 / 30%);
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: 12px;
+  text-decoration: none;
+  appearance: none;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  transition: border-color .2s, background-color .2s;
+}
+#service-site-header .service-header-control:hover { border-color: #fff; background: rgb(78 153 244 / 15%); }
+#service-site-header .service-header-control:disabled { opacity: .4; cursor: wait; }
+#service-site-header :is(a,button):focus-visible { outline: 2px solid #b3d7ff; outline-offset: 4px; }
+#service-site-header .service-menu-toggle>span { display: flex; flex-direction: column; gap: 5px; }
+#service-site-header .service-menu-toggle i { display: block; width: 15px; height: 1px; background: currentColor; }
+#service-site-header .service-menu-toggle i { transition: transform .4s cubic-bezier(.22,.61,.36,1), opacity .4s; }
+#service-site-header .service-menu-toggle[aria-expanded='true'] { border-color: #fff; }
+#service-site-header .service-menu-toggle[aria-expanded='true']::before { border-color: #fff; }
+#service-site-header .service-menu-toggle[aria-expanded='true'] i:first-child { transform: translateY(6px) rotate(-45deg); }
+#service-site-header .service-menu-toggle[aria-expanded='true'] i:nth-child(2) { transform: rotate(45deg); }
+#service-site-header .service-menu-toggle[aria-expanded='true'] i:nth-child(3) { opacity: 0; }
+#service-site-header .service-equalizer { display: flex; align-items: center; justify-content: center; gap: 3px; height: 20px; }
+#service-site-header .service-equalizer i { display: block; width: 1px; height: 12px; background: currentColor; opacity: .5; }
+#service-site-header [aria-pressed='true'] .service-equalizer i { opacity: 1; animation: service-equalizer .75s ease-in-out infinite alternate; }
+#service-site-header .service-equalizer i:nth-child(2) { animation-delay: -.3s; }
+#service-site-header .service-equalizer i:nth-child(3) { animation-delay: -.6s; }
+#service-site-header .service-equalizer i:nth-child(4) { animation-delay: -.15s; }
+#service-site-header .service-equalizer i:nth-child(5) { animation-delay: -.45s; }
+@keyframes service-equalizer { from { transform: scaleY(.35); } to { transform: scaleY(1); } }
+
+/* Keep the native song selector below the header on every screen. */
+.wrapper:has(>[aria-label='Previous Song']) { top: max(86px, calc(env(safe-area-inset-top, 0px) + 74px))!important; margin-top: 0!important; transform: none!important; }
+html:has(#site-menu-panel[open]), body:has(#site-menu-panel[open]) { touch-action: pan-y!important; }
+@media(max-width:600px) {
+  #service-site-header { padding-inline: max(16px, env(safe-area-inset-left, 0px)) max(16px, env(safe-area-inset-right, 0px)); }
+  #service-site-header .header_set { min-height: 64px; padding-block: 10px; gap: 8px; }
+  #service-site-header .service-header-actions { gap: 4px; }
+  #service-site-header .service-header-control { border: 0; }
+  #service-site-header .service-header-control::before { content: ''; position: absolute; inset: 5px; border: 1px solid rgb(255 255 255 / 30%); pointer-events: none; }
+  #service-site-header .service-header-control:hover::before { border-color: #fff; }
+  .wrapper:has(>[aria-label='Previous Song']) { top: max(78px, calc(env(safe-area-inset-top, 0px) + 70px))!important; }
+}
+@media(prefers-reduced-motion:reduce) {
+  #service-site-header .service-header-control { transition: none; }
+  #service-site-header .service-equalizer i { animation: none!important; }
+}
