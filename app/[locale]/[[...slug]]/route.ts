@@ -5,6 +5,7 @@ import { getCaseStudiesCollection, withArabicCaseStudyTags } from '../../../lib/
 import { getCaseStudyDetail } from '../../../lib/case-study-detail';
 import { getServicesDocument } from '../../../lib/services-page';
 import { getMediaOrigin } from '../../../lib/media-origin';
+import { applySiteSeo } from '../../../lib/seo';
 
 /** Serve the captured document with its original locally hosted frontend runtime. */
 export async function GET(request: Request) {
@@ -17,7 +18,7 @@ export async function GET(request: Request) {
   if (services) {
     // The WebGL experience streams project films from external media hosts,
     // so it is served without the captured pages' same-origin policy.
-    return new Response(services.html, {
+    return new Response(applySiteSeo(services.html, url), {
       headers: {
         'Content-Type': 'text/html; charset=utf-8',
         'Cache-Control': 'public, max-age=300',
@@ -36,7 +37,7 @@ export async function GET(request: Request) {
   }
   const mediaSource = ` ${getMediaOrigin()}`;
   const branded = applyHeaderBranding(withArabicCaseStudyTags(html));
-  return new Response(branded, {
+  return new Response(applySiteSeo(branded, url, caseStudy?.status ?? 200), {
     status: caseStudy?.status ?? 200,
     headers: {
       'Content-Type': 'text/html; charset=utf-8',

@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 import re
 import shutil
+import subprocess
 
 ROOT = Path(__file__).resolve().parents[1]
 PUBLIC = ROOT / 'public'
@@ -81,3 +82,4 @@ content_path = ROOT / 'reference/api/offline-content.json'
 if content_path.exists():
     content_path.write_text(localize(content_path.read_text()))
 print(f'Localized {len(pages)} captured pages and their frontend assets.')
+subprocess.run(['node', str(ROOT / 'scripts/patch-site-seo.mjs')], check=True)
