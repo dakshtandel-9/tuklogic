@@ -22,5 +22,5 @@ export function applyHeaderBranding(html: string): string {
   ).replace(
     /(<div\b[^>]*id="loader"[^>]*>)<svg\b[\s\S]*?<\/svg>/g,
     `$1${loaderLogo}`,
-  ).replace('</head>', '<link rel="stylesheet" href="/header-branding.css"/><link rel="stylesheet" href="/case-studies/homepage.css"/><script src="/services-link.js"></script></head>');
+  ).replace('</head>', '<link rel="stylesheet" href="/header-branding.css"/><link rel="stylesheet" href="/case-studies/homepage.css"/><link rel="stylesheet" href="/contact-redesign.css"/><script src="/services-link.js"></script></head>');
 }

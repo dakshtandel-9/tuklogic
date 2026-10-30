@@ -9,7 +9,11 @@ export function getSiteOrigin(): string {
 }
 
 const attributes = (tag: string) => Object.fromEntries(
-  [...tag.matchAll(/([\w:-]+)\s*=\s*["']([^"']*)["']/g)].map(match => [match[1].toLowerCase(), match[2]]),
+  [...tag.matchAll(/([\w:-]+)\s*=\s*(["'])([\s\S]*?)\2/g)].map(match => [match[1].toLowerCase(), match[3]]),
+);
+const decode = (value: string) => value.replace(/&(?:#(\d+)|#x([0-9a-f]+)|(amp|quot|apos|lt|gt));/gi, (entity, decimal, hex, named) =>
+  decimal ? String.fromCodePoint(Number(decimal)) : hex ? String.fromCodePoint(parseInt(hex, 16)) :
+    ({ amp: '&', quot: '"', apos: "'", lt: '<', gt: '>' } as Record<string, string>)[named.toLowerCase()] ?? entity,
 );
 const meta = (key: string, value: string) => `<meta ${key.startsWith('og:') ? 'property' : 'name'}="${key}" content="${escapeHtml(value)}"/>`;
 
@@ -30,8 +34,8 @@ export function applySiteSeo(html: string, url: URL, status = 200): string {
     });
     return tag ? attributes(tag[0]).content : '';
   };
-  const title = copy?.title ?? /<title>([\s\S]*?)<\/title>/.exec(head)?.[1] ?? 'TUKLOGIC';
-  const description = copy?.description ?? existing('description');
+  const title = copy?.title ?? decode(/<title>([\s\S]*?)<\/title>/.exec(head)?.[1] ?? 'TUKLOGIC');
+  const description = copy?.description ?? decode(existing('description'));
   const project = /\/(?:en|ar)\/case-studies\/[^/]+$/.test(path) && status === 200;
   const image = project ? new URL(existing('og:image') || socialImage, origin).pathname : socialImage;
   const alt = project ? title : imageAlt[locale];
@@ -43,7 +47,7 @@ export function applySiteSeo(html: string, url: URL, status = 200): string {
     const attrs = attributes(tag);
     return attrs.rel === 'canonical' || (attrs.rel === 'alternate' && (attrs.hreflang || attrs.type === 'text/markdown')) || ['describedby', 'agent-card'].includes(attrs.rel) ? '' : tag;
   });
-  head += `<title>${copy ? escapeHtml(title) : title}</title>` + meta('description', copy ? description : description.replace(/&amp;/g, '&').replace(/&#x27;/g, "'"));
+  head += `<title>${escapeHtml(title)}</title>` + meta('description', description);
   head += meta('robots', status >= 400 ? 'noindex, follow' : 'index, follow, max-image-preview:large');
   if (status < 400) {
     head += `<link rel="canonical" href="${origin}${path}"/>`;
@@ -58,12 +62,12 @@ export function applySiteSeo(html: string, url: URL, status = 200): string {
     'og:image:alt': alt, ...(project ? {} : { 'og:image:width': '1080', 'og:image:height': '560', 'og:image:type': 'image/png' }),
     'twitter:card': 'summary_large_image', 'twitter:title': title, 'twitter:description': description,
     'twitter:url': origin + path, 'twitter:image': origin + image, 'twitter:image:alt': alt,
-  })) head += meta(key, value.replace(/&amp;/g, '&').replace(/&#x27;/g, "'"));
+  })) head += meta(key, value);
   head += `<script>window.__SITE_SEO_ORIGIN__=${inlineJson(origin)}</script>`;
   let result = (head + html.slice(headEnd)).replace(/(<html\b[^>]*\blang=")[^"]*/, `$1${locale}`);
   // Captured schema contains the former agency's founder, locations and FAQ.
   result = result.replace(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>[\s\S]*?<\/script>/gi, '');
-  result = result.replace(/(<body\b[^>]*>)/, `$1<script type="application/ld+json">${inlineJson(getSiteStructuredData(origin, locale))}</script>`);
+  result = result.replace('</head>', `<script id="site-structured-data" type="application/ld+json">${inlineJson(getSiteStructuredData(origin, locale))}</script></head>`);
   // Only the namespace's meta object changes; all rendered translations are preserved.
   result = result.replace(/window\.__I18N__=(\{[\s\S]*?\})(?=<\/script>)/, (_, json: string) => {
     const resources = JSON.parse(json);

@@ -3,7 +3,7 @@
 
 // Browsers keep frames for a week. Change this whenever frames are replaced under the
 // same names, so returning visitors download the new ones instead of their old copies.
-export const FRAMES_VERSION = '20261029';
+export const FRAMES_VERSION = '20261030';
 
 // A stalled request is abandoned after timeoutMs and retried on a fresh URL, so one
 // slow connection costs seconds, not the minute three 20 s attempts used to take.

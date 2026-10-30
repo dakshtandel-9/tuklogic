@@ -15,8 +15,10 @@
     "overview": {
         "heading": "The Tuklogic Way",
         "subheading": "Curious Minds. Bold Ideas. Technology That Makes a Difference.",
-        "body": "At Tuklogic, we bring together passionate developers, creative thinkers, problem-solvers, and technology enthusiasts who believe in building solutions that matter. Our team works across software development, artificial intelligence, cloud computing, automation, and digital innovation to help businesses solve real-world challenges. We're looking for people who are eager to learn, share ideas, collaborate across disciplines, and turn ambitious concepts into meaningful outcomes. Whether you're an experienced professional or an emerging talent, Tuklogic offers an environment where curiosity is encouraged, skills grow, and every contribution helps shape what's next",
-        "qualitiesIntro": "What makes someone a great fit for the Tuklogic team?"
+        "body": "At Tuklogic, we bring together passionate developers, creative thinkers, problem-solvers, and technology enthusiasts who believe in building solutions that matter. Our team works across software development, artificial intelligence, cloud computing, automation, and digital innovation to help businesses solve real-world challenges.",
+        "qualitiesIntro": "What makes someone a great fit for the Tuklogic team?",
+        "bodyMore": "We're looking for people who are eager to learn, share ideas, collaborate across disciplines, and turn ambitious concepts into meaningful outcomes. Whether you're an experienced professional or an emerging talent, Tuklogic offers an environment where curiosity is encouraged, skills grow, and every contribution helps shape what's next.",
+        "imageAlt": "The Tuklogic team reviewing code and interface designs together"
     },
     "awesomeList": [
         "Curiosity Learning Always eager to explore new technologies, learn new skills, and discover better ways to solve problems",
@@ -24,6 +26,28 @@
         "Collaboration & Teamwork Share knowledge, respect diverse perspectives, and work together to achieve meaningful outcomes.",
         "Ownership & Accountability Take initiative, embrace responsibility, and stay committed to delivering quality work from start to finish.",
         "Adaptability & Growth Mindset Embrace change, welcome challenges, and continuously evolve in a fast-moving technology landscape."
+    ],
+    "qualities": [
+        {
+            "title": "Curiosity & Learning",
+            "description": "Always eager to explore new technologies, learn new skills, and discover better ways to solve problems."
+        },
+        {
+            "title": "Innovation & Creative Thinking",
+            "description": "Challenge conventional approaches, think beyond limitations, and turn fresh ideas into impactful digital solutions."
+        },
+        {
+            "title": "Collaboration & Teamwork",
+            "description": "Share knowledge, respect diverse perspectives, and work together to achieve meaningful outcomes."
+        },
+        {
+            "title": "Ownership & Accountability",
+            "description": "Take initiative, embrace responsibility, and stay committed to delivering quality work from start to finish."
+        },
+        {
+            "title": "Adaptability & Growth Mindset",
+            "description": "Embrace change, welcome challenges, and continuously evolve in a fast-moving technology landscape."
+        }
     ],
     "jobs": {
         "availableTitle": "Find Your Next Opportunity",

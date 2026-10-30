@@ -105,6 +105,20 @@ The `r2.dev` address is rate-limited and meant for development. Connect a custom
 
 ## Local checks
 
+SEO metadata is applied by `lib/seo.ts` to every HTML response, including the
+captured pages and services experience. `public/site-seo.js` supplies the English
+and Arabic titles/descriptions and the captured frontend's navigation metadata.
+These settings do not change the visible page copy. The existing brand images
+in `public/social` are served locally for share previews.
+
+Canonical URLs, language alternatives, JSON-LD, `/robots.txt` and `/sitemap.xml`
+use `https://tuklogic.vercel.app`. Set `SITE_URL` to the preferred public origin
+when attaching a custom domain, then rebuild. The sitemap includes the 38 current
+English/Arabic pages, excluding retired URLs and services navigation aliases.
+After starting Next.js on port 3100, run `npm run check:seo` to check metadata,
+previews, crawler responses and unchanged main content. Set `SEO_TEST_ORIGIN` to
+test another server and `SITE_URL` when checking a custom canonical origin.
+
 Build and run Next.js to test the same media rewrites used on Vercel:
 
 ```sh

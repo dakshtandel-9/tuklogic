@@ -1,0 +1,306 @@
+/* Contact page only. The hero and the shared header/footer retain their original styles. */
+main:has(> .contact-hero--top) > section:first-of-type {
+  position: relative;
+  z-index: 1;
+}
+
+main:has(> .contact-hero--top) > section:first-of-type > .x_padding,
+main:has(> .contact-hero--top) > #contact-form > .x_padding {
+  padding-inline: clamp(24px, 6.5vw, 128px);
+}
+
+main:has(> .contact-hero--top) > section:first-of-type .section_set,
+main:has(> .contact-hero--top) > #contact-form .section_set {
+  max-width: 1440px;
+  margin-inline: auto;
+}
+
+main:has(> .contact-hero--top) > section:first-of-type .section_sides,
+main:has(> .contact-hero--top) > section:first-of-type .section_sides > div {
+  width: 100%;
+}
+
+main:has(> .contact-hero--top) > section:first-of-type .section_sides > div {
+  gap: 28px;
+}
+
+main:has(> .contact-hero--top) > section:first-of-type .pink {
+  border: 0;
+  padding: 0;
+}
+
+main:has(> .contact-hero--top) > section:first-of-type .pink h3 {
+  font-size: clamp(28px, 2.5vw, 38px);
+  line-height: 1.1;
+}
+
+main:has(> .contact-hero--top) > section:first-of-type .max-w-sm {
+  max-width: none;
+  width: 100%;
+}
+
+main:has(> .contact-hero--top) > section:first-of-type .max-w-sm > div {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  width: 100%;
+}
+
+main:has(> .contact-hero--top) > section:first-of-type .max-w-sm > div > div {
+  min-width: 0;
+  min-height: 172px;
+  padding: 28px 30px;
+  box-sizing: border-box;
+  border: 1px solid rgba(221, 191, 242, .19);
+  border-radius: 6px;
+  background: linear-gradient(145deg, rgba(42, 24, 76, .91), rgba(22, 13, 53, .94));
+  box-shadow: 0 18px 45px rgba(5, 0, 25, .12);
+  transition: border-color .2s ease, transform .2s ease;
+}
+
+main:has(> .contact-hero--top) > section:first-of-type .max-w-sm > div > div:hover {
+  border-color: rgba(255, 73, 139, .55);
+  transform: translateY(-3px);
+}
+
+main:has(> .contact-hero--top) > section:first-of-type .group {
+  gap: 14px;
+}
+
+main:has(> .contact-hero--top) > section:first-of-type .group h5 {
+  margin: 0;
+  color: #ff6aa0;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+main:has(> .contact-hero--top) > section:first-of-type .group h6 {
+  margin: 0;
+  color: #f5f0fa;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+
+main:has(> .contact-hero--top) > section:first-of-type .group a {
+  text-align: start;
+  width: fit-content;
+  max-width: 100%;
+  text-decoration: none;
+}
+
+main:has(> .contact-hero--top) > section:first-of-type .group a:hover h6,
+main:has(> .contact-hero--top) > section:first-of-type .group a:focus-visible h6 {
+  color: #ff86b2;
+}
+
+main:has(> .contact-hero--top) > #contact-form {
+  margin-top: 0;
+}
+
+main:has(> .contact-hero--top) > #contact-form > .x_padding {
+  padding-top: 24px;
+  padding-bottom: clamp(80px, 9vw, 144px);
+}
+
+main:has(> .contact-hero--top) > #contact-form .section_sides {
+  display: grid;
+  grid-template-columns: minmax(250px, .75fr) minmax(0, 1.45fr);
+  align-items: start;
+  gap: clamp(40px, 5vw, 88px);
+}
+
+main:has(> .contact-hero--top) > #contact-form .section_side {
+  max-width: none;
+  padding-top: 28px;
+}
+
+main:has(> .contact-hero--top) > #contact-form .section_side::before {
+  content: '';
+  display: block;
+  width: 44px;
+  height: 3px;
+  margin-bottom: 24px;
+  background: #ff498b;
+}
+
+main:has(> .contact-hero--top) > #contact-form .section_side h2 {
+  max-width: 16ch;
+  font-size: clamp(38px, 3.2vw, 52px);
+  line-height: 1.06;
+  text-wrap: balance;
+}
+
+main:has(> .contact-hero--top) > #contact-form .form_wrap {
+  min-width: 0;
+  width: 100%;
+}
+
+main:has(> .contact-hero--top) > #contact-form .form_wrap > .corners {
+  display: none;
+}
+
+main:has(> .contact-hero--top) > #contact-form .form_set {
+  box-sizing: border-box;
+  width: 100% !important;
+  padding: clamp(30px, 3.5vw, 56px);
+  gap: 30px;
+  border: 1px solid rgba(221, 191, 242, .2);
+  border-radius: 8px;
+  background: linear-gradient(145deg, rgba(34, 21, 70, .96), rgba(21, 13, 52, .98));
+  box-shadow: 0 28px 80px rgba(4, 0, 23, .22);
+}
+
+main:has(> .contact-hero--top) > #contact-form .form_head h3 {
+  font-size: clamp(24px, 2vw, 30px);
+  line-height: 1.15;
+}
+
+main:has(> .contact-hero--top) > #contact-form .form_head p {
+  max-width: 60ch;
+  margin: 12px 0 0;
+  color: #bcb2ce;
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+main:has(> .contact-hero--top) > #contact-form .form_body {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+main:has(> .contact-hero--top) > #contact-form .form_block {
+  min-width: 0;
+  width: auto;
+  flex: none;
+}
+
+main:has(> .contact-hero--top) > #contact-form .form_block:first-child,
+main:has(> .contact-hero--top) > #contact-form .form_block:has(textarea),
+main:has(> .contact-hero--top) > #contact-form .form_block:has(button) {
+  grid-column: 1 / -1;
+}
+
+main:has(> .contact-hero--top) > #contact-form .form_block input,
+main:has(> .contact-hero--top) > #contact-form .form_block select,
+main:has(> .contact-hero--top) > #contact-form .form_block textarea {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 54px;
+  height: 54px;
+  padding: 14px 18px;
+  border: 1px solid rgba(225, 209, 240, .18);
+  border-radius: 4px;
+  background: rgba(255, 255, 255, .055);
+  color: #fff;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+  transition: border-color .2s ease, background-color .2s ease;
+}
+
+main:has(> .contact-hero--top) > #contact-form .form_block textarea {
+  min-height: 118px;
+  height: 118px;
+  resize: vertical;
+}
+
+main:has(> .contact-hero--top) > #contact-form .form_block input::placeholder,
+main:has(> .contact-hero--top) > #contact-form .form_block textarea::placeholder {
+  color: #a99dbd;
+  opacity: 1;
+}
+
+main:has(> .contact-hero--top) > #contact-form .form_block select option {
+  background: #21163f;
+  color: #fff;
+}
+
+main:has(> .contact-hero--top) > #contact-form .form_block input:focus,
+main:has(> .contact-hero--top) > #contact-form .form_block select:focus,
+main:has(> .contact-hero--top) > #contact-form .form_block textarea:focus {
+  outline: none;
+  border-color: #ff6ca3;
+  background: rgba(255, 255, 255, .08);
+}
+
+main:has(> .contact-hero--top) > #contact-form .form_block:has(button) {
+  justify-content: flex-start;
+  margin-top: 4px;
+}
+
+@media (max-width: 900px) {
+  main:has(> .contact-hero--top) > section:first-of-type .max-w-sm > div {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  main:has(> .contact-hero--top) > section:first-of-type .max-w-sm > div > div:last-child {
+    grid-column: 1 / -1;
+  }
+
+  main:has(> .contact-hero--top) > #contact-form .section_sides {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  main:has(> .contact-hero--top) > #contact-form .section_side {
+    padding-top: 0;
+  }
+
+  main:has(> .contact-hero--top) > #contact-form .section_side h2 {
+    max-width: 18ch;
+  }
+}
+
+@media (max-width: 600px) {
+  main:has(> .contact-hero--top) > section:first-of-type .section_sides > div {
+    gap: 22px;
+  }
+
+  main:has(> .contact-hero--top) > section:first-of-type .max-w-sm > div {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  main:has(> .contact-hero--top) > section:first-of-type .max-w-sm > div > div,
+  main:has(> .contact-hero--top) > section:first-of-type .max-w-sm > div > div:last-child {
+    grid-column: auto;
+    min-height: 0;
+    padding: 22px 24px;
+  }
+
+  main:has(> .contact-hero--top) > #contact-form .section_side h2 {
+    font-size: clamp(36px, 9vw, 48px);
+  }
+
+  main:has(> .contact-hero--top) > #contact-form .form_set {
+    padding: 26px 20px;
+  }
+
+  main:has(> .contact-hero--top) > #contact-form .form_body {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  main:has(> .contact-hero--top) > #contact-form select:has(option[value=""]:checked) {
+    color: transparent;
+  }
+
+  main:has(> .contact-hero--top) > #contact-form .relative:has(select option[value=""]:checked)::after {
+    content: 'Select a service';
+    position: absolute;
+    top: 50%;
+    inset-inline-start: 18px;
+    transform: translateY(-50%);
+    color: #bcb2ce;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    pointer-events: none;
+  }
+}

@@ -9,7 +9,7 @@ if (!source.includes('installSeoRouteHeads as tukInstallSeo')) {
     if (!source.includes(from)) throw new Error(`SEO patch target missing: ${from.slice(0, 80)}`);
     source = source.replace(from, to);
   };
-  source = 'import {installSeoRouteHeads as tukInstallSeo,getSiteStructuredData as tukSchema,imageAlt as tukImageAlt,socialImage as tukSocialImage} from "/site-seo.js";\n' + source;
+  source = 'import {installSeoRouteHeads as tukInstallSeo,imageAlt as tukImageAlt,socialImage as tukSocialImage} from "/site-seo.js";\n' + source;
   replace('const Mt="https://tuklogic.com"', 'const Mt=window.__SITE_SEO_ORIGIN__||window.location.origin');
   replace('function N_(){return r1(', 'function N_(){tukInstallSeo(b_,Mt);return r1(');
   replace('function U1(s){return s==="ar"?V1:H1}', 'function U1(){return ""}');
@@ -18,7 +18,7 @@ if (!source.includes('installSeoRouteHeads as tukInstallSeo')) {
   const endMarker = 't.jsx(X1,{locale:o,siteUrl:Mt}),';
   const end = source.indexOf(endMarker, start);
   if (start < 0 || end < 0) throw new Error('Captured structured-data block missing');
-  source = source.slice(0, start) + 't.jsx("script",{type:"application/ld+json",children:JSON.stringify(tukSchema(Mt,o))}),' + source.slice(end + endMarker.length);
+  source = source.slice(0, start) + source.slice(end + endMarker.length);
   for (const tag of [
     't.jsx("link",{rel:"alternate",type:"text/markdown",href:`${Mt}/llms.txt`,title:"LLM-friendly site index"}),',
     't.jsx("link",{rel:"describedby",type:"application/openapi+yaml",href:`${Mt}/openapi.yaml`,title:"OpenAPI 3.1 specification"}),',
@@ -30,5 +30,6 @@ if (!source.includes('installSeoRouteHeads as tukInstallSeo')) {
   source = source.replaceAll('name:"twitter:site",content:"@tuklogic"', 'name:"application-name",content:"TUKLOGIC"');
   source = source.replaceAll('{property:"og:image:width",content:"1200"}', '{property:"og:image:width",content:"1080"}');
   source = source.replaceAll('{property:"og:image:height",content:"630"}', '{property:"og:image:height",content:"560"}');
+  source = source.replaceAll('{property:"article:modified_time",content:Zf},', '').replaceAll('{property:"og:updated_time",content:Zf},', '');
   writeFileSync(file, source);
 }

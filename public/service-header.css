@@ -4,9 +4,10 @@
   inset: 0 0 auto;
   z-index: 2147482000;
   box-sizing: border-box;
-  padding: env(safe-area-inset-top, 0px) max(20px, 5vw);
+  /* Same em scale and side margins as the main site's header (.header-container.x_padding). */
+  padding: env(safe-area-inset-top, 0px) 10.25em;
   color: #fff;
-  font: 400 14px / 1.2 TuklogicNav, sans-serif;
+  font: 400 .8333vw / 1.2 TuklogicNav, sans-serif;
   pointer-events: none;
   background: linear-gradient(rgb(9 2 37 / 35%), transparent);
 }
@@ -16,29 +17,28 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
-  min-height: 72px;
-  padding-block: 14px;
+  gap: 1em;
+  padding-block: 1.5em;
   border-bottom: 1px solid rgb(255 255 255 / 15%);
   pointer-events: auto;
 }
 #service-site-header .main_logo { text-decoration: none; }
-#service-site-header .service-header-actions { display: flex; align-items: center; gap: 12px; }
+#service-site-header .service-header-actions { display: flex; align-items: center; gap: 1em; }
 #service-site-header .service-header-control {
   position: relative;
   display: inline-flex;
-  flex: 0 0 44px;
+  flex: 0 0 2.875em;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
+  width: 2.875em;
+  height: 2.875em;
   padding: 0;
   border: 1px solid rgb(255 255 255 / 30%);
   border-radius: 0;
   background: transparent;
   color: inherit;
   font: inherit;
-  font-size: 12px;
+  font-size: 1em;
   text-decoration: none;
   appearance: none;
   cursor: pointer;
@@ -49,16 +49,16 @@
 #service-site-header .service-header-control:hover { border-color: #fff; background: rgb(78 153 244 / 15%); }
 #service-site-header .service-header-control:disabled { opacity: .4; cursor: wait; }
 #service-site-header :is(a,button):focus-visible { outline: 2px solid #b3d7ff; outline-offset: 4px; }
-#service-site-header .service-menu-toggle>span { display: flex; flex-direction: column; gap: 5px; }
-#service-site-header .service-menu-toggle i { display: block; width: 15px; height: 1px; background: currentColor; }
+#service-site-header .service-menu-toggle>span { display: flex; flex-direction: column; gap: .4em; }
+#service-site-header .service-menu-toggle i { display: block; width: 1.2em; height: 1px; background: currentColor; }
 #service-site-header .service-menu-toggle i { transition: transform .4s cubic-bezier(.22,.61,.36,1), opacity .4s; }
 #service-site-header .service-menu-toggle[aria-expanded='true'] { border-color: #fff; }
 #service-site-header .service-menu-toggle[aria-expanded='true']::before { border-color: #fff; }
-#service-site-header .service-menu-toggle[aria-expanded='true'] i:first-child { transform: translateY(6px) rotate(-45deg); }
+#service-site-header .service-menu-toggle[aria-expanded='true'] i:first-child { transform: translateY(calc(.4em + 1px)) rotate(-45deg); }
 #service-site-header .service-menu-toggle[aria-expanded='true'] i:nth-child(2) { transform: rotate(45deg); }
 #service-site-header .service-menu-toggle[aria-expanded='true'] i:nth-child(3) { opacity: 0; }
-#service-site-header .service-equalizer { display: flex; align-items: center; justify-content: center; gap: 3px; height: 20px; }
-#service-site-header .service-equalizer i { display: block; width: 1px; height: 12px; background: currentColor; opacity: .5; }
+#service-site-header .service-equalizer { display: flex; align-items: center; justify-content: center; gap: .25em; height: 1.6em; }
+#service-site-header .service-equalizer i { display: block; width: 1px; height: 1em; background: currentColor; opacity: .5; }
 #service-site-header [aria-pressed='true'] .service-equalizer i { opacity: 1; animation: service-equalizer .75s ease-in-out infinite alternate; }
 #service-site-header .service-equalizer i:nth-child(2) { animation-delay: -.3s; }
 #service-site-header .service-equalizer i:nth-child(3) { animation-delay: -.6s; }
@@ -66,19 +66,60 @@
 #service-site-header .service-equalizer i:nth-child(5) { animation-delay: -.45s; }
 @keyframes service-equalizer { from { transform: scaleY(.35); } to { transform: scaleY(1); } }
 
+/* Decorative scroll cue: never interactive, fades out when the work cards arrive. */
+#service-scroll-hint {
+  position: fixed;
+  inset-block-end: max(28px, calc(env(safe-area-inset-bottom, 0px) + 20px));
+  inset-inline-start: 8.54vw;
+  z-index: 2147481000;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #fff;
+  font: 400 max(.8333vw, 10px) / 1 TuklogicNav, sans-serif;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  pointer-events: none;
+  user-select: none;
+  transition: opacity .6s ease;
+}
+#service-scroll-hint.is-hidden { opacity: 0; }
+#service-scroll-hint .service-scroll-mouse {
+  position: relative;
+  width: 22px;
+  height: 36px;
+  border: 1px solid rgb(255 255 255 / 70%);
+  border-radius: 12px;
+}
+#service-scroll-hint .service-scroll-mouse i {
+  position: absolute;
+  inset-block-start: 7px;
+  inset-inline-start: 50%;
+  width: 3px;
+  height: 7px;
+  margin-inline-start: -1.5px;
+  border-radius: 2px;
+  background: #fff;
+  animation: service-scroll-wheel 1.6s cubic-bezier(.45,0,.2,1) infinite;
+}
+#service-scroll-hint .service-scroll-label { opacity: .7; animation: service-scroll-pulse 1.6s ease-in-out infinite; }
+@keyframes service-scroll-wheel { 0% { transform: translateY(0); opacity: 0; } 25% { opacity: 1; } 80%, 100% { transform: translateY(13px); opacity: 0; } }
+@keyframes service-scroll-pulse { 50% { opacity: .35; } }
+
 /* Keep the native song selector below the header on every screen. */
-.wrapper:has(>[aria-label='Previous Song']) { top: max(86px, calc(env(safe-area-inset-top, 0px) + 74px))!important; margin-top: 0!important; transform: none!important; }
+.wrapper:has(>[aria-label='Previous Song']) { top: max(86px, calc(env(safe-area-inset-top, 0px) + 6.9em))!important; margin-top: 0!important; transform: none!important; }
 html:has(#site-menu-panel[open]), body:has(#site-menu-panel[open]) { touch-action: pan-y!important; }
+@media(max-width:1200px) {
+  #service-site-header { padding-inline: max(3em, env(safe-area-inset-left, 0px)) max(3em, env(safe-area-inset-right, 0px)); }
+  #service-scroll-hint { inset-inline-start: max(2.5vw, env(safe-area-inset-left, 0px)); }
+}
 @media(max-width:600px) {
-  #service-site-header { padding-inline: max(16px, env(safe-area-inset-left, 0px)) max(16px, env(safe-area-inset-right, 0px)); }
-  #service-site-header .header_set { min-height: 64px; padding-block: 10px; gap: 8px; }
-  #service-site-header .service-header-actions { gap: 4px; }
-  #service-site-header .service-header-control { border: 0; }
-  #service-site-header .service-header-control::before { content: ''; position: absolute; inset: 5px; border: 1px solid rgb(255 255 255 / 30%); pointer-events: none; }
-  #service-site-header .service-header-control:hover::before { border-color: #fff; }
+  #service-site-header { font-size: 2.7vw; padding-inline: max(2em, env(safe-area-inset-left, 0px)) max(2em, env(safe-area-inset-right, 0px)); }
+  #service-scroll-hint { font-size: 10px; inset-inline-start: max(5.4vw, env(safe-area-inset-left, 0px)); inset-block-end: max(20px, calc(env(safe-area-inset-bottom, 0px) + 16px)); }
   .wrapper:has(>[aria-label='Previous Song']) { top: max(78px, calc(env(safe-area-inset-top, 0px) + 70px))!important; }
 }
 @media(prefers-reduced-motion:reduce) {
   #service-site-header .service-header-control { transition: none; }
   #service-site-header .service-equalizer i { animation: none!important; }
+  #service-scroll-hint, #service-scroll-hint * { animation: none!important; transition: none; }
 }

@@ -49,3 +49,20 @@ if (header && audio) {
   };
   connect();
 }
+
+// The scroll cue is decorative; it stays up through the opening sections and
+// leaves once the scroll reaches the work cards (back again if they return).
+const scrollHint = document.getElementById('service-scroll-hint');
+if (scrollHint) {
+  const introSections = new Set(['', 'home', 'about']);
+  const follow = () => {
+    if (!window.AppState?.bind) {
+      setTimeout(follow, 150);
+      return;
+    }
+    window.AppState.bind('Router/state', state => {
+      scrollHint.classList.toggle('is-hidden', !introSections.has(String(state ?? '').split('/')[0]));
+    });
+  };
+  follow();
+}

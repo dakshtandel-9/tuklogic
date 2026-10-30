@@ -33,7 +33,7 @@ export async function GET(request: Request) {
   }
   const html = caseStudy?.html ?? await getCaseStudiesCollection(url) ?? await getCaseStudyDetail(url) ?? await pageLoaders[path]?.();
   if (!html) {
-    return new Response('Page not found', { status: 404, headers: { 'Content-Type': 'text/plain; charset=utf-8' } });
+    return new Response('Page not found', { status: 404, headers: { 'Content-Type': 'text/plain; charset=utf-8', 'X-Robots-Tag': 'noindex' } });
   }
   const mediaSource = ` ${getMediaOrigin()}`;
   const branded = applyHeaderBranding(withArabicCaseStudyTags(html));
