@@ -1,5 +1,6 @@
 import { g as React, k as gsap, j as jsx, a8 as Video } from "./ui-components-krT5pv9S.js";
 import { createLoadingProgress } from "./loading-progress.js";
+import { lightMedia } from "./homepage-story.js";
 
 const LoadingIntro = ({ ready, onComplete }) => {
   const [progress, setProgress] = React.useState(0);
@@ -58,7 +59,7 @@ const LoadingIntro = ({ ready, onComplete }) => {
   return jsx.jsxs("div", {
     className: "scene full_bg f a-c j-c", style: { zIndex: 10000 }, id: "wormhole-intro",
     children: [
-      jsx.jsx(Video, { src: "/videos/wormhole-20261029.webm", loop: true, muted: true, autoPlay: true, playsInline: true }),
+      jsx.jsx(Video, { src: lightMedia ? "/videos/wormhole-light-20261030.webm" : "/videos/wormhole-20261029.webm", loop: true, muted: true, autoPlay: true, playsInline: true }),
       jsx.jsxs("div", {
         id: "main_progress", className: "main_progress f a-c j-c",
         children: [jsx.jsx("i", { className: "full_bg spinner" }), jsx.jsxs("h3", { id: "mainProgress", children: [progress, "%"] })],

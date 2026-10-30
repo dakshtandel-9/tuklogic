@@ -7,6 +7,9 @@ const paths = new Set([
   '/offline/videos/present.mp4', '/offline/videos/voice-assistant-2.mp4',
   '/offline/scenes/desktop/eh/intro.mp4', '/offline/scenes/desktop/apple.mp4',
   '/offline/scenes/desktop/portfolio-20261029.mp4', '/offline/videos/glitch-20261029.mp4',
+  // Lighter intro film and loading video for phones and slow connections.
+  '/offline/scenes/desktop/eh/intro-light-20261030.mp4', '/offline/videos/wormhole-light-20261030.webm',
+  '/offline/mobile-videos/portfolio_mobile-20261029.mp4', '/offline/fonts/LDIxapCSOBg7S-QT7q4A.woff2',
   '/offline/images/crystal-map.png', '/images/crystal-map.png',
   '/offline/fonts/8dd29564f022c7908c3b.css', '/offline/fonts/LDIxapCSOBg7S-QT7q4A.ttf',
   '/service-experience/content/site-content.json', '/service-experience/reference/data/uil.brand-monogram-v2.json',

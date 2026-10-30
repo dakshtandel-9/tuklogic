@@ -1,4 +1,4 @@
-import{loadFrames}from"./frame-loader.js";import{Q as A,ak as L,g as r,j as m,a8 as F}from"./ui-components-krT5pv9S.js";import{A as U}from"./AudioText-DReP9lcs.js";import{t as V}from"./main-B2LH-fDE.js";const y="/offline",STORY_FRAMES=[["egypt",64,33,34],["china",36,20,36],["greek",37,47,36],["islamic",37,61,34],["steve",23,50,35],["uxbert",58,44,0]],D=({onFinished:j,loaded:f})=>{const{t:P}=A("home"),R=L(o=>o.audios),[g,$]=r.useState(!1),[v,_]=r.useState(!1),[started,setStarted]=r.useState(!1),syncState=r.useRef(null),panned=r.useRef(!1),[p]=r.useState("/scenes/desktop/eh/intro.mp4?v=20261029b"),{isBelowSm:b}=V("sm"),E=L(o=>o.quality);r.useEffect(()=>{g&&j?.()},[g,j]);const introDone=r.useRef(!1),framesReady=r.useRef(Promise.resolve()),retryOpening=r.useRef(null),warming=r.useRef(null),a=r.useRef(null),finishIntro=()=>{
+import{loadFrames}from"./frame-loader.js";import{lightMedia}from"./homepage-story.js";import{Q as A,ak as L,g as r,j as m,a8 as F}from"./ui-components-krT5pv9S.js";import{A as U}from"./AudioText-DReP9lcs.js";import{t as V}from"./main-B2LH-fDE.js";const y="/offline",STORY_FRAMES=[["egypt",64,33,34],["china",36,20,36],["greek",37,47,36],["islamic",37,61,34],["steve",23,50,35],["uxbert",58,0,48]],D=({onFinished:j,loaded:f})=>{const{t:P}=A("home"),R=L(o=>o.audios),[g,$]=r.useState(!1),[v,_]=r.useState(!1),[started,setStarted]=r.useState(!1),syncState=r.useRef(null),panned=r.useRef(!1),[p]=r.useState(lightMedia?"/scenes/desktop/eh/intro-light-20261030.mp4":"/scenes/desktop/eh/intro.mp4?v=20261029b"),{isBelowSm:b}=V("sm"),E=L(o=>o.quality);r.useEffect(()=>{g&&j?.()},[g,j]);const introDone=r.useRef(!1),framesReady=r.useRef(Promise.resolve()),retryOpening=r.useRef(null),warming=r.useRef(null),a=r.useRef(null),finishIntro=()=>{
   // The first scene needs the throw and loop frames. They load while the intro plays,
   // so this only waits when the connection could not fetch them in time.
   const go=()=>{
@@ -43,24 +43,31 @@ import{loadFrames}from"./frame-loader.js";import{Q as A,ak as L,g as r,j as m,a8
     retryOpening.current=opening;
     framesReady.current=opening();
     framesReady.current.catch(error=>{if(error.name!=="AbortError")console.error("Unable to preload opening frames:",error)});
-    // The network is otherwise idle during the intro. Cache the eras in story order
-    // behind the opening frames; the scenes reuse whatever finished.
+    // The network is otherwise idle during the intro. Cache the next two eras behind the
+    // opening frames; ScenesDesktop loads later eras as the visitor approaches them.
     warming.current=new AbortController;
-    for(const[scene,...counts]of STORY_FRAMES)["in","hold","out"].forEach((part,index)=>{
+    for(const[scene,...counts]of STORY_FRAMES.slice(0,2))["in","hold","out"].forEach((part,index)=>{
       counts[index]&&loadFrames(`${y}/frames/${scene}/${part}-${E}`,counts[index],{signal:warming.current.signal}).catch(()=>{});
     });
   };
-  const onCanPlay=()=>{startFrames();S()};
+  // On phones and slow connections the intro waits until it can play through, so it doesn't
+  // stop to buffer; if the browser never reports that, it starts 4 s after it first could play.
+  const ready=lightMedia?"canplaythrough":"canplay";let fallback;
+  const onCanPlay=()=>{clearTimeout(fallback);startFrames();S()};
+  const onFirstPlayable=()=>{fallback||(fallback=setTimeout(onCanPlay,4e3))};
   const onError=event=>{console.error("Error loading video:",event)};
-  e.addEventListener("canplay",onCanPlay);
+  e.addEventListener(ready,onCanPlay);
+  lightMedia&&e.addEventListener("canplay",onFirstPlayable);
   e.addEventListener("error",onError);
-  if(e.readyState>=3)onCanPlay();
+  if(e.readyState>=(lightMedia?4:3))onCanPlay();
   else e.load();
   return()=>{
     disposed=!0;
+    clearTimeout(fallback);
     controller.abort();
     warming.current?.abort();
-    e.removeEventListener("canplay",onCanPlay);
+    e.removeEventListener(ready,onCanPlay);
+    e.removeEventListener("canplay",onFirstPlayable);
     e.removeEventListener("error",onError);
   };
 },[f,E,b]);
@@ -109,6 +116,8 @@ const syncIntro=()=>{
     const p=e.play();p?.catch?.(()=>{});
     playAudio();
     setStarted(!0);
+    // Music held back on light connections (tukStartMusic in ui-components) starts now.
+    window.__tukIntroStarted=!0;(window.__tukIntroWaiters||[]).splice(0).forEach(go=>go());
     tick=setInterval(sync,150)
   };
   syncState.current={blocked:!1,kick:()=>{begun&&playAudio()}};

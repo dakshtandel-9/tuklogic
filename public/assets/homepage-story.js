@@ -4,6 +4,10 @@ export const sceneIds = [0, 1, 2, 3, 4, 7, 8, 9];
 export const mobileScenes = ['intro', 'egypt', 'china', 'greek', 'islamic', 'steve', 'uxbert'];
 export const sceneKeys = ['earlyHumans', 'ancientEgypt', 'ancientChina', 'ancientGreece', 'islamicGoldenAge', null, null, 'steveJobs', 'uxbertLabs'];
 
+// Phones and slow or data-saving connections get the lighter intro film and loading video.
+export const lightMedia = typeof window !== 'undefined' && (window.matchMedia('(max-width: 576px)').matches
+  || (c => !!c && (c.saveData || /2g|3g/.test(c.effectiveType || '') || (c.downlink > 0 && c.downlink < 5)))(navigator.connection));
+
 export function nextSceneId(current, direction) {
   const index = sceneIds.indexOf(current);
   return sceneIds[Math.max(0, Math.min(sceneIds.length - 1, index + Math.sign(direction)))];

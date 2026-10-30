@@ -3,7 +3,7 @@
 
 // Browsers keep frames for a week. Change this whenever frames are replaced under the
 // same names, so returning visitors download the new ones instead of their old copies.
-export const FRAMES_VERSION = '20261030';
+export const FRAMES_VERSION = '20261030b';
 
 // A stalled request is abandoned after timeoutMs and retried on a fresh URL, so one
 // slow connection costs seconds, not the minute three 20 s attempts used to take.
@@ -31,8 +31,8 @@ export function createFrameLoader({ concurrency = 12, attempts = 4, timeoutMs = 
     const timeout = setTimeout(() => finish(new Error(`Frame timed out: ${src}`)), timeoutMs);
     image.onload = () => {
       if (!image.naturalWidth) { finish(new Error(`Invalid frame: ${src}`)); return; }
-      // Let canvas decode frames as needed. Eagerly decoding entire HD sequences
-      // can retain over a gigabyte of bitmaps before the first scene plays.
+      // Don't decode here: entire HD sequences would retain over a gigabyte of bitmaps.
+      // FramesPlayer decodes a few frames ahead of the playhead, off the main thread.
       finish();
     };
     image.onerror = () => finish(new Error(`Failed to load frame: ${src}`));
@@ -94,4 +94,9 @@ export function createFrameLoader({ concurrency = 12, attempts = 4, timeoutMs = 
   };
 }
 
-export const loadFrames = createFrameLoader();
+// Slow or data-saving connections get six parallel downloads, so frames don't starve the
+// intro film and the scene on screen.
+const connection = typeof navigator === 'undefined' ? undefined : navigator.connection;
+const slowConnection = !!connection && (connection.saveData || /2g|3g/.test(connection.effectiveType || '')
+  || (connection.downlink > 0 && connection.downlink < 5));
+export const loadFrames = createFrameLoader({ concurrency: slowConnection ? 6 : 12 });

@@ -98,6 +98,9 @@ The site runs on Vercel; its large media (about 1 GB) lives on Cloudflare R2.
 - Audio and video are uploaded as `Cache-Control: private`, everything else as `public`. Vercel's edge caches `public` media, but it stores the first byte range it receives for a video or audio file and replays it to every later range request, which breaks seeking and Safari playback. `private` keeps audio and video out of the edge while browsers still cache them. `npm run media:upload` sets both; don't upload audio or video with a plain `rclone copy`.
 - The bucket's CORS policy must allow `GET` and `HEAD` from any origin: canvas frames, WebGL textures and Web Audio need it.
 - R2's `images/` folder also contains the files that only exist in `offline/images`, matching the old `/images` to `/offline/images` fallback.
+- Pages are cached by browsers for 5 minutes and by Vercel's edge for a day (`s-maxage`). After that the edge answers from its copy while it refreshes in the background. A deploy starts with an empty edge cache.
+- Font files (`/offline/fonts/*.woff2`, `*.ttf`) are cached for a year (`vercel.json`). Their names never change, so a new font needs a new file name. The WOFF2 files are about a third the size of the TTFs, which remain as a fallback.
+- Files in `/assets` keep `max-age=0, must-revalidate`, because they are edited in place under the same names.
 
 ### Before heavy traffic
 
@@ -129,7 +132,13 @@ node scripts/check-deployment-media.mjs
 node --test scripts/check-frame-loader.mjs scripts/check-loading-progress.mjs scripts/check-site-menu.mjs
 ```
 
-The character player uses `public/assets/frame-loader.js`: one shared queue of twelve downloads, three attempts per frame, fresh retry URLs, cancellation on unmount, and readiness only after every required sequence loads. The loader screen waits only for the intro film; the first scene's frames load while the intro plays, and the eras are cached in story order until the intro ends (`STORY_FRAMES` in `IntroScene-*.js` must match the frame counts in `ScenesDesktop-*.js`). Small screens and slow or data-saving connections get the lighter `sm` frames. Frames are stored in playback order starting at index zero; they are decoded on demand to avoid retaining entire HD sequences as bitmaps.
+The character player uses `public/assets/frame-loader.js`: one shared queue of twelve downloads (six on slow connections), three attempts per frame, fresh retry URLs, cancellation on unmount, and readiness only after every required sequence loads. The loader screen waits only for the intro film; the first scene's frames load while the intro plays, together with the next two eras (`STORY_FRAMES` in `IntroScene-*.js` must match the frame counts in `ScenesDesktop-*.js`). Later eras load as the visitor approaches them, up to two ahead, plus one more every 20 seconds. Frames are stored in playback order starting at index zero.
+
+`FramesPlayer-*.js` decodes about ten frames ahead of the playhead with `createImageBitmap` on the frame's blob, which runs off the main thread, so drawing a frame is a cheap copy. Drawing a still-compressed full-HD frame used to cost 15 ms on a fast laptop and about 50 ms on a slow one, which is why scenes stuttered. A player only redraws when the frame changes. A player that has been hidden for four seconds releases its canvas and decoded frames.
+
+Small screens, slow or data-saving connections and lite mode get the `sm` frames, which are 960×540 (the `md` frames are 1920×1080). Lite mode is set by a small script in every page's head (`lib/header-branding.ts`) for devices with 4 GB of memory or less, 4 CPU threads or fewer, touch-only screens, Data Saver or reduced motion. It also turns off the blur on the narration text and smooth-wheel scrolling. To rebuild `sm` after replacing `md` frames, resize them to 960×540 WebP (quality 80) under the same names and bump `FRAMES_VERSION`.
+
+Phones and slow connections also get a lighter intro film (`scenes/desktop/eh/intro-light-*.mp4`, 1280×720 at 0.7 Mbit/s) and loading video (`videos/wormhole-light-*.webm`, 854×480 with transparency). Both are chosen through `lightMedia` in `homepage-story.js`, and the intro waits until it can play through, so it doesn't stop to buffer.
 
 The phone homepage uses separate portrait clips in `public/offline/mobile-videos`, referenced by `public/assets/ScenesMobile-COIEeUsU.js`. Run `python3 scripts/prepare-mobile-characters.py` to derive its five updated character loops from the installed desktop hold frames. It preserves faces, hands and paired characters with scene-specific crops, and excludes entry glitches and screen reveals. New clips use versioned filenames; update `VERSION` in the script and the five mobile references together for future replacements, then upload the clips to R2. This does not alter desktop frames or the original mobile clips. The deployment media check covers the mobile video URLs too.
 
