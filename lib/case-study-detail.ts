@@ -32,6 +32,7 @@ type Ctx = {
   c: Copy;
   locale: Locale;
   stages: string[];
+  details?: { solutions?: string[]; results?: string[] };
   label: {
     overview: string; process: string; processSub: string; solutions: string; solutionsSub: string;
     results: string; resultsSub: string; discover: string; visual: string;
@@ -44,6 +45,7 @@ function context(project: CaseStudy, locale: Locale): Ctx {
     c: copy(project, locale),
     locale,
     stages: stageLabels(project, locale),
+    details: locale === 'en' ? detailCopy[project.slug] : undefined,
     label: {
       overview: text(locale, 'Overview', 'نظرة عامة'),
       process: text(locale, 'Project process', 'مسار المشروع'),
@@ -57,6 +59,70 @@ function context(project: CaseStudy, locale: Locale): Ctx {
     },
   };
 }
+
+/** Supporting copy supplied for the selected case study detail pages. */
+const detailCopy: Record<string, { solutions?: string[]; results?: string[] }> = {
+  'ai-automation': {
+    solutions: [
+      'Streamline repetitive business tasks with AI-driven automation. Improve operational efficiency, reduce manual effort, and accelerate workflows with greater accuracy.',
+      'Leverage AI and machine learning to analyze historical data and forecast future trends. Make smarter, data-driven decisions and stay ahead of business challenges.',
+      'Deliver intelligent, personalized recommendations using advanced AI algorithms. Identify opportunities, enhance customer experiences, and support better decision-making.',
+      'Generate accurate, real-time reports with minimal manual intervention. Save time, track key performance indicators, and gain actionable business insights.',
+      'Automatically organize, categorize, and prioritize large volumes of data using AI. Improve data accessibility, consistency, and management efficiency.',
+      'Transform complex business data into interactive, easy-to-understand dashboards. Monitor performance, visualize trends, and gain real-time insights for strategic growth.',
+    ],
+  },
+  'connected-systems': {
+    results: [
+      'Gain a unified view of connected systems and devices across your operations. Access real-time data and insights to improve transparency and control.',
+      'Monitor connected devices, system performance, and operational activities in real time. Identify potential issues early and respond faster.',
+      'Automate system checks and routine inspections through connected technologies. Minimize human intervention, reduce errors, and improve efficiency.',
+      'Manage and monitor all connected devices from a single centralized platform. Simplify control, improve coordination, and ensure seamless system integration.',
+    ],
+  },
+  'sales-hub': {
+    solutions: [
+      'Capture, organize, and track leads from multiple sources in one centralized platform. Streamline lead assignment and ensure every sales opportunity gets the attention it deserves.',
+      'Maintain comprehensive customer profiles with contact details, communication history, preferences, and interactions. Build stronger relationships through a complete view of every customer.',
+      'Monitor every stage of your sales journey, from initial inquiry to deal closure. Gain clear visibility into opportunities, track progress, and improve sales forecasting.',
+      'Never miss an opportunity with automated reminders, follow-up emails, and timely notifications. Keep prospects engaged and ensure consistent communication throughout the sales cycle.',
+      'Organize sales activities, assign responsibilities, and track task progress efficiently. Keep your team aligned, productive, and focused on achieving sales targets.',
+      'Access real-time sales insights through intuitive and interactive dashboards. Track revenue, conversion rates, team performance, and key metrics to make informed business decisions.',
+    ],
+    results: [
+      'Bring all customer details, interactions, and communication history into one unified platform. Ensure easy access to accurate information and build stronger customer relationships.',
+      'Capture, monitor, and manage leads throughout the sales journey. Gain better visibility into lead progress, identify potential opportunities, and improve conversion rates.',
+      'Simplify everyday sales operations by automating repetitive tasks and standardising processes. Reduce manual effort, minimise delays, and accelerate deal closures.',
+      'Empower your team with organised workflows, real-time insights, and efficient task management. Improve collaboration, save time, and help your team focus on business growth.',
+    ],
+  },
+  'it-workflow': {
+    solutions: [
+      'Efficiently track, manage, and resolve IT incidents from a centralized platform. Minimize service disruptions, improve response times, and maintain business continuity.',
+      'Simplify how employees submit, track, and manage IT service requests. Automate request handling and ensure faster, more consistent service delivery.',
+      'Plan, approve, and monitor IT infrastructure and system changes with structured workflows. Reduce operational risks and ensure smooth, controlled transitions.',
+      'Provide a centralized catalogue of available IT services with clear descriptions and request options. Help employees easily find and access the services they need.',
+      'Automate repetitive IT processes, approvals, notifications, and task assignments. Reduce manual effort, eliminate bottlenecks, and improve operational efficiency.',
+      'Monitor IT performance, service requests, incidents, and key operational metrics through interactive dashboards. Gain real-time visibility and make informed decisions.',
+    ],
+  },
+  'talent-connect': {
+    solutions: [
+      'Connect with skilled IT professionals across diverse technologies and roles. Streamline hiring processes to find the right technical talent for your business needs.',
+      'Simplify hiring across business, administrative, operational, and management roles. Identify qualified candidates who align with your company culture and requirements.',
+      'Discover potential candidates through multiple talent channels and professional networks. Build a strong talent pipeline and reach the right people faster.',
+      'Evaluate resumes efficiently to identify candidates based on skills, experience, and job requirements. Reduce manual screening efforts and accelerate shortlisting.',
+      'Find and hire specialized professionals with the technical expertise your organization needs. Focus on skill-based evaluation and a streamlined technical hiring process.',
+      'Scale your workforce with skilled professionals to meet changing project demands. Access the right expertise, improve flexibility, and accelerate project delivery.',
+    ],
+    results: [
+      'Identify qualified candidates quickly through efficient sourcing and screening processes. Reduce hiring time and connect with the right talent faster.',
+      'Streamline recruitment activities with organized processes, centralized candidate information, and efficient communication. Simplify every stage of the hiring journey.',
+      'Connect with skilled professionals across IT, non-IT, and niche technical domains. Find the expertise needed to support your business goals and project requirements.',
+      'Scale your workforce based on changing business and project demands. Access the right talent when needed while maintaining operational flexibility and efficiency.',
+    ],
+  },
+};
 
 /* ---------- Shared pieces ---------- */
 
@@ -283,7 +349,7 @@ const solutionsCollage = (x: Ctx) => `<section class="tcs-collage tcs-wrap" id="
 
 const solutionsCards = (x: Ctx) => `<section class="tcs-cards tcs-wrap" id="solutions">
   <div class="tcs-head tcs-head--split"><h2 class="tcs-display">${x.label.solutions}</h2><p class="tcs-sub">${x.label.solutionsSub}</p></div>
-  <ul class="tcs-cards-grid">${each(x.c.solutions, (solution, i) => `<li><span class="tcs-card-icon">${num(i)}</span><h3>${escape(solution)}</h3></li>`)}</ul>
+  <ul class="tcs-cards-grid">${each(x.c.solutions, (solution, i) => `<li${x.details?.solutions?.[i] ? ' class="tcs-detail-card" tabindex="0"' : ''}><span class="tcs-card-icon">${num(i)}</span><h3>${escape(solution)}</h3>${x.details?.solutions?.[i] ? `<p class="tcs-detail-copy">${escape(x.details.solutions[i])}</p>` : ''}</li>`)}</ul>
 </section>`;
 
 /** Concentric circles with each solution as a node; the numbered list explains them. */
@@ -304,12 +370,12 @@ function solutionsOrbit(x: Ctx) {
 
 const solutionsGrid = (x: Ctx) => `<section class="tcs-grid tcs-wrap" id="solutions">
   <div class="tcs-head tcs-head--split"><h2 class="tcs-display">${x.label.solutions}</h2><p class="tcs-sub">${x.label.solutionsSub}</p></div>
-  <ol class="tcs-grid-list">${each(x.c.solutions, (solution, i) => `<li><span class="tcs-grid-num">${num(i)}</span><h3>${escape(solution)}</h3>${arrow}</li>`)}</ol>
+  <ol class="tcs-grid-list">${each(x.c.solutions, (solution, i) => `<li${x.details?.solutions?.[i] ? ' class="tcs-detail-card" tabindex="0"' : ''}><span class="tcs-grid-num">${num(i)}</span><h3>${escape(solution)}</h3>${x.details?.solutions?.[i] ? `<p class="tcs-detail-copy">${escape(x.details.solutions[i])}</p>` : ''}${arrow}</li>`)}</ol>
 </section>`;
 
 const solutionsChecklist = (x: Ctx) => `<section class="tcs-check tcs-wrap" id="solutions">
   <div class="tcs-check-head"><h2 class="tcs-display">${x.label.solutions}</h2><p class="tcs-lead">${escape(x.c.headline)}</p><p class="tcs-sub">${x.label.solutionsSub}</p></div>
-  <ul class="tcs-check-list">${each(x.c.solutions, (solution, i) => `<li><span class="tcs-check-icon">${check}</span><span class="tcs-check-text">${escape(solution)}</span><span class="tcs-check-num">${num(i)}</span></li>`)}</ul>
+  <ul class="tcs-check-list">${each(x.c.solutions, (solution, i) => `<li${x.details?.solutions?.[i] ? ' class="tcs-detail-card" tabindex="0"' : ''}><span class="tcs-check-icon">${check}</span><span class="tcs-check-text">${escape(solution)}</span><span class="tcs-check-num">${num(i)}</span>${x.details?.solutions?.[i] ? `<p class="tcs-detail-copy">${escape(x.details.solutions[i])}</p>` : ''}</li>`)}</ul>
 </section>`;
 
 const solutionsPills = (x: Ctx) => `<section class="tcs-pills tcs-wrap" id="solutions">
@@ -319,7 +385,7 @@ const solutionsPills = (x: Ctx) => `<section class="tcs-pills tcs-wrap" id="solu
 
 const solutionsProfiles = (x: Ctx) => `<section class="tcs-profiles tcs-wrap" id="solutions">
   <div class="tcs-head tcs-head--split"><h2 class="tcs-display">${x.label.solutions}</h2><p class="tcs-sub">${x.label.solutionsSub}</p></div>
-  <ul class="tcs-profiles-grid">${each(x.c.solutions, (solution, i) => `<li><span class="tcs-profile-avatar" aria-hidden="true"><span>${num(i)}</span></span><h3>${escape(solution)}</h3><span class="tcs-profile-lines" aria-hidden="true"><i></i><i></i></span></li>`)}</ul>
+  <ul class="tcs-profiles-grid">${each(x.c.solutions, (solution, i) => `<li${x.details?.solutions?.[i] ? ' class="tcs-detail-card" tabindex="0"' : ''}><span class="tcs-profile-avatar" aria-hidden="true"><span>${num(i)}</span></span><h3>${escape(solution)}</h3>${x.details?.solutions?.[i] ? `<p class="tcs-detail-copy">${escape(x.details.solutions[i])}</p>` : '<span class="tcs-profile-lines" aria-hidden="true"><i></i><i></i></span>'}</li>`)}</ul>
 </section>`;
 
 /* ---------- Key results ---------- */
@@ -358,12 +424,12 @@ const resultsMetrics = (x: Ctx) => `<section class="tcs-metrics tcs-wrap" id="re
 
 const resultsAchievements = (x: Ctx) => `<section class="tcs-ach tcs-wrap" id="results">
   <div class="tcs-head tcs-head--split"><h2 class="tcs-display">${x.label.results}</h2><p class="tcs-sub">${x.label.resultsSub}</p></div>
-  <ul class="tcs-ach-grid">${each(x.c.results, (result, i) => `<li><span class="tcs-ach-num">${num(i)}</span><h3>${escape(result)}</h3><span class="tcs-ach-glow" aria-hidden="true"></span></li>`)}</ul>
+  <ul class="tcs-ach-grid">${each(x.c.results, (result, i) => `<li${x.details?.results?.[i] ? ' class="tcs-detail-card" tabindex="0"' : ''}><span class="tcs-ach-num">${num(i)}</span><h3>${escape(result)}</h3>${x.details?.results?.[i] ? `<p class="tcs-detail-copy">${escape(x.details.results[i])}</p>` : ''}<span class="tcs-ach-glow" aria-hidden="true"></span></li>`)}</ul>
 </section>`;
 
 const resultsStatements = (x: Ctx) => `<section class="tcs-lines tcs-wrap" id="results">
   <div class="tcs-head tcs-head--split"><h2 class="tcs-display">${x.label.results}</h2><p class="tcs-sub">${x.label.resultsSub}</p></div>
-  <ol class="tcs-lines-list">${each(x.c.results, (result, i) => `<li><span>${num(i)}</span><h3>${escape(result)}</h3>${arrow}</li>`)}</ol>
+  <ol class="tcs-lines-list">${each(x.c.results, (result, i) => `<li${x.details?.results?.[i] ? ' class="tcs-detail-card" tabindex="0"' : ''}><span>${num(i)}</span><h3>${escape(result)}</h3>${x.details?.results?.[i] ? `<p class="tcs-detail-copy">${escape(x.details.results[i])}</p>` : ''}${arrow}</li>`)}</ol>
 </section>`;
 
 const resultsBand = (x: Ctx) => `<section class="tcs-band" id="results">
@@ -379,7 +445,7 @@ const resultsBars = (x: Ctx) => `<section class="tcs-bars tcs-wrap" id="results"
 const resultsQuote = (x: Ctx) => `<section class="tcs-quote tcs-wrap" id="results">
   <blockquote><span aria-hidden="true">“</span><p>${escape(x.c.headline)}</p></blockquote>
   <div class="tcs-head tcs-head--split"><h2 class="tcs-display">${x.label.results}</h2><p class="tcs-sub">${x.label.resultsSub}</p></div>
-  <ol class="tcs-quote-list">${each(x.c.results, (result, i) => `<li><span>${num(i)}</span><p>${escape(result)}</p></li>`)}</ol>
+  <ol class="tcs-quote-list">${each(x.c.results, (result, i) => `<li${x.details?.results?.[i] ? ' class="tcs-detail-card" tabindex="0"' : ''}><span>${num(i)}</span><h3>${escape(result)}</h3>${x.details?.results?.[i] ? `<p class="tcs-detail-copy">${escape(x.details.results[i])}</p>` : ''}</li>`)}</ol>
 </section>`;
 
 /* ---------- One design per project ---------- */
