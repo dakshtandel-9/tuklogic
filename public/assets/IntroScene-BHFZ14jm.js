@@ -1,4 +1,16 @@
-import{loadFrames}from"./frame-loader.js";import{lightMedia}from"./homepage-story.js";import{Q as A,ak as L,g as r,j as m,a8 as F}from"./ui-components-krT5pv9S.js";import{A as U}from"./AudioText-DReP9lcs.js";import{t as V}from"./main-B2LH-fDE.js";const y="/offline",STORY_FRAMES=[["egypt",64,33,34],["china",36,20,36],["greek",37,47,36],["islamic",37,61,34],["steve",23,50,35],["uxbert",58,0,48]],D=({onFinished:j,loaded:f})=>{const{t:P}=A("home"),R=L(o=>o.audios),[g,$]=r.useState(!1),[v,_]=r.useState(!1),[started,setStarted]=r.useState(!1),syncState=r.useRef(null),panned=r.useRef(!1),[p]=r.useState(lightMedia?"/scenes/desktop/eh/intro-light-20261030.mp4":"/scenes/desktop/eh/intro.mp4?v=20261029b"),{isBelowSm:b}=V("sm"),E=L(o=>o.quality);r.useEffect(()=>{g&&j?.()},[g,j]);const introDone=r.useRef(!1),framesReady=r.useRef(Promise.resolve()),retryOpening=r.useRef(null),warming=r.useRef(null),a=r.useRef(null),finishIntro=()=>{
+import{loadFrames}from"./frame-loader.js";import{lightMedia}from"./homepage-story.js";import{Q as A,ak as L,g as r,j as m,a8 as F}from"./ui-components-krT5pv9S.js";import{A as U}from"./AudioText-DReP9lcs.js";import{t as V}from"./main-B2LH-fDE.js";const y="/offline",STORY_FRAMES=[["egypt",64,33,34],["china",36,20,36],["greek",37,47,36],["islamic",37,61,34],["steve",23,50,35],["uxbert",58,0,48]],
+// Phones see a quarter-width slice of the 16:9 intro film, so the camera follows the action. It
+// stays on the warrior, moves onto the spear as the lightning strikes it (film 6.13 s, 14-33% of
+// the width) and onto the torch as it catches fire (7.63 s, 62-83%), and holds there to the end.
+// Keyframes are [film seconds, object-position x %], eased between.
+CAMERA=[[5,50],[6,15],[6.7,15],[7.6,80]],cameraAt=t=>{
+  if(t<=CAMERA[0][0])return CAMERA[0][1];
+  for(let k=1;k<CAMERA.length;k++){
+    const[t1,x1]=CAMERA[k];
+    if(t<t1){const[t0,x0]=CAMERA[k-1],q=(t-t0)/(t1-t0);return x0+(x1-x0)*(q<.5?2*q*q:1-2*(1-q)*(1-q))}
+  }
+  return CAMERA[CAMERA.length-1][1]
+},D=({onFinished:j,loaded:f})=>{const{t:P}=A("home"),R=L(o=>o.audios),[g,$]=r.useState(!1),[v,_]=r.useState(!1),[started,setStarted]=r.useState(!1),syncState=r.useRef(null),[p]=r.useState(lightMedia?"/scenes/desktop/eh/intro-light-20261030.mp4":"/scenes/desktop/eh/intro.mp4?v=20261029b"),{isBelowSm:b}=V("sm"),E=L(o=>o.quality);r.useEffect(()=>{g&&j?.()},[g,j]);const introDone=r.useRef(!1),framesReady=r.useRef(Promise.resolve()),retryOpening=r.useRef(null),warming=r.useRef(null),a=r.useRef(null),finishIntro=()=>{
   // The first scene needs the throw and loop frames. They load while the intro plays,
   // so this only waits when the connection could not fetch them in time.
   const go=()=>{
@@ -154,4 +166,17 @@ const unlockIntro=()=>{
   types.forEach(t=>document.addEventListener(t,u,opts));
   return()=>types.forEach(t=>document.removeEventListener(t,u,opts))
 };
-return r.useEffect(()=>C(),[]),r.useEffect(()=>v?syncIntro():void 0,[v]),r.useEffect(()=>g?void 0:unlockIntro(),[g]),g?null:m.jsxs(m.Fragment,{children:[started&&m.jsx(U,{manualAudio:!0,pasue:!started,speed:.41,audioSource:R.intro?.audio,text:P("scenes.intro.text"),delay:0}),m.jsx("div",{className:"scene shake full_bg f a-c j-c",children:p&&m.jsx(F,{controls:!1,controlsList:"nodownload nofullscreen noremoteplayback",disablePictureInPicture:!0,autoPlay:!1,ref:a,muted:!0,preload:"auto",onPlay:()=>{b&&!panned.current&&(panned.current=!0,setTimeout(()=>{a.current&&(a.current.style.objectPosition="20% bottom"),setTimeout(()=>{a.current.style.objectPosition="70% bottom"},1500),setTimeout(()=>{a.current.style.objectPosition="50% bottom"},3e3)},3e3))},onEnded:finishIntro,className:"transition-all duration-1000 ease-in-out",src:p,style:{opacity:v?1:0,transition:"opacity 4s ease-in-out"}})})]})};export{D as IntroScene};
+// The camera reads the film's own clock every frame, so stalls and pauses never put it out of step.
+const followCamera=()=>{
+  const e=a.current;
+  if(!e)return;
+  let id=0,last="";
+  const follow=()=>{
+    const x=`${cameraAt(e.currentTime).toFixed(1)}% bottom`;
+    x!==last&&(e.style.objectPosition=last=x);
+    e.ended||(id=requestAnimationFrame(follow))
+  };
+  follow();
+  return()=>{cancelAnimationFrame(id);e.style.objectPosition=""}
+};
+return r.useEffect(()=>C(),[]),r.useEffect(()=>v?syncIntro():void 0,[v]),r.useEffect(()=>g?void 0:unlockIntro(),[g]),r.useEffect(()=>b&&started?followCamera():void 0,[b,started]),g?null:m.jsxs(m.Fragment,{children:[started&&m.jsx(U,{manualAudio:!0,pasue:!started,speed:.41,audioSource:R.intro?.audio,text:P("scenes.intro.text"),delay:0}),m.jsx("div",{className:"scene shake full_bg f a-c j-c",children:p&&m.jsx(F,{controls:!1,controlsList:"nodownload nofullscreen noremoteplayback",disablePictureInPicture:!0,autoPlay:!1,ref:a,muted:!0,preload:"auto",onEnded:finishIntro,className:"transition-all duration-1000 ease-in-out",src:p,style:{opacity:v?1:0,transition:"opacity 4s ease-in-out"}})})]})};export{D as IntroScene};
