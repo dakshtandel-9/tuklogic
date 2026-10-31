@@ -1,9 +1,10 @@
 import{loadFrames}from"./frame-loader.js";import{lightMedia}from"./homepage-story.js";import{Q as A,ak as L,g as r,j as m,a8 as F}from"./ui-components-krT5pv9S.js";import{A as U}from"./AudioText-DReP9lcs.js";import{t as V}from"./main-B2LH-fDE.js";const y="/offline",STORY_FRAMES=[["egypt",64,33,34],["china",36,20,36],["greek",37,47,36],["islamic",37,61,34],["steve",23,50,35],["uxbert",58,0,48]],
 // Phones see a quarter-width slice of the 16:9 intro film, so the camera follows the action. It
 // stays on the warrior, moves onto the spear as the lightning strikes it (film 6.13 s, 14-33% of
-// the width) and onto the torch as it catches fire (7.63 s, 62-83%), and holds there to the end.
+// the width), onto the torch as it catches fire (7.63 s, 62-83%), then back to the face, which the
+// flame now lights (43-54%), keeping the torch at the edge of the frame until the film ends.
 // Keyframes are [film seconds, object-position x %], eased between.
-CAMERA=[[5,50],[6,15],[6.7,15],[7.6,80]],cameraAt=t=>{
+CAMERA=[[5,50],[6,15],[6.7,15],[7.5,76],[7.9,76],[8.2,60]],cameraAt=t=>{
   if(t<=CAMERA[0][0])return CAMERA[0][1];
   for(let k=1;k<CAMERA.length;k++){
     const[t1,x1]=CAMERA[k];
