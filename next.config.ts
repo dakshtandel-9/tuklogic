@@ -1,5 +1,5 @@
 import type { NextConfig } from 'next';
-import { getMediaOrigin, startupMediaPattern } from './lib/media-origin';
+import { getMediaOrigin } from './lib/media-origin';
 
 const mediaOrigin = getMediaOrigin();
 
@@ -7,9 +7,35 @@ const mediaOrigin = getMediaOrigin();
 // (workers must be same-origin); only its media files are served from R2.
 const serviceMedia = 'mp4|mp3|jpe?g|png|json|bin|ktx2';
 
+// Everything the homepage needs before and during the intro (about 15 MB) ships with the
+// deployment and is served by Vercel's CDN, so the first screen never waits on R2. These
+// files are committed with `git add -f` (public/offline is otherwise ignored). Other media,
+// such as later eras' frames, still comes from R2.
+const STARTUP_MEDIA = [
+  'fonts/',
+  'frames/eh/',
+  'videos/portal.mp4',
+  'videos/portal_portrait_compressed.webm',
+  'videos/wormhole-20261029.webm',
+  'videos/wormhole-light-20261030.webm',
+  'videos/glitch-20261029.mp4',
+  'scenes/desktop/eh/intro.mp4',
+  'scenes/desktop/eh/intro-light-20261030.mp4',
+  'scenes/desktop/eh/intro-phone-20261031c.mp4',
+  'mobile-videos/eh-mobile-20261029c.mp4',
+  'audio/intro.mp3',
+  'audio/eh.mp3',
+  'audio/ar/intro.mp3',
+  'audio/ar/eh.mp3',
+  'audio/click.wav',
+  'audio/magic-20261029.mp3',
+  'audio/whoosh-20261029.mp3',
+];
+const startupPattern = STARTUP_MEDIA.map(path => path.replace(/[.]/g, '\\.') + (path.endsWith('/') ? '' : '$')).join('|');
+
 const mediaRoutes = [
   // Fonts and startup media stay on this origin; everything else under /offline is on R2.
-  { source: `/offline/:path((?!${startupMediaPattern}).*)`, destination: `${mediaOrigin}/offline/:path` },
+  { source: `/offline/:path((?!${startupPattern}).*)`, destination: `${mediaOrigin}/offline/:path` },
   { source: '/images/:path*', destination: `${mediaOrigin}/images/:path*` },
   // The clients page requests its logos without the /offline prefix.
   { source: '/client-logos/export/:path*', destination: `${mediaOrigin}/offline/client-logos/export/:path*` },
@@ -20,11 +46,10 @@ const mediaRoutes = [
 ];
 
 const nextConfig: NextConfig = {
-  async redirects() {
-    // Media is sent to R2 with a redirect, not proxied: Vercel cannot proxy to the bucket's
-    // custom domain (a subdomain of a domain it serves). The homepage bundles request most
-    // media from R2 directly (window.__tukMedia), so this is the fallback for other pages.
-    return mediaRoutes.map(route => ({ ...route, permanent: false }));
+  async rewrites() {
+    // Proxy media on the site's origin. Redirecting every frame adds a network
+    // round trip and makes videos, canvas textures and fetches depend on CORS.
+    return { beforeFiles: mediaRoutes };
   },
 };
 

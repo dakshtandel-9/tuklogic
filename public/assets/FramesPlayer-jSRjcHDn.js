@@ -4,10 +4,7 @@ import{loadFrames}from"./frame-loader.js";import{g as yt,j as At}from"./ui-compo
 // playhead with createImageBitmap(Blob), which runs off the main thread, so drawing is a copy.
 const AHEAD=10,BEHIND=2,RELEASE_AFTER=4e3,canDecode=typeof createImageBitmap=="function"&&typeof fetch=="function";
 function Lt({framesPath:pt,totalFrames:ut,isLoop:v,onFinish:U,playbackRate:x=1.5,playReverse:l=!1,loaded:h,autoPlay:n,setPlayer:u,framesImages:_}){const b=yt.useRef(null),m=yt.useRef(null),[g,s]=yt.useState({width:0,height:0}),{isBelowMd:r}=Tt("md");return yt.useEffect(()=>{const i=b.current;if(!m.current||!i)return;const a=i.getContext("2d",{alpha:!1});if(!a)return;
-  const f=_||[],controller=new AbortController,blobs=new Map,bitmaps=new Map,prepared=new Map,wanted=new Set;
-  // Frames the scene asked to keep ready (prepare) are parked instead of freed when playback
-  // moves past them or the player is hidden, so the next press of a hold starts on decoded frames.
-  const park=(j,entry)=>wanted.has(j)&&entry.bitmap&&!entry.dead&&!prepared.has(j)?(prepared.set(j,entry),!0):!1;
+  const f=_||[],controller=new AbortController,blobs=new Map,bitmaps=new Map,prepared=new Map;
   // A hidden player keeps a 1x1 canvas and no decoded frames; its full-size canvas and frames
   // come back when it is shown or asked to draw.
   let size=null,released=!0,shown=!1,playing=!1,releaseTimer,lastDrawn=-1,dir=1;
@@ -16,10 +13,9 @@ function Lt({framesPath:pt,totalFrames:ut,isLoop:v,onFinish:U,playbackRate:x=1.5
     if(!canDecode||released||!ut)return;
     const keep=new Set;
     for(let k=-BEHIND;k<=ahead;k++){let j=index+k*dir;if(v)j=(j%ut+ut)%ut;j>=0&&j<ut&&keep.add(j)}
-    for(const[j,entry]of bitmaps)keep.has(j)||(park(j,entry)||(entry.dead=!0,entry.bitmap?.close()),bitmaps.delete(j));
+    for(const[j,entry]of bitmaps)keep.has(j)||(entry.dead=!0,entry.bitmap?.close(),bitmaps.delete(j));
     for(const j of keep){
       if(bitmaps.has(j)||!f[j]?.complete||!f[j].naturalWidth)continue;
-      const ready=prepared.get(j);if(ready?.bitmap){prepared.delete(j);bitmaps.set(j,ready);continue}
       const entry={bitmap:null,dead:!1};bitmaps.set(j,entry);
       blobOf(j).then(blob=>createImageBitmap(blob)).then(bitmap=>{entry.dead?bitmap.close():entry.bitmap=bitmap},()=>{bitmaps.get(j)===entry&&bitmaps.delete(j)});
     }
@@ -28,14 +24,14 @@ function Lt({framesPath:pt,totalFrames:ut,isLoop:v,onFinish:U,playbackRate:x=1.5
   const release=()=>{
     if(shown||playing){return}
     released=!0;lastDrawn=-1;
-    for(const[j,entry]of bitmaps)park(j,entry)||(entry.dead=!0,entry.bitmap?.close());
+    for(const entry of bitmaps.values())entry.dead=!0,entry.bitmap?.close();
     bitmaps.clear();blobs.clear();i.width=i.height=1;
   };
   // The scene lists the frames this player will show first when it is next shown (negative
   // counts from the end). They are decoded now, so show() draws a ready frame; frames that
   // drop off the list are freed.
   const prepare=list=>{
-    const want=new Set((list||[]).map(j=>j<0?j+ut:j));wanted.clear();want.forEach(j=>wanted.add(j));
+    const want=new Set((list||[]).map(j=>j<0?j+ut:j));
     for(const[j,entry]of prepared)want.has(j)||(entry.dead=!0,entry.bitmap?.close(),prepared.delete(j));
     if(!canDecode)return;
     for(const j of want){

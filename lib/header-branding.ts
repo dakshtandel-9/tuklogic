@@ -1,5 +1,4 @@
 import { loaderLogo, splashLogo } from './tuklogic-logo';
-import { mediaUrlScript } from './media-origin';
 
 // Runs before the app: weak or touch devices, data saving and reduced motion get the
 // lighter homepage (960x540 frames, no blur on the narration, no smooth-wheel easing).
@@ -52,5 +51,5 @@ export function applyHeaderBranding(html: string): string {
   ).replace(
     /(<div\b[^>]*id="loader"[^>]*>)<svg\b[\s\S]*?<\/svg>/g,
     `$1${loaderLogo}`,
-  ).replace('</head>', `${liteModeScript}${mediaUrlScript()}<link rel="stylesheet" href="/header-branding.css"/><link rel="stylesheet" href="/case-studies/homepage.css"/><link rel="stylesheet" href="/contact-redesign.css"/><script defer src="/services-link.js"></script></head>`);
+  ).replace('</head>', `${liteModeScript}<link rel="stylesheet" href="/header-branding.css"/><link rel="stylesheet" href="/case-studies/homepage.css"/><link rel="stylesheet" href="/contact-redesign.css"/><script defer src="/services-link.js"></script></head>`);
 }
