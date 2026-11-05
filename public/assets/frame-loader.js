@@ -7,6 +7,8 @@ export const FRAMES_VERSION = '20261030b';
 
 // A stalled request is abandoned after timeoutMs and retried on a fresh URL, so one
 // slow connection costs seconds, not the minute three 20 s attempts used to take.
+const media = src => (typeof window !== 'undefined' && window.__tukMedia ? window.__tukMedia(src) : src);
+
 export function createFrameLoader({ concurrency = 12, attempts = 4, timeoutMs = 8000,
   createImage = () => new Image(), retryDelay = attempt => new Promise(resolve => setTimeout(resolve, attempt * 400)),
 } = {}) {
@@ -68,7 +70,8 @@ export function createFrameLoader({ concurrency = 12, attempts = 4, timeoutMs = 
   return async function loadFrames(basePath, count, { signal, onFrame } = {}) {
     let lastError = null;
     const frames = await Promise.all(Array.from({ length: count }, (_, index) =>
-      load(`${basePath}/frame_${index + 1}.webp?v=${FRAMES_VERSION}`, signal).then(image => {
+      // Frames outside the deployment come straight from R2 (window.__tukMedia, set by the page).
+      load(media(`${basePath}/frame_${index + 1}.webp?v=${FRAMES_VERSION}`), signal).then(image => {
         if (signal?.aborted) throw aborted();
         onFrame?.(image, index);
         return image;
