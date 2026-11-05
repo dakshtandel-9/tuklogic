@@ -4,8 +4,33 @@ import { loaderLogo, splashLogo } from './tuklogic-logo';
 // lighter homepage (960x540 frames, no blur on the narration, no smooth-wheel easing).
 const liteModeScript = `<script>(()=>{try{const n=navigator,c=n.connection||{},m=s=>matchMedia(s).matches,lite=!!(c.saveData||/2g|3g/.test(c.effectiveType||"")||n.deviceMemory&&n.deviceMemory<=4||n.hardwareConcurrency&&n.hardwareConcurrency<=4||m("(pointer: coarse)")&&!m("(any-pointer: fine)")||m("(prefers-reduced-motion: reduce)"));window.__TUK_LITE=lite;lite&&document.documentElement.classList.add("tuk-lite")}catch{}})()</script>`;
 
+const servicesLabel = { en: 'Services', ar: 'الخدمات' } as const;
+
+/**
+ * The header menu gained a Services entry before Case Studies after the pages were captured.
+ * Without it in the server HTML, hydration fails (React error #418) and React throws away
+ * and re-renders the whole document on every visit.
+ */
+function withServicesMenuItem(html: string): string {
+  if (/<a\b[^>]*interactive_label[^>]*\/digital-services"|<a\b[^>]*\/digital-services"[^>]*interactive_label/.test(html)) return html;
+  return html.replace(
+    /<li><a\b(?=[^>]*\binteractive_label\b)(?=[^>]*\bhref="\/(en|ar)\/case-studies")[^>]*>[\s\S]*?<\/a><\/li>/g,
+    (item, locale: 'en' | 'ar') => {
+      const caseLabel = /aria-label="Navigate to ([^"]+) page"/.exec(item)?.[1];
+      if (!caseLabel) return item;
+      const services = item
+        .replace(/ data-status="active"| aria-current="page"/g, '')
+        .replace(/(class="interactive_label group f a-c) active"/, '$1"')
+        .replace(`/${locale}/case-studies"`, `/${locale}/digital-services"`)
+        .split(caseLabel).join(servicesLabel[locale]);
+      return services + item;
+    },
+  );
+}
+
 /** Keep captured header markup consistent with the hydrated header component. */
 export function applyHeaderBranding(html: string): string {
+  html = withServicesMenuItem(html);
   const footerAt = html.indexOf('<footer');
   if (footerAt !== -1) {
     const link = (email: string) =>

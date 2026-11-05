@@ -41,7 +41,11 @@ export async function GET(request: Request) {
     return new Response('Page not found', { status: 404, headers: { 'Content-Type': 'text/plain; charset=utf-8', 'X-Robots-Tag': 'noindex' } });
   }
   const mediaSource = ` ${getMediaOrigin()}`;
-  const branded = applyHeaderBranding(withArabicCaseStudyTags(html));
+  // Cloudflare (in front of Vercel) rewrites e-mail addresses into obfuscated spans, which no longer
+  // match the app's markup: hydration fails and React re-renders the whole page. Opt the body out.
+  const branded = applyHeaderBranding(withArabicCaseStudyTags(html))
+    .replace(/<body\b[^>]*>/, tag => `${tag}<!--email_off-->`)
+    .replace(/<\/body>(?![\s\S]*<\/body>)/, '<!--/email_off--></body>');
   return new Response(applySiteSeo(branded, url, caseStudy?.status ?? 200), {
     status: caseStudy?.status ?? 200,
     headers: {
