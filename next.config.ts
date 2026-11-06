@@ -47,10 +47,13 @@ const mediaRoutes = [
   },
 ];
 
-// The voiceovers and videos in R2 carry `Cache-Control: private`, so Cloudflare (in front of Vercel)
-// fetched them from r2.dev on every play. Cloudflare-CDN-Cache-Control is read only by Cloudflare and
-// takes precedence there, letting it keep a copy without changing what browsers see.
-const cloudflareCache = [{ key: 'Cloudflare-CDN-Cache-Control', value: 'public, max-age=2592000' }];
+// The voiceovers and videos in R2 carry `Cache-Control: private`, so the CDN fetched them from r2.dev
+// on every play. These headers are read only by the CDNs (Vercel's, and Cloudflare's when it is in
+// front) and let them keep a copy without changing what browsers see.
+const cloudflareCache = [
+  { key: 'Vercel-CDN-Cache-Control', value: 'public, max-age=2592000' },
+  { key: 'Cloudflare-CDN-Cache-Control', value: 'public, max-age=2592000' },
+];
 const mediaCacheHeaders = [
   { source: '/offline/:path((?:.*)\\.(?:mp3|mp4|webm|wav))', headers: cloudflareCache },
   { source: '/service-experience/:path((?:.*)\\.(?:mp3|mp4))', headers: cloudflareCache },
