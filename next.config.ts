@@ -47,22 +47,7 @@ const mediaRoutes = [
   },
 ];
 
-// The voiceovers and videos in R2 carry `Cache-Control: private`, so the CDN fetched them from r2.dev
-// on every play. These headers are read only by the CDNs (Vercel's, and Cloudflare's when it is in
-// front) and let them keep a copy without changing what browsers see.
-const cloudflareCache = [
-  { key: 'Vercel-CDN-Cache-Control', value: 'public, max-age=2592000' },
-  { key: 'Cloudflare-CDN-Cache-Control', value: 'public, max-age=2592000' },
-];
-const mediaCacheHeaders = [
-  { source: '/offline/:path((?:.*)\\.(?:mp3|mp4|webm|wav))', headers: cloudflareCache },
-  { source: '/service-experience/:path((?:.*)\\.(?:mp3|mp4))', headers: cloudflareCache },
-];
-
 const nextConfig: NextConfig = {
-  async headers() {
-    return mediaCacheHeaders;
-  },
   async rewrites() {
     // Proxy media on the site's origin. Redirecting every frame adds a network
     // round trip and makes videos, canvas textures and fetches depend on CORS.
