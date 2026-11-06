@@ -65,8 +65,10 @@ export function applySiteSeo(html: string, url: URL, status = 200): string {
   })) head += meta(key, value);
   head += `<script>window.__SITE_SEO_ORIGIN__=${inlineJson(origin)}</script>`;
   let result = (head + html.slice(headEnd)).replace(/(<html\b[^>]*\blang=")[^"]*/, `$1${locale}`);
-  // Captured schema contains the former agency's founder, locations and FAQ.
-  result = result.replace(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>[\s\S]*?<\/script>/gi, '');
+  // Captured schema contains the former agency's founder, locations and FAQ. Empty it rather than
+  // remove the tag: some pages (e.g. /present) render these tags in React, and a missing tag makes
+  // hydration fail (React error #418). Our own schema is added below.
+  result = result.replace(/(<script\b[^>]*type=["']application\/ld\+json["'][^>]*>)[\s\S]*?(<\/script>)/gi, '$1{}$2');
   result = result.replace('</head>', `<script id="site-structured-data" type="application/ld+json">${inlineJson(getSiteStructuredData(origin, locale))}</script></head>`);
   // Only the namespace's meta object changes; all rendered translations are preserved.
   result = result.replace(/window\.__I18N__=(\{[\s\S]*?\})(?=<\/script>)/, (_, json: string) => {

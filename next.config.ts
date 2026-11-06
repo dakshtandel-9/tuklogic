@@ -36,6 +36,8 @@ const startupPattern = STARTUP_MEDIA.map(path => path.replace(/[.]/g, '\\.') + (
 const mediaRoutes = [
   // Fonts and startup media stay on this origin; everything else under /offline is on R2.
   { source: `/offline/:path((?!${startupPattern}).*)`, destination: `${mediaOrigin}/offline/:path` },
+  // The services scene asks for this normal map under pbr/; the bucket has it under room/.
+  { source: '/service-experience/reference/images/pbr/damaged_road_normal.jpg', destination: `${mediaOrigin}/service-experience/reference/images/room/damaged_road_normal.jpg` },
   { source: '/images/:path*', destination: `${mediaOrigin}/images/:path*` },
   // The clients page requests its logos without the /offline prefix.
   { source: '/client-logos/export/:path*', destination: `${mediaOrigin}/offline/client-logos/export/:path*` },
