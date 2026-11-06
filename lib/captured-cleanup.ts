@@ -18,3 +18,14 @@ export function withoutCapturedProjects(html: string): string {
     '',
   );
 }
+
+/**
+ * The English About hero label was renamed from "About us" to "Our Story" after capture. Match the
+ * app's text, or hydration fails (React error #418) and the page is re-rendered in the browser.
+ */
+export function withAboutHeroLabel(html: string): string {
+  return html.replace(
+    /(<div class="hero_content f f-c a-c j-c _eleWrap"><strong class="SplitClass alt _eleD !text-sm uppercase sm:!text-base opacity-0">)About us(<\/strong>)/,
+    '$1Our Story$2',
+  );
+}

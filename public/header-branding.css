@@ -88,3 +88,31 @@
   height: auto;
   aspect-ratio: 1852 / 516;
 }
+
+/* End of the homepage story (TUKLOGIC era): next-step buttons above the timeline. */
+.tuk-story-cta {
+  position: fixed;
+  left: 50%;
+  bottom: 150px;
+  z-index: 999;
+  display: flex;
+  gap: 12px;
+  transform: translateX(-50%);
+  opacity: 0;
+  animation: tukStoryCta 1s ease-out 1.5s forwards;
+}
+.tuk-story-cta a {
+  padding: 12px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: rgba(5, 7, 13, 0.35);
+  color: #fff;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  backdrop-filter: blur(6px);
+  transition: background 0.3s, border-color 0.3s, color 0.3s;
+}
+.tuk-story-cta a:hover { border-color: #fff; }
+.tuk-story-cta a.tuk-story-cta-primary { background: #fff; color: #05070d; border-color: #fff; }
+@keyframes tukStoryCta { from { opacity: 0; transform: translate(-50%, 12px); } to { opacity: 1; transform: translate(-50%, 0); } }
