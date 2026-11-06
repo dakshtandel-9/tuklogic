@@ -7,7 +7,7 @@ import { getServicesDocument } from '../../../lib/services-page';
 import { getMediaOrigin } from '../../../lib/media-origin';
 import { applySiteSeo } from '../../../lib/seo';
 import { withClientLogos } from '../../../lib/client-logos';
-import { withAboutHeroLabel, withoutCapturedProjects } from '../../../lib/captured-cleanup';
+import { withAboutHeroLabel, withLocalAboutLinks, withoutCapturedProjects } from '../../../lib/captured-cleanup';
 
 // Browsers keep a page for 5 minutes. Vercel's edge keeps it for a day and answers from its
 // copy while it refreshes in the background, so visitors don't wait on the function (1.4 s
@@ -45,7 +45,8 @@ export async function GET(request: Request) {
   const mediaSource = ` ${getMediaOrigin()}`;
   // Cloudflare (in front of Vercel) rewrites e-mail addresses into obfuscated spans, which no longer
   // match the app's markup: hydration fails and React re-renders the whole page. Opt the body out.
-  const branded = applyHeaderBranding(withAboutHeroLabel(withoutCapturedProjects(withClientLogos(withArabicCaseStudyTags(html)))))
+  const locale = path.split('/')[1] ?? 'en';
+  const branded = applyHeaderBranding(withLocalAboutLinks(withAboutHeroLabel(withoutCapturedProjects(withClientLogos(withArabicCaseStudyTags(html)))), locale))
     .replace(/<body\b[^>]*>/, tag => `${tag}<!--email_off-->`)
     .replace(/<\/body>(?![\s\S]*<\/body>)/, '<!--/email_off--></body>');
   return new Response(applySiteSeo(branded, url, caseStudy?.status ?? 200), {

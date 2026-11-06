@@ -29,3 +29,15 @@ export function withAboutHeroLabel(html: string): string {
     '$1Our Story$2',
   );
 }
+
+/**
+ * The About page links to https://www.tuklogic.com/services (a 404) and /case-studies on another
+ * host. Point them at this site's own pages so they work on any domain (e.g. tuklogic.vercel.app).
+ * Matches the app's links in public/assets/about-CZJChM-C.js.
+ */
+export function withLocalAboutLinks(html: string, locale: string): string {
+  const lang = locale === 'ar' ? 'ar' : 'en';
+  return html
+    .replace(/href="https:\/\/www\.tuklogic\.com\/services"/g, `href="/${lang}/digital-services"`)
+    .replace(/href="https:\/\/www\.tuklogic\.com\/case-studies"/g, `href="/${lang}/case-studies"`);
+}

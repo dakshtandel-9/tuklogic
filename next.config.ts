@@ -38,6 +38,8 @@ const mediaRoutes = [
   { source: `/offline/:path((?!${startupPattern}).*)`, destination: `${mediaOrigin}/offline/:path` },
   // The services scene asks for this normal map under pbr/; the bucket has it under room/.
   { source: '/service-experience/reference/images/pbr/damaged_road_normal.jpg', destination: `${mediaOrigin}/service-experience/reference/images/room/damaged_road_normal.jpg` },
+  // The services scene asks for lab.gif as a texture; the bucket only has the still lab.jpg.
+  { source: '/service-experience/reference/images/lab.gif', destination: `${mediaOrigin}/service-experience/reference/images/lab.jpg` },
   { source: '/images/:path*', destination: `${mediaOrigin}/images/:path*` },
   // The clients page requests its logos without the /offline prefix.
   { source: '/client-logos/export/:path*', destination: `${mediaOrigin}/offline/client-logos/export/:path*` },
@@ -48,6 +50,13 @@ const mediaRoutes = [
 ];
 
 const nextConfig: NextConfig = {
+  async redirects() {
+    // There is no Articles page; the Present page's "view all" and the site search linked to a 404.
+    return [
+      { source: '/:locale(en|ar)/articles', destination: '/:locale/case-studies', permanent: false },
+      { source: '/:locale(en|ar)/articles/:path*', destination: '/:locale/case-studies', permanent: false },
+    ];
+  },
   async rewrites() {
     // Proxy media on the site's origin. Redirecting every frame adds a network
     // round trip and makes videos, canvas textures and fetches depend on CORS.

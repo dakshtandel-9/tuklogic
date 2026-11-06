@@ -5,6 +5,9 @@
 // same names, so returning visitors download the new ones instead of their old copies.
 export const FRAMES_VERSION = '20261030b';
 
+// Public address of the R2 bucket that holds the frames (the same bucket next.config.ts proxies).
+export const R2_ORIGIN = 'https://pub-124464f162174e66af5ef9253e61de72.r2.dev';
+
 // A stalled request is abandoned after timeoutMs and retried on a fresh URL, so one
 // slow connection costs seconds, not the minute three 20 s attempts used to take.
 export function createFrameLoader({ concurrency = 12, attempts = 4, timeoutMs = 8000,
@@ -14,6 +17,10 @@ export function createFrameLoader({ concurrency = 12, attempts = 4, timeoutMs = 
   let active = 0;
   const aborted = () => new DOMException('Frame loading cancelled', 'AbortError');
 
+  // Frames come straight from the R2 bucket's own address (Cloudflare's network, its own
+  // connection), so they don't queue behind the page, films and narration on the site's single
+  // connection. A frame that fails there is retried through the site's proxy to the same bucket.
+  const direct = src => (R2_ORIGIN && src.startsWith('/offline/frames/') ? R2_ORIGIN + src : src);
   const download = (src, signal, attempt) => new Promise((resolve, reject) => {
     if (signal?.aborted) { reject(aborted()); return; }
     const image = createImage();
@@ -39,7 +46,7 @@ export function createFrameLoader({ concurrency = 12, attempts = 4, timeoutMs = 
     image.crossOrigin = 'anonymous';
     signal?.addEventListener('abort', onAbort, { once: true });
     // A failed response can remain in the browser cache. Retry a fresh URL.
-    image.src = attempt > 1 ? `${src}${src.includes('?') ? '&' : '?'}retry=${attempt}` : src;
+    image.src = attempt === 1 ? direct(src) : attempt === 2 ? src : `${src}${src.includes('?') ? '&' : '?'}retry=${attempt}`;
   });
 
   const run = async ({ src, signal, resolve, reject }) => {
