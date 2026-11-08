@@ -34,12 +34,15 @@ phone=window.matchMedia("(max-width: 576px)").matches,D=({onFinished:j,loaded:f}
     f(100,!0,n,i,()=>{if(!disposed){_(!0)}});
   };
   let framesStarted=!1;
-  // Frames start only once the intro can play, so they never compete with the
-  // film the loader is waiting for; they are not shown until the intro ends.
+  // The opening frames load during the loader's countdown, and the countdown reaches 100%
+  // only when both the film and these frames are ready (at most 20 s), so the intro never
+  // ends on a frozen frame while the first scene is still downloading.
   const startFrames=()=>{
     if(mobile||framesStarted)return;
     framesStarted=!0;
-    const options=images=>({signal:controller.signal,onFrame:(image,index)=>{images[index]=image}});
+    // Each arriving frame moves the loader's percentage on (loading-progress.js).
+    let arrived=0;
+    const options=images=>({signal:controller.signal,onFrame:(image,index)=>{images[index]=image;arrived++;window.dispatchEvent(new CustomEvent("tuk-opening-progress",{detail:arrived/181}))}});
     const opening=()=>Promise.all([
       loadFrames(`${y}/frames/eh/throw-${E}`,120,options(n)),
       loadFrames(`${y}/frames/eh/loop-${E}`,61,options(i)),
@@ -47,17 +50,24 @@ phone=window.matchMedia("(max-width: 576px)").matches,D=({onFinished:j,loaded:f}
     retryOpening.current=opening;
     framesReady.current=opening();
     framesReady.current.catch(error=>{if(error.name!=="AbortError")console.error("Unable to preload opening frames:",error)});
-    // The network is otherwise idle during the intro. Cache the next two eras behind the
-    // opening frames; ScenesDesktop loads later eras as the visitor approaches them.
+    // Once the opening frames are in, cache the next two eras while the intro plays;
+    // ScenesDesktop loads later eras as the visitor approaches them.
     warming.current=new AbortController;
-    for(const[scene,...counts]of STORY_FRAMES.slice(0,2))["in","hold","out"].forEach((part,index)=>{
-      counts[index]&&loadFrames(`${y}/frames/${scene}/${part}-${E}`,counts[index],{signal:warming.current.signal}).catch(()=>{});
+    const warmSignal=warming.current.signal;
+    framesReady.current.catch(()=>{}).then(()=>{
+      if(warmSignal.aborted)return;
+      for(const[scene,...counts]of STORY_FRAMES.slice(0,2))["in","hold","out"].forEach((part,index)=>{
+        counts[index]&&loadFrames(`${y}/frames/${scene}/${part}-${E}`,counts[index],{signal:warmSignal}).catch(()=>{});
+      });
     });
   };
+  startFrames();
+  const openingOrCap=()=>Promise.race([framesReady.current.catch(()=>{}),new Promise(done=>setTimeout(done,2e4))]);
   // On phones and slow connections the intro waits until it can play through, so it doesn't
   // stop to buffer; if the browser never reports that, it starts 4 s after it first could play.
   const ready=lightMedia?"canplaythrough":"canplay";let fallback;
-  const onCanPlay=()=>{clearTimeout(fallback);startFrames();S()};
+  let waiting=!1;
+  const onCanPlay=()=>{clearTimeout(fallback);if(waiting)return;waiting=!0;openingOrCap().then(S)};
   const onFirstPlayable=()=>{fallback||(fallback=setTimeout(onCanPlay,4e3))};
   const onError=event=>{console.error("Error loading video:",event)};
   e.addEventListener(ready,onCanPlay);

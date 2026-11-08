@@ -10,14 +10,25 @@ export function createLoadingProgress({ onProgress, onComplete, requirePaint = f
   let stopped = false;
   let timer = null;
   let awaitingPaint = requirePaint;
+  // Past 50% the count follows the opening frames as they download (IntroScene reports the
+  // fraction), so a slow connection shows a climbing number rather than one that stands still.
+  let cap = LOADING_PAUSE_PERCENT;
+  const onOpening = event => {
+    const fraction = Math.max(0, Math.min(1, Number(event.detail) || 0));
+    const next = LOADING_PAUSE_PERCENT + Math.floor((99 - LOADING_PAUSE_PERCENT) * fraction);
+    if (next > cap) { cap = next; schedule(); }
+  };
+  if (typeof window !== 'undefined') window.addEventListener('tuk-opening-progress', onOpening);
+  const unlisten = () => { if (typeof window !== 'undefined') window.removeEventListener('tuk-opening-progress', onOpening); };
 
   const complete = () => {
     stopped = true;
+    unlisten();
     onComplete();
   };
 
   const schedule = () => {
-    if (stopped || awaitingPaint || timer !== null || value >= (ready ? 100 : LOADING_PAUSE_PERCENT)) return;
+    if (stopped || awaitingPaint || timer !== null || value >= (ready ? 100 : cap)) return;
     timer = setTimeout(() => {
       timer = null;
       if (stopped) return;
@@ -51,6 +62,7 @@ export function createLoadingProgress({ onProgress, onComplete, requirePaint = f
     },
     cancel() {
       stopped = true;
+      unlisten();
       clearTimeout(timer);
       timer = null;
     },

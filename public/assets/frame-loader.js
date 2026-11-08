@@ -35,7 +35,9 @@ export function createFrameLoader({ concurrency = 12, attempts = 4, timeoutMs = 
       else resolve(image);
     };
     const onAbort = () => finish(aborted());
-    const timeout = setTimeout(() => finish(new Error(`Frame timed out: ${src}`)), timeoutMs);
+    // Each retry waits longer (8, 16, 24, 32 s): on a busy connection a frame that is still
+    // arriving finishes instead of being restarted from zero again and again.
+    const timeout = setTimeout(() => finish(new Error(`Frame timed out: ${src}`)), timeoutMs * attempt);
     image.onload = () => {
       if (!image.naturalWidth) { finish(new Error(`Invalid frame: ${src}`)); return; }
       // Don't decode here: entire HD sequences would retain over a gigabyte of bitmaps.
