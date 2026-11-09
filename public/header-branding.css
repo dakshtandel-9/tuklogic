@@ -116,3 +116,12 @@
 .tuk-story-cta a:hover { border-color: #fff; }
 .tuk-story-cta a.tuk-story-cta-primary { background: #fff; color: #05070d; border-color: #fff; }
 @keyframes tukStoryCta { from { opacity: 0; transform: translate(-50%, 12px); } to { opacity: 1; transform: translate(-50%, 0); } }
+
+/* Phone homepage: keep the header pinned to the top while scrolling. The header is
+   already position: sticky, but its parent <main> uses overflow: hidden, which makes
+   <main> the sticky container so the header scrolled away with it. overflow: clip
+   still clips but does not create a scroll container. Only the phone layout
+   (section.homepage.mobile) is affected; desktop is unchanged. */
+main#main-content:has(> section.homepage.mobile) {
+  overflow: clip;
+}
