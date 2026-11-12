@@ -1,4 +1,4 @@
-import{loadFrames}from"./frame-loader.js";import{lightMedia}from"./homepage-story.js";import{Q as A,ak as L,g as r,j as m,a8 as F}from"./ui-components-krT5pv9S.js";import{A as U}from"./AudioText-DReP9lcs.js";import{t as V}from"./main-B2LH-fDE.js";const y="/offline",STORY_FRAMES=[["egypt",64,33,34],["china",36,20,36],["greek",37,47,36],["islamic",37,61,34],["steve",23,50,35],["uxbert",58,0,48]],
+import{loadFrames}from"./frame-loader.js";import{lightMedia}from"./homepage-story.js";import{Q as A,ak as L,g as r,j as m,a8 as F}from"./ui-components-krT5pv9S.js";import{A as U}from"./AudioText-uxb7Kq2m.js";import{t as V}from"./main-B2LH-fDE.js";const y="/offline",STORY_FRAMES=[["egypt",64,33,34],["china",36,20,36],["greek",37,47,36],["islamic",37,61,34],["steve",23,50,35],["uxbert",58,0,48]],
 // Phones get their own cut of the intro film (scripts/make-phone-intro.py): a 9:16 re-edit with
 // hard cuts between fixed crops (warrior, spear lightning, torch, flame, face), same length as the
 // film so the narration still fits. Nothing pans or follows the film's clock.
