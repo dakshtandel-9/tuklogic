@@ -822,6 +822,10 @@
   .tcs-grid-num { font-size: clamp(44px, 4.4vw, 84px); }
   .tcs-grid-list h3 { font-size: clamp(17px, 1.4vw, 26px); }
   .tcs-grid-list .tcs-arrow { bottom: 2.4vw; inset-inline-end: 2.4vw; }
+  /* Shared rows: number top, title top-aligned on one line, description always starts on the same line. */
+  .tcs-grid-list li { display: grid; grid-template-rows: auto 1fr auto; justify-content: stretch; }
+  .tcs-grid-list li h3 { align-self: start; }
+  .tcs-grid-list li .tcs-detail-copy { min-height: calc(1.45em * 5); }
 
   .tcs-check { flex-direction: row; align-items: flex-start; gap: 6vw; }
   .tcs-check-head { position: sticky; top: 8rem; flex: 0 0 34%; }
