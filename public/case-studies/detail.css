@@ -802,6 +802,10 @@
   .tcs-cards-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.6vw; }
   .tcs-cards-grid li { min-height: 15vw; padding: 2.2vw; gap: 3vw; }
   .tcs-cards-grid h3 { font-size: clamp(18px, 1.5vw, 28px); }
+  /* Equal rows across cards: icon top, title bottom-aligned in the middle, description always starts on the same line. */
+  .tcs-cards-grid li { display: grid; grid-template-rows: auto 1fr auto; justify-content: stretch; }
+  .tcs-cards-grid li h3 { align-self: end; }
+  .tcs-cards-grid li .tcs-detail-copy { min-height: calc(1.45em * 5); }
 
   .tcs-orb { flex-direction: row; align-items: center; gap: 6vw; }
   .tcs-orb-text { flex: 1; }
