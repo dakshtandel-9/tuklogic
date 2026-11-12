@@ -29,6 +29,10 @@ for (const match of present.matchAll(/"(\/offline\/images\/services\/[^" ]+)"/g)
 // missing mobile character artwork.
 const mobile = await readFile(new URL('../public/assets/ScenesMobile-COIEeUsU.js', import.meta.url), 'utf8');
 for (const match of mobile.matchAll(/src:"(\/mobile-videos\/[^" ]+)"/g)) paths.add(`/offline${match[1]}`);
+for (const match of mobile.matchAll(/poster:"(\/offline\/mobile-videos\/[^" ]+)"/g)) paths.add(match[1]);
+// iPhones play the quieter music mix (tukMusicPath in ui-components), and the services page's re-encoded Cloud Solutions film.
+paths.add('/offline/audio/music-quiet-20261112.mp3');
+paths.add('/service-experience/content/videos/cloud-solutions.mp4');
 
 let checks = 0;
 const remaining = [...paths];
@@ -38,7 +42,7 @@ await Promise.all(Array.from({ length: 4 }, async () => {
     const response = await fetch(new URL(path, origin), { method: 'HEAD', redirect: 'manual', signal: AbortSignal.timeout(30000) });
     assert.equal(response.status, 200, `${path}: HTTP ${response.status}`);
     assert.ok(!response.headers.has('location'), `${path}: media must stay on the site's origin`);
-    assert.match(response.headers.get('content-type') || '', /image|video|font|css|json/, `${path}: wrong content type`);
+    assert.match(response.headers.get('content-type') || '', /image|video|audio|font|css|json/, `${path}: wrong content type`);
     // Vercel compresses text assets (CSS, JSON) and then sends no Content-Length, so measure the body instead.
     const size = response.headers.has('content-length') ? Number(response.headers.get('content-length'))
       : (await (await fetch(new URL(path, origin), { signal: AbortSignal.timeout(30000) })).arrayBuffer()).byteLength;

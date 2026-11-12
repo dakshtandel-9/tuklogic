@@ -23,6 +23,13 @@ const STARTUP_MEDIA = [
   'scenes/desktop/eh/intro-light-20261030.mp4',
   'scenes/desktop/eh/intro-phone-20261031c.mp4',
   'mobile-videos/eh-mobile-20261029c.mp4',
+  // Phone eras' posters (each clip's first frame, 14-48 KB): shown while a clip loads, or when Low Power Mode blocks it.
+  'mobile-videos/eh-mobile-20261029c.jpg',
+  'mobile-videos/egypt-mobile-20261029d.jpg',
+  'mobile-videos/china-mobile-20261029c.jpg',
+  'mobile-videos/greek-mobile-20261029d.jpg',
+  'mobile-videos/islamic-mobile-20261029c.jpg',
+  'mobile-videos/steve-mobile-20261029c.jpg',
   'audio/intro.mp3',
   'audio/eh.mp3',
   'audio/ar/intro.mp3',

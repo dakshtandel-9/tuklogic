@@ -91,7 +91,7 @@ phone=window.matchMedia("(max-width: 576px)").matches,D=({onFinished:j,loaded:f}
 const syncIntro=()=>{
   const e=a.current,o=L.getState().audios.intro?.audio;
   if(!e)return;
-  let alive=!0,begun=!1,tick=null,ready=null,waitAudio=0;
+  let alive=!0,begun=!1,tick=null,ready=null,waitAudio=0,blocked=null;
   const audioOn=()=>L.getState().isAudioOn;
   const inRange=()=>!!o&&Number.isFinite(o.duration)&&e.currentTime<o.duration-.05;
   const playAudio=()=>{
@@ -127,14 +127,19 @@ const syncIntro=()=>{
     o&&(o.removeEventListener("canplay",begin),o.removeEventListener("canplaythrough",begin));
     try{e.currentTime=0}catch{}
     o&&(o.pause(),o.currentTime=0,o.playbackRate=1);
-    const p=e.play();p?.catch?.(()=>{});
+    // Low Power Mode and a hot iPhone refuse video that a tap didn't start. The next tap starts the film and its narration
+    // together (kick, below); if it still hasn't started 3 s later, the visitor goes on to the first era rather than
+    // looking at the film's frozen first frame.
+    const p=e.play();p?.catch?.(error=>{error?.name==="NotAllowedError"&&(clearTimeout(blocked),blocked=setTimeout(()=>{alive&&e.paused&&e.currentTime<.1&&(clearInterval(tick),finishIntro())},3e3))});
     playAudio();
     setStarted(!0);
+    // Phones: the first era's poster is cached during the intro, so the era shows at once when the film ends.
+    phone&&(new Image().src="/offline/mobile-videos/eh-mobile-20261029c.jpg");
     // Music held back on light connections (tukStartMusic in ui-components) starts now.
     window.__tukIntroStarted=!0;(window.__tukIntroWaiters||[]).splice(0).forEach(go=>go());
     tick=setInterval(sync,150)
   };
-  syncState.current={blocked:!1,kick:()=>{begun&&playAudio()}};
+  syncState.current={blocked:!1,kick:()=>{if(!begun)return;e.paused&&!e.ended&&!waitAudio&&(clearTimeout(blocked),e.play()?.catch?.(()=>{}));playAudio()}};
   e.addEventListener("playing",sync);e.addEventListener("waiting",sync);e.addEventListener("ended",onEnded);
   o&&(o.addEventListener("waiting",onAudioWaiting),o.addEventListener("stalled",onAudioWaiting));
   if(!o||!audioOn()||o.readyState>=3)begin();
@@ -144,7 +149,7 @@ const syncIntro=()=>{
     ready=setTimeout(begin,1500)
   }
   return()=>{
-    alive=!1;clearInterval(tick);clearTimeout(ready);syncState.current=null;
+    alive=!1;clearInterval(tick);clearTimeout(ready);clearTimeout(blocked);syncState.current=null;
     e.removeEventListener("playing",sync);e.removeEventListener("waiting",sync);e.removeEventListener("ended",onEnded);
     o&&(o.removeEventListener("waiting",onAudioWaiting),o.removeEventListener("stalled",onAudioWaiting),o.removeEventListener("canplay",begin),o.removeEventListener("canplaythrough",begin),o.pause(),o.currentTime=0,o.playbackRate=1)
   }
