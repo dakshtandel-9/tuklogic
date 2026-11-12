@@ -43,7 +43,7 @@ def discover():
             elif urllib.parse.urlsplit(url).hostname in {'uxbert.com', 'fonts.gstatic.com'}:
                 suffix = Path(urllib.parse.urlsplit(url).path).suffix
                 urls[url] = '/offline/external/' + hashlib.sha256(url.encode()).hexdigest()[:20] + suffix
-    desktop = (PUBLIC / 'assets/ScenesDesktop-uxb7Kq2m.js').read_text()
+    desktop = (PUBLIC / 'assets/ScenesDesktop-uxb8Rp4n.js').read_text()
     for scene, body in re.findall(r'sceneName:"(\w+)"(.*?)(?:\}\},|\}\})', desktop):
         for kind, count in re.findall(r'(in|out|hold)Frames:(\d+)', body):
             kind = 'scroll' if scene == 'disney' and kind == 'hold' else kind

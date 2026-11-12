@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 
 const origin = process.env.MEDIA_TEST_ORIGIN || 'http://localhost:3100';
-const source = await readFile(new URL('../public/assets/ScenesDesktop-uxb7Kq2m.js', import.meta.url), 'utf8');
+const source = await readFile(new URL('../public/assets/ScenesDesktop-uxb8Rp4n.js', import.meta.url), 'utf8');
 const paths = new Set([
   '/offline/videos/present.mp4', '/offline/videos/voice-assistant-2.mp4',
   '/offline/scenes/desktop/eh/intro.mp4', '/offline/scenes/desktop/apple.mp4',
