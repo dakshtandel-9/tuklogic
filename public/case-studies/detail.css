@@ -768,6 +768,10 @@
   .tcs-pipe-board { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); margin: 0; padding: 0; overflow: visible; }
   .tcs-pipe-col { flex: none; }
   .tcs-pipe-card p { font-size: clamp(13px, .95vw, 17px); }
+  /* Same-size columns and inner cards; progress bars share one baseline. */
+  .tcs-pipe-board { align-items: stretch; }
+  .tcs-pipe-card { flex: 1 1 auto; }
+  .tcs-pipe-card .tcs-pipe-bar { margin-top: auto; }
 
   .tcs-time-list { gap: 0; padding: 0; }
   .tcs-time-list::before { inset-inline-start: 50%; }
