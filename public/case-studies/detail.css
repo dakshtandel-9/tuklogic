@@ -888,6 +888,9 @@
   .tcs-quote-list { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.4vw; }
   .tcs-quote-list li { padding: 2.2vw; min-height: 13vw; justify-content: space-between; }
   .tcs-quote-list p { font-size: clamp(16px, 1.35vw, 25px); }
+  /* Shared rows: number, two-line title slot, then descriptions all starting on the same line. */
+  .tcs-quote-list li { justify-content: flex-start; }
+  .tcs-quote-list li h3 { min-height: 2.4em; }
 }
 
 @media (min-width: 1024px) {
