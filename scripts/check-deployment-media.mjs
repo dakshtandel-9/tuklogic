@@ -33,6 +33,8 @@ for (const match of mobile.matchAll(/poster:"(\/offline\/mobile-videos\/[^" ]+)"
 // iPhones play the quieter music mix (tukMusicPath in ui-components), and the services page's re-encoded Cloud Solutions film.
 paths.add('/offline/audio/music-quiet-20261112.mp3');
 paths.add('/service-experience/content/videos/cloud-solutions.mp4');
+// The services page's light, silent background reel (started after the first scene loads).
+paths.add('/service-experience/reference/video/reel-vfx-20261112.mp4');
 
 let checks = 0;
 const remaining = [...paths];
