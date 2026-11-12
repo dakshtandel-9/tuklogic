@@ -111,8 +111,8 @@
 /* Work detail: close button at the top right, just below the header. */
 #work-detail-close {
   position: fixed;
-  inset-block-start: max(86px, calc(env(safe-area-inset-top, 0px) + 6.9em));
-  inset-inline-end: 10.25em;
+  inset-block-start: calc(max(86px, calc(env(safe-area-inset-top, 0px) + 6.9em)) + 56px);
+  inset-inline-end: 6em;
   z-index: 2147481500;
   display: flex;
   align-items: center;
@@ -153,7 +153,7 @@ html:has(#site-menu-panel[open]), body:has(#site-menu-panel[open]) { touch-actio
   #service-site-header { font-size: 2.7vw; padding-inline: max(2em, env(safe-area-inset-left, 0px)) max(2em, env(safe-area-inset-right, 0px)); }
   #service-scroll-hint { font-size: 10px; inset-inline-start: max(5.4vw, env(safe-area-inset-left, 0px)); inset-block-end: max(20px, calc(env(safe-area-inset-bottom, 0px) + 16px)); }
   .wrapper:has(>[aria-label='Previous Song']) { top: max(78px, calc(env(safe-area-inset-top, 0px) + 70px))!important; }
-  #work-detail-close { inset-block-start: max(78px, calc(env(safe-area-inset-top, 0px) + 70px)); inset-inline-end: max(5.4vw, env(safe-area-inset-left, 0px)); width: 40px; height: 40px; border-color: rgb(234 255 255 / 45%); background: rgb(4 14 20 / 62%); box-shadow: 0 4px 14px rgb(0 0 0 / 40%); }
+  #work-detail-close { inset-block-start: calc(max(78px, calc(env(safe-area-inset-top, 0px) + 70px)) + 52px); inset-inline-end: max(5.4vw, env(safe-area-inset-left, 0px)); width: 40px; height: 40px; border-color: rgb(234 255 255 / 45%); background: rgb(4 14 20 / 62%); box-shadow: 0 4px 14px rgb(0 0 0 / 40%); }
   #work-detail-close svg { width: 16px; height: 16px; }
 }
 @media(prefers-reduced-motion:reduce) {
