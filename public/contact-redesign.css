@@ -199,7 +199,7 @@ main:has(> .contact-hero--top) > #contact-form .form_block {
 
 main:has(> .contact-hero--top) > #contact-form .form_block:first-child,
 main:has(> .contact-hero--top) > #contact-form .form_block:has(textarea),
-main:has(> .contact-hero--top) > #contact-form .form_block:has(button) {
+main:has(> .contact-hero--top) > #contact-form .form_block:has(button[type=submit]) {
   grid-column: 1 / -1;
 }
 
@@ -246,7 +246,7 @@ main:has(> .contact-hero--top) > #contact-form .form_block textarea:focus {
   background: rgba(255, 255, 255, .08);
 }
 
-main:has(> .contact-hero--top) > #contact-form .form_block:has(button) {
+main:has(> .contact-hero--top) > #contact-form .form_block:has(button[type=submit]) {
   justify-content: flex-start;
   margin-top: 4px;
 }
