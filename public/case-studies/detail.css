@@ -809,7 +809,6 @@
   /* Equal rows across cards: icon top, title top-aligned in the middle, description always starts on the same line. */
   .tcs-cards-grid li { display: grid; grid-template-rows: auto 1fr auto; justify-content: stretch; }
   .tcs-cards-grid li h3 { align-self: start; }
-  .tcs-cards-grid li .tcs-detail-copy { min-height: calc(1.45em * 5); }
 
   .tcs-orb { flex-direction: row; align-items: center; gap: 6vw; }
   .tcs-orb-text { flex: 1; }
@@ -825,7 +824,6 @@
   /* Shared rows: number top, title top-aligned on one line, description always starts on the same line. */
   .tcs-grid-list li { display: grid; grid-template-rows: auto 1fr auto; justify-content: stretch; }
   .tcs-grid-list li h3 { align-self: start; }
-  .tcs-grid-list li .tcs-detail-copy { min-height: calc(1.45em * 5); }
 
   .tcs-check { flex-direction: row; align-items: flex-start; gap: 6vw; }
   .tcs-check-head { position: sticky; top: 8rem; flex: 0 0 34%; }
@@ -888,9 +886,30 @@
   .tcs-quote-list { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.4vw; }
   .tcs-quote-list li { padding: 2.2vw; min-height: 13vw; justify-content: space-between; }
   .tcs-quote-list p { font-size: clamp(16px, 1.35vw, 25px); }
-  /* Shared rows: number, two-line title slot, then descriptions all starting on the same line. */
+  /* Shared rows: number, title, then descriptions all starting on the same line. */
   .tcs-quote-list li { justify-content: flex-start; }
-  .tcs-quote-list li h3 { min-height: 2.4em; }
+
+  /* Cards in one row share their number, title and description tracks (subgrid), so every
+     description starts on the same line however many lines the text wraps to at any width. */
+  @supports (grid-template-rows: subgrid) {
+    .tcs-cards-grid, .tcs-grid-list { grid-auto-rows: auto 1fr auto; }
+    .tcs-quote-list { grid-auto-rows: auto auto 1fr; }
+    .tcs-cards-grid li, .tcs-grid-list li, .tcs-quote-list li { grid-row: span 3; display: grid; grid-template-rows: subgrid; }
+    .tcs-quote-list li { row-gap: .8rem; }
+  }
+  /* Older browsers without subgrid: reserve fixed slots instead. */
+  @supports not (grid-template-rows: subgrid) {
+    .tcs-cards-grid li .tcs-detail-copy,
+    .tcs-grid-list li .tcs-detail-copy { min-height: calc(1.45em * 5); }
+    .tcs-quote-list li h3 { min-height: 2.4em; }
+  }
+}
+
+/* Hover-reveal descriptions (two lines) keep their slot while hidden, so neighbours never jump. */
+@media (min-width: 640px) and (hover: hover) and (pointer: fine) {
+  .tcs-cards-grid .tcs-detail-card .tcs-detail-copy,
+  .tcs-grid-list .tcs-detail-card .tcs-detail-copy,
+  .tcs-quote-list .tcs-detail-card .tcs-detail-copy { min-height: 2.9em; }
 }
 
 @media (min-width: 1024px) {
