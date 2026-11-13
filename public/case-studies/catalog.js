@@ -206,9 +206,9 @@ export const caseStudies = [
     "number": "05"
   },
   {
-    "title": "Sales Hubb",
+    "title": "Sales Hub",
     "category": "CRM Solutions",
-    "ref": "Sales Hubb product interface shown on a laptop",
+    "ref": "Sales Hub product interface shown on a laptop",
     "desc": "A customised CRM platform helping businesses manage leads, customers, sales pipelines, communications, and performance from one system.",
     "process": [
       "Analysed existing sales and customer workflows.",

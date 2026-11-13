@@ -325,3 +325,23 @@ main:has(> .contact-hero--top) > #contact-form .form_block:has(button) {
     pointer-events: none;
   }
 }
+
+/* Align "Get directions" on one line across the address cards */
+main:has(> .contact-hero--top) > section:first-of-type .max-w-sm > div > div {
+  display: flex;
+  flex-direction: column;
+}
+
+main:has(> .contact-hero--top) > section:first-of-type .max-w-sm > div > div > * {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+main:has(> .contact-hero--top) > section:first-of-type .group {
+  flex: 1 1 auto;
+}
+
+main:has(> .contact-hero--top) > section:first-of-type .group .contact-directions {
+  margin-top: auto;
+}
