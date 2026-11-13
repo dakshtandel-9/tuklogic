@@ -1,7 +1,7 @@
 // Contact page enquiries are appended to the "TUKlogic Enquiry form" Google Sheet through a
 // Google Apps Script web app bound to that sheet (source: scripts/google-sheet-enquiry.gs).
 // The web app URL can be overridden with the GOOGLE_SHEET_WEBHOOK_URL environment variable.
-const SHEET_WEBHOOK_URL = process.env.GOOGLE_SHEET_WEBHOOK_URL || '';
+const SHEET_WEBHOOK_URL = process.env.GOOGLE_SHEET_WEBHOOK_URL || 'https://script.google.com/macros/s/AKfycbzSDbRmUzdczQrG8PZbBdhPzFPb0kNAQKD35I3K_AR9uqULJORy3GpCnlHBlIy4EV_Yrg/exec';
 
 const SERVICES: Record<string, string> = {
   'web-mobile-game-development': 'Web, Mobile & Game Development',
