@@ -389,12 +389,12 @@
    without their own backdrop text don't leave blank space above and below the image. */
 .tcs-phone-title { display: none; }
 @media (max-width: 639px) {
-  /* In flow above the product; the product is pulled up to overlap the title's lower part. */
+  /* In flow above the product, with a small gap so the image never covers or cuts the title. */
   .tcs-phone-title { display: block; position: relative; z-index: 0; width: 100%; max-width: none; height: auto; pointer-events: none; }
   .tcs-aurora { padding-top: 2vw; }
-  .tcs-aurora-product { margin-top: -12vw; }
-  .tcs-hero-scene .tcs-phone-title { width: calc(100% / 1.12); margin-inline: auto; }
-  .tcs-hero-scene img:not(.tcs-phone-title) { position: relative; z-index: 1; margin-top: -9vw; }
+  .tcs-aurora-product { margin-top: 3vw; }
+  .tcs-hero-scene .tcs-phone-title { width: calc(100% / 1.12); margin-inline: auto; -webkit-mask-image: none; mask-image: none; animation: none; }
+  .tcs-hero-scene img:not(.tcs-phone-title) { position: relative; z-index: 1; margin-top: 2vw; }
 }
 
 
