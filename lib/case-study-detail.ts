@@ -157,12 +157,12 @@ const heroStage = (x: Ctx) => `<section class="tcs-hero tcs-wrap" aria-label="${
 
 const heroAurora = (x: Ctx) => `<section class="tcs-hero tcs-hero--aurora tcs-wrap" aria-label="${escape(x.project.title)}">
   ${facts(x)}
-  <figure class="tcs-aurora">${product(x, 'tcs-aurora-product', true)}<span class="tcs-aurora-floor" aria-hidden="true"></span></figure>
+  <figure class="tcs-aurora">${art(x, 'tcs-phone-title')}${product(x, 'tcs-aurora-product', true)}<span class="tcs-aurora-floor" aria-hidden="true"></span></figure>
   ${discover(x, 'tcs-center-link')}
 </section>`;
 
 /** Facts over a wide scene of the product at work; the product render itself is shown further down the page. */
-const heroPlain = (x: Ctx, variant: string) => `<section class="tcs-hero tcs-hero--${variant} tcs-wrap" aria-label="${escape(x.project.title)}">${facts(x)}<figure class="tcs-hero-scene"><img src="/offline/images/work-images/${x.project.slug}-hero.webp" alt="" aria-hidden="true" width="1344" height="752" decoding="async" fetchpriority="high"></figure></section>`;
+const heroPlain = (x: Ctx, variant: string) => `<section class="tcs-hero tcs-hero--${variant} tcs-wrap" aria-label="${escape(x.project.title)}">${facts(x)}<figure class="tcs-hero-scene">${art(x, 'tcs-phone-title')}<img src="/offline/images/work-images/${x.project.slug}-hero.webp" alt="" aria-hidden="true" width="1344" height="752" decoding="async" fetchpriority="high"></figure></section>`;
 
 /** Product in concentric rings with the five stages placed around the outer ring. */
 function heroOrbit(x: Ctx) {

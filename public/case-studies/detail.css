@@ -385,6 +385,18 @@
 .tcs-aurora-floor { position: absolute; inset: auto 8% -4% 8%; height: 18%; border-radius: 50%; background: radial-gradient(closest-side, color-mix(in srgb, var(--tcs-color) 55%, transparent), transparent); filter: blur(10px); }
 @keyframes tcs-float { 50% { transform: translateY(-1.6%); } }
 
+/* Phones: the project title sits large behind the product (as on the poster/stage heroes), so heroes
+   without their own backdrop text don't leave blank space above and below the image. */
+.tcs-phone-title { display: none; }
+@media (max-width: 639px) {
+  /* In flow above the product; the product is pulled up to overlap the title's lower part. */
+  .tcs-phone-title { display: block; position: relative; z-index: 0; width: 100%; max-width: none; height: auto; pointer-events: none; }
+  .tcs-aurora { padding-top: 2vw; }
+  .tcs-aurora-product { margin-top: -12vw; }
+  .tcs-hero-scene .tcs-phone-title { width: calc(100% / 1.12); margin-inline: auto; }
+  .tcs-hero-scene img:not(.tcs-phone-title) { position: relative; z-index: 1; margin-top: -9vw; }
+}
+
 
 .tcs-orbit { position: relative; width: min(100%, 82vw); aspect-ratio: 1; margin: 6vw auto 0; }
 .tcs-orbit-ring { position: absolute; inset: 0; border: 1px solid color-mix(in srgb, var(--tcs-accent) 35%, transparent); border-radius: 50%; }
