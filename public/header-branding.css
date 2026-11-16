@@ -125,3 +125,24 @@
 main#main-content:has(> section.homepage.mobile) {
   overflow: clip;
 }
+
+/* Phone page heroes (About, Careers, Contact, …): the hero is a fixed
+   100dvh box with centred content and overflow hidden, so on phones the
+   taller text spilled above the box (title clipped under the header) and
+   below it (scroll badge over the next section). Let it grow with its
+   content and give it a real top/bottom gap. */
+@media (max-width: 768px) {
+  .hero_set.full_page {
+    height: auto;
+    min-height: calc(100svh - 72px);
+    padding-top: 3.5rem;
+    padding-bottom: 4rem;
+    overflow-y: visible;
+  }
+  .hero_set.full_page .hero_content {
+    height: auto;
+  }
+  .hero_set.full_page .hero_media {
+    overflow: hidden;
+  }
+}
