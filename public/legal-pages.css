@@ -15,8 +15,15 @@
 .legal-page * { box-sizing: border-box; }
 
 /* Hero */
+/* It's a <header>, so undo the site-wide `header` rule (z-index 1000, sticky,
+   blur) — otherwise it paints over the nav menu overlay. z-index 0 keeps the
+   glow (::before, z-index -1) behind the text. */
 .legal-hero {
   position: relative;
+  top: auto;
+  z-index: 0;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
   max-width: 980px;
   padding: clamp(8px, 2vw, 24px) 0 clamp(40px, 5vw, 64px);
   margin-bottom: clamp(32px, 4vw, 56px);
