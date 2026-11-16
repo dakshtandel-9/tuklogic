@@ -3,7 +3,7 @@
 
 // Browsers keep frames for a week. Change this whenever frames are replaced under the
 // same names, so returning visitors download the new ones instead of their old copies.
-export const FRAMES_VERSION = '20261116a';
+export const FRAMES_VERSION = '20261116b';
 
 // Public address of the R2 bucket that holds the frames (the same bucket next.config.ts proxies).
 export const R2_ORIGIN = 'https://pub-124464f162174e66af5ef9253e61de72.r2.dev';
