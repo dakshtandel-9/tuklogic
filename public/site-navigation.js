@@ -1,7 +1,6 @@
 // One set of destinations for the main website and its standalone services page.
 const items = [
   { key: 'thePast', path: '', en: 'The Past', ar: 'الماضي', hard: true, exact: true },
-  { key: 'thePresent', path: '/present', en: 'The Present', ar: 'الحاضر' },
   { key: 'aboutUs', path: '/about', en: 'About us', ar: 'من نحن' },
   { key: 'services', path: '/digital-services', en: 'Services', ar: 'الخدمات', hard: true },
   { key: 'caseStudies', path: '/case-studies', en: 'Case Studies', ar: 'قصص النجاح', hard: true },

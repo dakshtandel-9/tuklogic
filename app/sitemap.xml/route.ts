@@ -4,7 +4,8 @@ import { getSiteOrigin } from '../../lib/seo';
 
 export function GET() {
   const origin = getSiteOrigin();
-  const paths = new Set(Object.keys(pageLoaders));
+  // /present is retired and redirects to Case Studies.
+  const paths = new Set(Object.keys(pageLoaders).filter(path => !/^\/(en|ar)\/present$/.test(path)));
   for (const locale of ['en', 'ar']) {
     paths.add(`/${locale}/digital-services`);
     paths.add(`/${locale}/case-studies`);
