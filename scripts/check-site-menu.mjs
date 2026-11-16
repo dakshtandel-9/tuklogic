@@ -33,8 +33,8 @@ function setup(reducedMotion = false) {
 test('both website runtimes use the same seven localized destinations', () => {
   for (const locale of ['en', 'ar']) {
     const items = getSiteNavigation(locale);
-    assert.equal(items.length, 6);
-    assert.equal(new Set(items.map(item => item.href)).size, 6);
+    assert.equal(items.length, 7);
+    assert.equal(new Set(items.map(item => item.href)).size, 7);
     assert.ok(items.every(item => item.href.startsWith(`/${locale}`)));
     assert.equal(items[3].href, `/${locale}/digital-services`);
   }

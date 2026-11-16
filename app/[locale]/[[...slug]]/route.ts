@@ -18,11 +18,6 @@ const PAGE_CACHE = 'public, max-age=300, s-maxage=86400, stale-while-revalidate=
 export async function GET(request: Request) {
   const url = new URL(request.url);
   const path = url.pathname.replace(/\/$/, '');
-  // The former Present page is retired: its address and links now lead to Case Studies.
-  const retiredPresent = /^\/(en|ar)\/present$/.exec(path);
-  if (retiredPresent) {
-    return new Response(null, { status: 308, headers: { Location: `/${retiredPresent[1]}/case-studies${url.search}` } });
-  }
   const services = getServicesDocument(url);
   if (services && 'redirect' in services) {
     return new Response(null, { status: 308, headers: { Location: services.redirect } });

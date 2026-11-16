@@ -15,13 +15,13 @@ const logo = '<span class="tuklogic-header-logo" role="img" aria-label="TUKLOGIC
 
 function header(locale: Locale, slug?: string) {
   const links = [
-    [`/${locale}/case-studies`, text(locale, 'Home', 'الرئيسية')],
+    [`/${locale}/present`, text(locale, 'Home', 'الرئيسية')],
     [projectUrl(locale), text(locale, 'Case studies', 'دراسات الحالة')],
   ];
   const nav = links.map(([href, label]) => `<a href="${href}"${href === projectUrl(locale) ? ' aria-current="page"' : ''}>${label}</a>`).join('');
   return `<a class="skip-link" href="#main-content">${text(locale, 'Skip to content', 'انتقل إلى المحتوى')}</a>
   <header class="site-header header_set"><div class="header-inner wrap">
-    <a class="main_logo" href="/${locale}/case-studies" aria-label="TUKLOGIC — ${text(locale, 'Home', 'الرئيسية')}">${logo}</a>
+    <a class="main_logo" href="/${locale}/present" aria-label="TUKLOGIC — ${text(locale, 'Home', 'الرئيسية')}">${logo}</a>
     <nav class="desktop-nav" aria-label="${text(locale, 'Main navigation', 'القائمة الرئيسية')}">${nav}</nav>
     <div class="header-actions"><a class="language-link" lang="${locale === 'en' ? 'ar' : 'en'}" href="${projectUrl(locale === 'en' ? 'ar' : 'en', slug)}" aria-label="${text(locale, 'Switch to Arabic', 'Switch to English')}">${locale === 'en' ? 'عربي' : 'EN'}</a>
     <a class="contact-link" href="/${locale}/contact">${text(locale, 'Let’s talk', 'لنتحدث')}${arrow}</a>
@@ -31,7 +31,7 @@ function header(locale: Locale, slug?: string) {
 
 function footer(locale: Locale) {
   return `<section class="contact-section wrap" aria-labelledby="contact-title"><div><p class="eyebrow">${text(locale, 'YOUR NEXT CHAPTER', 'خطوتك القادمة')}</p><h2 id="contact-title">${text(locale, 'Have a challenge<br>in mind?', 'هل لديك تحدٍّ<br>تريد حله؟')}</h2></div><a class="contact-circle" href="/${locale}/contact"><span>${text(locale, 'Let’s build<br>what’s next.', 'لنبنِ معاً<br>ما هو قادم.')}</span>${arrow}</a></section>
-  <footer class="site-footer wrap"><a class="footer-wordmark" href="/${locale}/case-studies">TUKLOGIC<span>®</span></a><p>${text(locale, 'Ideas. Intelligence. Impact.', 'أفكار. ذكاء. أثر.')}</p><nav aria-label="${text(locale, 'Footer', 'روابط التذييل')}"><a href="/${locale}/privacy-policy">${text(locale, 'Privacy', 'الخصوصية')}</a><a href="/${locale}/terms-of-service">${text(locale, 'Terms', 'الشروط')}</a></nav><small>© ${new Date().getUTCFullYear()} TUKLOGIC</small></footer>`;
+  <footer class="site-footer wrap"><a class="footer-wordmark" href="/${locale}/present">TUKLOGIC<span>®</span></a><p>${text(locale, 'Ideas. Intelligence. Impact.', 'أفكار. ذكاء. أثر.')}</p><nav aria-label="${text(locale, 'Footer', 'روابط التذييل')}"><a href="/${locale}/privacy-policy">${text(locale, 'Privacy', 'الخصوصية')}</a><a href="/${locale}/terms-of-service">${text(locale, 'Terms', 'الشروط')}</a></nav><small>© ${new Date().getUTCFullYear()} TUKLOGIC</small></footer>`;
 }
 
 function shell(locale: Locale, origin: string, title: string, description: string, body: string, project?: CaseStudy, notFound = false) {

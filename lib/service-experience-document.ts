@@ -12,7 +12,7 @@ export function serviceExperienceDocument(origin: string, root: string, path = r
   const languagePath = path.replace(/^\/(en|ar)(?=\/)/, `/${otherLocale}`);
   const menu = `<header id="service-site-header" lang="${locale}" dir="${direction}" aria-label="${locale === 'ar' ? 'رأس الموقع' : 'Website header'}">
     <div class="header_set">
-      <a class="main_logo" href="/${locale}/case-studies" aria-label="TUKLOGIC · ${locale === 'ar' ? 'الحاضر' : 'The Present'}"><span class="tuklogic-header-logo" role="img" aria-label="TUKLOGIC"><span class="tuklogic-symbol" aria-hidden="true"></span><span class="tuklogic-wordmark" aria-hidden="true"></span></span></a>
+      <a class="main_logo" href="/${locale}/present" aria-label="TUKLOGIC · ${locale === 'ar' ? 'الحاضر' : 'The Present'}"><span class="tuklogic-header-logo" role="img" aria-label="TUKLOGIC"><span class="tuklogic-symbol" aria-hidden="true"></span><span class="tuklogic-wordmark" aria-hidden="true"></span></span></a>
       <div class="service-header-actions">
         <a id="service-language-toggle" class="service-header-control" href="${languagePath}" data-locale="${otherLocale}" hreflang="${otherLocale}" aria-label="${otherLocale === 'ar' ? 'Switch to Arabic' : 'Switch to English'}">${otherLocale.toUpperCase()}</a>
         <button id="service-audio-toggle" class="service-header-control" type="button" aria-label="${locale === 'ar' ? 'جار تحميل الصوت' : 'Loading audio'}" aria-pressed="false" disabled><span class="service-equalizer" aria-hidden="true">${'<i></i>'.repeat(5)}</span></button>
