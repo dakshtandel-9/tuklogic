@@ -18,6 +18,9 @@ const decode = (value: string) => value.replace(/&(?:#(\d+)|#x([0-9a-f]+)|(amp|q
 const meta = (key: string, value: string) => `<meta ${key.startsWith('og:') ? 'property' : 'name'}="${key}" content="${escapeHtml(value)}"/>`;
 
 /** Replace only SEO tags, serialized metadata and JSON-LD; preserve visible markup. */
+// Google Analytics / Tag Manager snippet, placed immediately after <head>.
+const googleTag = `<script async src="https://www.googletagmanager.com/gtm.js?id=GTM-NPRV3QT7"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());</script>`;
+
 export function applySiteSeo(html: string, url: URL, status = 200): string {
   const origin = getSiteOrigin();
   const locale: Locale = url.pathname.startsWith('/ar') ? 'ar' : 'en';
@@ -69,6 +72,7 @@ export function applySiteSeo(html: string, url: URL, status = 200): string {
   // remove the tag: some pages (e.g. /present) render these tags in React, and a missing tag makes
   // hydration fail (React error #418). Our own schema is added below.
   result = result.replace(/(<script\b[^>]*type=["']application\/ld\+json["'][^>]*>)[\s\S]*?(<\/script>)/gi, '$1{}$2');
+  result = result.replace(/<head(\s[^>]*)?>/i, tag => tag + googleTag);
   result = result.replace('</head>', `<script id="site-structured-data" type="application/ld+json">${inlineJson(getSiteStructuredData(origin, locale))}</script></head>`);
   // Only the namespace's meta object changes; all rendered translations are preserved.
   result = result.replace(/window\.__I18N__=(\{[\s\S]*?\})(?=<\/script>)/, (_, json: string) => {

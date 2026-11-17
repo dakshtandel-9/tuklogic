@@ -57,7 +57,7 @@ export async function GET(request: Request) {
       'X-Content-Type-Options': 'nosniff',
       'Referrer-Policy': 'strict-origin-when-cross-origin',
       // Copied modules may only load resources from this site and the R2 media origin.
-      'Content-Security-Policy': `default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'${mediaSource}; img-src 'self' data: blob:${mediaSource}; media-src 'self' blob:${mediaSource}; font-src 'self' data:${mediaSource}; connect-src 'self'${mediaSource} ws://localhost:* ws://127.0.0.1:*; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'`,
+      'Content-Security-Policy': `default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'${mediaSource}; img-src 'self' data: blob:${mediaSource} https://www.googletagmanager.com https://*.google-analytics.com; media-src 'self' blob:${mediaSource}; font-src 'self' data:${mediaSource}; connect-src 'self'${mediaSource} https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com ws://localhost:* ws://127.0.0.1:*; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'`,
     },
   });
 }
