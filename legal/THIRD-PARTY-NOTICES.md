@@ -1,26 +1,30 @@
 # Third-Party Notices
 
-These items are not owned by the developer and are not covered by the LICENSE or the IP Assignment Agreement. Each remains under its owner's license.
+These items are not owned by ZockTech and are not covered by the LICENSE or the IP Assignment Agreement. Each remains under its owner's license. File names are left as they are because the site loads them by name; each item has a unique ID for records.
 
 ## Software (npm)
-`next`, `react`, `react-dom`, `tailwindcss`, `vite`, `typescript`, `eslint` and similar packages are MIT licensed. `wrangler`, `@cloudflare/workers-types` and `typescript` are Apache-2.0 or MIT. Run `npx license-checker --production --summary` to produce the full current list and attach it here.
+`next`, `react`, `react-dom`, `tailwindcss`, `vite`, `eslint` and similar packages are MIT licensed. `typescript`, `wrangler` and `@cloudflare/workers-types` are Apache-2.0 or MIT. Run `npx license-checker --production --summary` to produce the full current list.
 
 ## Fonts
-| Font | Where | License |
-|---|---|---|
-| Google Fonts files in `public/offline/fonts` | site text | Open Font License (OFL), free for commercial use. Confirm the family names. |
-| NB Architekt (Light, Regular, Bold) | `public/service-experience/reference/fonts` | **Commercial. A paid license is required.** Buy one or remove the font. |
+| ID | Font | Where | Terms |
+|---|---|---|---|
+| TL-FONT-001 | Google Fonts files | `public/offline/fonts` | Open Font License (OFL), free for commercial use |
+| TL-FONT-002 | NB Architekt (Light, Regular, Bold) | `public/service-experience/reference/fonts` | ZockTech states it is free to use. Keep the download source on file. |
 
-## Music
-| Track | Where | License |
-|---|---|---|
-| BXRDVJA, "Ghost Cities" | `public/service-experience/reference/music` | **Unknown. Proof of license is required.** |
-| Downtown Binary, "Other Worlds" | `public/service-experience/reference/music` | **Unknown. Proof of license is required.** |
-
-Other audio in `public/offline/audio` (intro, eh, click, magic, whoosh): record the source and license of each here.
+## Music and audio
+| ID | Track | Where | Terms |
+|---|---|---|---|
+| TL-AUDIO-001 | "Ghost Cities" | `public/service-experience/reference/music` | Keep the license or source on file |
+| TL-AUDIO-002 | "Other Worlds" | `public/service-experience/reference/music` | Keep the license or source on file |
+| TL-AUDIO-003 | Intro, eh, click, magic and whoosh sounds | `public/offline/audio` | Keep the source on file |
 
 ## AI-generated media
-Videos and images made with Kling, Higgsfield or similar tools are subject to those services' terms. Keep the account's plan and terms on record to show commercial use is allowed.
+Videos, frames and images made by ZockTech with Kling, Higgsfield or similar tools are part of the Work and are assigned to the Assignee, subject to those services' terms.
 
-## Action required before handover
-Replace every "Unknown" and "Commercial" row with a license receipt, or remove the file.
+| ID | Group | Where |
+|---|---|---|
+| TL-AI-001 | Intro and era videos | `public/offline` (videos) |
+| TL-AI-002 | Frame sequences (desktop, mobile) | `public/offline` (frames) |
+| TL-AI-003 | Homepage characters and phone clips | `public/offline`, `public/media` |
+
+Keep the AI service plan and terms on record to show commercial use is allowed.
