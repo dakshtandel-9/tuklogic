@@ -25,7 +25,13 @@ The Assignor states that:
 Open-source packages, fonts, music and any other material owned by someone else are **not** assigned. They stay under their own licenses, listed in `legal/THIRD-PARTY-NOTICES.md`. The Assignor will help the Assignee replace any such item the Assignee cannot license, at no extra cost during the maintenance period in Section 6.
 
 ## 5. Handover
-Within 7 days of signing, the Assignor will hand over the items in `legal/HANDOFF-CHECKLIST.md`: the repository, hosting accounts, domain, storage, and all credentials, and will keep no copies of credentials. The Assignor may keep a copy of the code only for portfolio use if the Assignee agrees in writing.
+Within 7 days of signing, the Assignor will transfer the GitHub repository to the Assignee (GitHub user `tuklogictronexa`) so the Assignee is its sole owner, and will hand over every other item in `legal/HANDOFF-CHECKLIST.md`, keeping no copies of credentials.
+
+The domain tuklogic.com stays with the Assignee in the Assignee's own GoDaddy account. The Assignor holds no ownership of it.
+
+For 12 months from the date above, the Assignor provides Vercel hosting and Cloudflare (media storage) at the Assignor's cost, as a service only. This gives the Assignor no ownership of the Work. At the end of the 12 months the Assignor will, on request, move the Vercel project and the stored media to accounts owned by the Assignee, or the Assignee may host elsewhere.
+
+The Assignor may keep a copy of the code only for portfolio use if the Assignee agrees in writing.
 
 ## 6. Maintenance
 The Work was built over about 4.5 months, ending on the date above. The Assignor will provide 12 months of maintenance from the date above (bug fixes and hosting or deployment support). Maintenance does not affect ownership: the Assignee owns the Work from the moment the assignment takes effect.
