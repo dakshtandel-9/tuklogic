@@ -3,7 +3,7 @@
 **Date:** 18 November 2026
 
 **Between**
-- **Developer ("Assignor"):** ZockTech (zocktech.com), 69/2/2, SRNelia, 10th Main, Mico Layout, Hongasandra, Bangalore 560114, India
+- **Developer ("Assignor"):** ZockTech (zocktech.com), 69/2/2, SR Nilaya, 10th Main, Mico Layout, Hongasandra, Bangalore 560114, India
 - **Client ("Assignee"):** Tuk Logic (tuklogic.com), 8 The Green, STE A, Dover, Delaware 19901, USA
 
 ## 1. The Work
